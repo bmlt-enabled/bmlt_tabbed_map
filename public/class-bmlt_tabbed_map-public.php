@@ -100,4 +100,10 @@ class Bmlt_tabbed_map_Public {
 
 	}
 
+	public function bmlt_tabbed_map_shortcode( $atts ) {
+		$output = '<h1>wow</h1>';
+
+    return $output;
+	}
+
 }
