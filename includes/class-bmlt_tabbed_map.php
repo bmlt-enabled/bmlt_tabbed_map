@@ -172,7 +172,7 @@ class Bmlt_tabbed_map {
 
 		$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_styles' );
 		$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_scripts' );
-
+    $this->loader->add_shortcode( "code1", $plugin_public, "bmlt_tabbed_map_shortcode", 10, 2 );
 	}
 
 	/**
