@@ -93,7 +93,7 @@ var bmlt_tabbed_map_js = function($) {
   }
 
   var initialize = function() {
-		console.log("Start of initialize");
+    console.log("Start of initialize");
     var mapOptions = {
       zoom: 7,
       center: new google.maps.LatLng(53, -6.7),
@@ -245,15 +245,15 @@ var bmlt_tabbed_map_js = function($) {
     var target = document.getElementById('test-results');
     $("div#map-controls").hide();
     $("div#map-loader").show();
-		console.log("??????");
-		initialize();
+    console.log("??????");
+    initialize();
   });
 
-	// Expose one public method to be called from the html page
-return {
-	toggleDay: function(box, day) {
-		toggleDay(box, day);
-	}
-};
+  // Expose one public method to be called from the html page
+  return {
+    toggleDay: function(box, day) {
+      toggleDay(box, day);
+    }
+  };
 
 }(jQuery);
