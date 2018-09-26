@@ -72,7 +72,14 @@ class Bmlt_tabbed_map_Public
          * between the defined hooks and the functions defined in this
          * class.
          */
-
+        $wp_scripts = wp_scripts();
+        wp_enqueue_style(
+             $this->plugin_name,
+                 'http://ajax.googleapis.com/ajax/libs/jqueryui/' . $wp_scripts->registered['jquery-ui-core']->ver . '/themes/smoothness/jquery-ui.css',
+                 false,
+                 $this->version,
+                 false
+         );
         wp_enqueue_style($this->plugin_name, plugin_dir_url(__FILE__) . 'css/bmlt_tabbed_map-public.css', array(), $this->version, 'all');
     }
 
@@ -105,6 +112,7 @@ class Bmlt_tabbed_map_Public
         wp_enqueue_script('oms', $oms_source);
         wp_enqueue_script('markerclusterer', $markerclusterer_source);
         wp_enqueue_script('spin', $spin_source);
+        wp_enqueue_script('jquery-ui-tabs');
 
         wp_enqueue_script($this->plugin_name, plugin_dir_url(__FILE__) . 'js/bmlt_tabbed_map-public.js', array( 'jquery' ), $this->version, false);
 
@@ -114,31 +122,30 @@ class Bmlt_tabbed_map_Public
 
     public function bmlt_tabbed_map_shortcode($atts)
     {
-        $output = '<div id="map-loader"  >';
-        $output .= '<strong><em>Please wait while the map loads</em></strong>
-		</div>
-		<div id="map-controls" style="display: inline;" >
-		   <strong><em>Click on the day and the meetings will appear on the map, and in a list below the map</em></strong><br><br>
-		   <label><input type="checkbox" id="Sun" onclick="bmlt_tabbed_map_js.toggleDay(this,\'Sun\')">Sunday</label>
-			 <label><input type="checkbox" id="Mon" onclick="bmlt_tabbed_map_js.toggleDay(this,\'Mon\')">Monday</label>
-			 <label><input type="checkbox" id="Tue" onclick="bmlt_tabbed_map_js.toggleDay(this,\'Tue\')">Tuesday</label>
-			 <label><input type="checkbox" id="Wed" onclick="bmlt_tabbed_map_js.toggleDay(this,\'Wed\')">Wednesday</label>
-			 <label><input type="checkbox" id="Thu" onclick="bmlt_tabbed_map_js.toggleDay(this,\'Thu\')">Thursday</label>
-			 <label><input type="checkbox" id="Fri" onclick="bmlt_tabbed_map_js.toggleDay(this,\'Fri\')">Friday</label>
-			 <label><input type="checkbox" id="Sat" onclick="bmlt_tabbed_map_js.toggleDay(this,\'Sat\')">Saturday</label>
+        $output = '<div id="meeting-loader"  >';
+        $output .= '<strong><em>Please wait while the meetings load</em></strong>
 		</div>
 
+
 		<div id="map-canvas" style="width: 100%; height: 600px;" ></div>
-		<br>
-		<div id="test-results">
-			<div id="SunResult"></div>
-			<div id="MonResult"></div>
-			<div id="TueResult"></div>
-			<div id="WedResult"></div>
-			<div id="ThuResult"></div>
-			<div id="FriResult"></div>
-			<div id="SatResult"></div>
-		</div>
+    <div id="tabs">
+      <ul>
+   	    <li><a href="#SunResult">Sun</a></li>
+   	    <li><a href="#MonResult">Mon</a></li>
+        <li><a href="#TueResult">Tue</a></li>
+        <li><a href="#WedResult">Wed</a></li>
+        <li><a href="#ThuResult">Thu</a></li>
+        <li><a href="#FriResult">Fri</a></li>
+        <li><a href="#SatResult">Sat</a></li>
+      </ul>
+  			<div id="SunResult"></div>
+  			<div id="MonResult"></div>
+  			<div id="TueResult"></div>
+  			<div id="WedResult"></div>
+  			<div id="ThuResult"></div>
+  			<div id="FriResult"></div>
+  			<div id="SatResult"></div>
+    </div>
 
 		';
 
