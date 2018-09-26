@@ -107,6 +107,9 @@ class Bmlt_tabbed_map_Public
         wp_enqueue_script('spin', $spin_source);
 
         wp_enqueue_script($this->plugin_name, plugin_dir_url(__FILE__) . 'js/bmlt_tabbed_map-public.js', array( 'jquery' ), $this->version, false);
+
+        $script_data = array( 'image_path' => plugin_dir_url(__FILE__) . '/img/' );
+        wp_localize_script($this->plugin_name, 'js_vars', $script_data);
     }
 
     public function bmlt_tabbed_map_shortcode($atts)

@@ -151,7 +151,7 @@ var bmlt_tabbed_map_js = function($) {
             textContent += "<td><i>" + val.formats + "</i></td>";
             textContent += '<td><a href="https://maps.google.com/maps?daddr=';
             textContent += val.latitude + ',' + val.longitude;
-            textContent += '"><img src="https://www.na-ireland.org/js/map.png"></a></li></td>';
+            textContent += '"><img src="' + js_vars.image_path + 'map.png"></a></li></td>';
             textContent += "</tr>";
             switch (val.weekday_tinyint) {
               case "1":
@@ -201,11 +201,12 @@ var bmlt_tabbed_map_js = function($) {
 
             meetingLatlng = new google.maps.LatLng(val.latitude, val.longitude);
 
+            var markerIcon = js_vars.image_path + 'marker-na.png';
             meetingMarker = new google.maps.Marker({
               position: meetingLatlng,
               title: val.meeting_name,
               map: map,
-              icon: 'https://na-ireland.org/js/marker-na.png'
+              icon: markerIcon
             });
             meetingMarker.myday = dayOfWeekAsString(val.weekday_tinyint);
 
@@ -245,7 +246,6 @@ var bmlt_tabbed_map_js = function($) {
     var target = document.getElementById('test-results');
     $("div#map-controls").hide();
     $("div#map-loader").show();
-    console.log("??????");
     initialize();
   });
 
