@@ -14,7 +14,7 @@ var bmlt_tabbed_map_js = function($) {
   var WedExpandLi = "";
   var ThuExpandLi = "";
   var FriExpandLi = "";
-  var satExpandLi = "";
+  var SatExpandLi = "";
 
   var dayOfWeekAsString = function(dayIndex) {
     return ["not a day?", "Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"][dayIndex];
@@ -24,6 +24,42 @@ var bmlt_tabbed_map_js = function($) {
     var i = infowindows.length;
     while (i--) {
       infowindows[i].close();
+    }
+  }
+
+  var toggleAllDays = function() {
+    const days = [{
+        result: "SunResult",
+        text: SunExpandLi
+      },
+      {
+        result: "MonResult",
+        text: MonExpandLi
+      },
+      {
+        result: "TueResult",
+        text: TueExpandLi
+      },
+      {
+        result: "WedResult",
+        text: WedExpandLi
+      },
+      {
+        result: "ThuResult",
+        text: ThuExpandLi
+      },
+      {
+        result: "FriResult",
+        text: FriExpandLi
+      },
+      {
+        result: "SatResult",
+        text:  SatExpandLi
+      }
+    ]
+
+    for (const s of days) {
+      document.getElementById(s.result).innerHTML = s.text;
     }
   }
 
@@ -54,7 +90,7 @@ var bmlt_tabbed_map_js = function($) {
           document.getElementById(idToAdd).innerHTML = FriExpandLi;
           break;
         case "Sat":
-          document.getElementById(idToAdd).innerHTML = satExpandLi;
+          document.getElementById(idToAdd).innerHTML = SatExpandLi;
           break;
       }
     } else {
@@ -128,13 +164,13 @@ var bmlt_tabbed_map_js = function($) {
       console.log("****Running runSearch()****");
 
       $.getJSON(search_url, function(data) {
-        SunExpandLi = "<div class='search_results'><table style='width: 100%;'><caption>Sunday</caption><thead><tr><th style='width: 10%;'>Time</th><th style='width: 75%;'>Address</th><th style='width: 10%;'>Format</th><th style='width: 5%;'>Map</th></tr></thead><tbody>";
-        MonExpandLi = "<div class='search_results'><table style='width: 100%;'><caption>Monday</caption><thead><tr><th style='width: 10%;'>Time</th><th style='width: 75%;'>Address</th><th style='width: 10%;'>Format</th><th style='width: 5%;'>Map</th></tr></thead><tbody>";
-        TueExpandLi = "<div class='search_results'><table style='width: 100%;'><caption>Tuesday</caption><thead><tr><th style='width: 10%;'>Time</th><th style='width: 75%;'>Address</th><th style='width: 10%;'>Format</th><th style='width: 5%;'>Map</th></tr></thead><tbody>";
-        WedExpandLi = "<div class='search_results'><table style='width: 100%;'><caption>Wednesday</caption><thead><tr><th style='width: 10%;'>Time</th><th style='width: 75%;'>Address</th><th style='width: 10%;'>Format</th><th style='width: 5%;'>Map</th></tr></thead><tbody>";
-        ThuExpandLi = "<div class='search_results'><table style='width: 100%;'><caption>Thursday</caption><thead><tr><th style='width: 10%;'>Time</th><th style='width: 75%;'>Address</th><th style='width: 10%;'>Format</th><th style='width: 5%;'>Map</th></tr></thead><tbody>";
-        FriExpandLi = "<div class='search_results'><table style='width: 100%;'><caption>Friday</caption><thead><tr><th style='width: 10%;'>Time</th><th style='width: 75%;'>Address</th><th style='width: 10%;'>Format</th><th style='width: 5%;'>Map</th></tr></thead><tbody>";
-        satExpandLi = "<div class='search_results'><table style='width: 100%;'><caption>Saturday</caption><thead><tr><th style='width: 10%;'>Time</th><th style='width: 75%;'>Address</th><th style='width: 10%;'>Format</th><th style='width: 5%;'>Map</th></tr></thead><tbody>";
+        SunExpandLi = "<div class='search_results'><table style='width: 100%;'><thead><tr><th style='width: 10%;'>Time</th><th style='width: 75%;'>Address</th><th style='width: 10%;'>Format</th><th style='width: 5%;'>Map</th></tr></thead><tbody>";
+        MonExpandLi = "<div class='search_results'><table style='width: 100%;'><thead><tr><th style='width: 10%;'>Time</th><th style='width: 75%;'>Address</th><th style='width: 10%;'>Format</th><th style='width: 5%;'>Map</th></tr></thead><tbody>";
+        TueExpandLi = "<div class='search_results'><table style='width: 100%;'><thead><tr><th style='width: 10%;'>Time</th><th style='width: 75%;'>Address</th><th style='width: 10%;'>Format</th><th style='width: 5%;'>Map</th></tr></thead><tbody>";
+        WedExpandLi = "<div class='search_results'><table style='width: 100%;'><thead><tr><th style='width: 10%;'>Time</th><th style='width: 75%;'>Address</th><th style='width: 10%;'>Format</th><th style='width: 5%;'>Map</th></tr></thead><tbody>";
+        ThuExpandLi = "<div class='search_results'><table style='width: 100%;'><thead><tr><th style='width: 10%;'>Time</th><th style='width: 75%;'>Address</th><th style='width: 10%;'>Format</th><th style='width: 5%;'>Map</th></tr></thead><tbody>";
+        FriExpandLi = "<div class='search_results'><table style='width: 100%;'><thead><tr><th style='width: 10%;'>Time</th><th style='width: 75%;'>Address</th><th style='width: 10%;'>Format</th><th style='width: 5%;'>Map</th></tr></thead><tbody>";
+        SatExpandLi = "<div class='search_results'><table style='width: 100%;'><thead><tr><th style='width: 10%;'>Time</th><th style='width: 75%;'>Address</th><th style='width: 10%;'>Format</th><th style='width: 5%;'>Map</th></tr></thead><tbody>";
 
         if (!jQuery.isEmptyObject(data.meetings)) {
           DEBUG && console && console.log("**meetings with formats returned**");
@@ -173,7 +209,7 @@ var bmlt_tabbed_map_js = function($) {
                 FriExpandLi = FriExpandLi + textContent;
                 break;
               case "7":
-                satExpandLi = satExpandLi + textContent;
+                SatExpandLi = SatExpandLi + textContent;
                 break;
             }
 
@@ -231,11 +267,14 @@ var bmlt_tabbed_map_js = function($) {
         WedExpandLi += "</tbody></table></div>";
         ThuExpandLi += "</tbody></table></div>";
         FriExpandLi += "</tbody></table></div>";
-        satExpandLi += "</tbody></table></div>";
-        hideAll();
+        SatExpandLi += "</tbody></table></div>";
 
-        $("div#map-controls").show();
-        $("div#map-loader").hide();
+        hideAll();
+        toggleAllDays();
+
+
+
+        $("div#meeting-loader").hide();
       });
     });
 
@@ -243,10 +282,20 @@ var bmlt_tabbed_map_js = function($) {
 
   $(window).load(function() {
 
-    var target = document.getElementById('test-results');
-    $("div#map-controls").hide();
-    $("div#map-loader").show();
+//    var target = document.getElementById('test-results');
+    $("div#meeting-loader").show();
     initialize();
+    $('#tabs').tabs();
+
+    //hover states on the static widgets
+    $('#dialog_link, ul#icons li').hover(
+      function() {
+        $(this).addClass('ui-state-hover');
+      },
+      function() {
+        $(this).removeClass('ui-state-hover');
+      }
+    );
   });
 
   // Expose one public method to be called from the html page
