@@ -73,14 +73,6 @@ var bmlt_tabbed_map_js = function($) {
     }
   }
 
-  var hide = function(day) {
-    for (var i = 0; i < markers.length; i++) {
-      if (markers[i].myday == day) {
-        markers[i].setVisible(false);
-      }
-    }
-  }
-
   var hideAllMarkersOnMap = function() {
     for (var i = 0; i < markers.length; i++) {
       markers[i].setVisible(false);
