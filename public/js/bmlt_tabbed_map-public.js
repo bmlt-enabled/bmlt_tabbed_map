@@ -65,8 +65,6 @@ var bmlt_tabbed_map_js = function($) {
   }
 
   var showDayOnMap = function(day) {
-    console.log("showDayOnMap " + day);
-    console.log("There are " + markers.length + " markers");
     closeInfoWindows();
     hideAllMarkersOnMap();
     for (var i = 0; i < markers.length; i++) {
