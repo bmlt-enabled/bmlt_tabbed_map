@@ -75,7 +75,7 @@ class Bmlt_tabbed_map_Public
         $wp_scripts = wp_scripts();
         wp_enqueue_style(
              $this->plugin_name,
-                 'http://ajax.googleapis.com/ajax/libs/jqueryui/' . $wp_scripts->registered['jquery-ui-core']->ver . '/themes/smoothness/jquery-ui.css',
+                 'https://ajax.googleapis.com/ajax/libs/jqueryui/' . $wp_scripts->registered['jquery-ui-core']->ver . '/themes/smoothness/jquery-ui.css',
                  false,
                  $this->version,
                  false

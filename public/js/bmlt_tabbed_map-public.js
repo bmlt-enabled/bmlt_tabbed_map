@@ -73,14 +73,6 @@ var bmlt_tabbed_map_js = function($) {
     }
   }
 
-  var hide = function(day) {
-    for (var i = 0; i < markers.length; i++) {
-      if (markers[i].myday == day) {
-        markers[i].setVisible(false);
-      }
-    }
-  }
-
   var hideAllMarkersOnMap = function() {
     for (var i = 0; i < markers.length; i++) {
       markers[i].setVisible(false);
@@ -118,7 +110,7 @@ var bmlt_tabbed_map_js = function($) {
       search_url += "&get_used_formats";
 
       $.getJSON(search_url, function(data) {
-        var tableHeader = "<div class='search_results'><table style='width: 100%;'><thead><tr><th style='width: 10%;'>Time</th><th style='width: 75%;'>Address</th><th style='width: 10%;'>Format</th><th style='width: 5%;'>Map</th></tr></thead><tbody>";
+        var tableHeader = "<div class='search_results'><table><thead><tr><th>Time</th><th>Address</th><th>Format</th><th>Map</th></tr></thead><tbody>";
         SunExpandLi = MonExpandLi = TueExpandLi = WedExpandLi = ThuExpandLi = FriExpandLi = SatExpandLi = tableHeader;
 
         if (!jQuery.isEmptyObject(data.meetings)) {
@@ -219,7 +211,6 @@ var bmlt_tabbed_map_js = function($) {
         SatExpandLi += tableFooter;
 
         hideAllMarkersOnMap();
-        showDayOnMap("Sun");
         populateTextTabs();
 
         $("div#meeting-loader").hide();
@@ -259,6 +250,8 @@ var bmlt_tabbed_map_js = function($) {
         }
       }
     });
+
+    $('#tabs').tabs("option", "active", (new Date().getDay() || 7) );
 
     //hover states on the static widgets
     $('#dialog_link, ul#icons li').hover(
