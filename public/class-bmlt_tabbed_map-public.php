@@ -126,8 +126,6 @@ class Bmlt_tabbed_map_Public
         $output .= '<strong><em>Please wait while the meetings load</em></strong>
 		</div>
 
-
-		<div id="map-canvas" style="width: 100%; height: 600px;" ></div>
     <div id="tabs">
       <ul>
    	    <li><a href="#SunResult">Sun</a></li>
@@ -138,13 +136,14 @@ class Bmlt_tabbed_map_Public
         <li><a href="#FriResult">Fri</a></li>
         <li><a href="#SatResult">Sat</a></li>
       </ul>
-  			<div id="SunResult"></div>
-  			<div id="MonResult"></div>
-  			<div id="TueResult"></div>
-  			<div id="WedResult"></div>
-  			<div id="ThuResult"></div>
-  			<div id="FriResult"></div>
-  			<div id="SatResult"></div>
+      <div id="map-canvas" style="width: 100%; height: 600px;" ></div>
+			<div id="SunResult"></div>
+			<div id="MonResult"></div>
+			<div id="TueResult"></div>
+			<div id="WedResult"></div>
+			<div id="ThuResult"></div>
+			<div id="FriResult"></div>
+			<div id="SatResult"></div>
     </div>
 
 		';
