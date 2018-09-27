@@ -211,7 +211,6 @@ var bmlt_tabbed_map_js = function($) {
         SatExpandLi += tableFooter;
 
         hideAllMarkersOnMap();
-        showDayOnMap("Sun");
         populateTextTabs();
 
         $("div#meeting-loader").hide();
@@ -251,6 +250,8 @@ var bmlt_tabbed_map_js = function($) {
         }
       }
     });
+
+    $('#tabs').tabs("option", "active", (new Date().getDay() || 7) );
 
     //hover states on the static widgets
     $('#dialog_link, ul#icons li').hover(
