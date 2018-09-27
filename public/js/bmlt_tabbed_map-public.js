@@ -110,7 +110,7 @@ var bmlt_tabbed_map_js = function($) {
       search_url += "&get_used_formats";
 
       $.getJSON(search_url, function(data) {
-        var tableHeader = "<div class='search_results'><table style='width: 100%;'><thead><tr><th style='width: 10%;'>Time</th><th style='width: 75%;'>Address</th><th style='width: 10%;'>Format</th><th style='width: 5%;'>Map</th></tr></thead><tbody>";
+        var tableHeader = "<div class='search_results'><table><thead><tr><th>Time</th><th>Address</th><th>Format</th><th>Map</th></tr></thead><tbody>";
         SunExpandLi = MonExpandLi = TueExpandLi = WedExpandLi = ThuExpandLi = FriExpandLi = SatExpandLi = tableHeader;
 
         if (!jQuery.isEmptyObject(data.meetings)) {
