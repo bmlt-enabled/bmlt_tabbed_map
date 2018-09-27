@@ -7,6 +7,7 @@ var bmlt_tabbed_map_js = function($) {
   var infowindow;
   var markers = [];
   var infowindows = [];
+  var spinner;
 
   var SunExpandLi = "";
   var MonExpandLi = "";
@@ -243,7 +244,7 @@ var bmlt_tabbed_map_js = function($) {
         );
 
         $("div#meeting-loader").hide();
-
+        spinner.stop();
       });
     });
 
@@ -251,6 +252,8 @@ var bmlt_tabbed_map_js = function($) {
 
   $(window).load(function() {
     $("div#meeting-loader").show();
+    var target = document.getElementById('tabs');
+    spinner = new Spinner().spin(target);
     initialize();
   });
 
