@@ -105,7 +105,8 @@ var bmlt_tabbed_map_js = function($) {
       }
       var raw_meeting_json = false;
 
-      var search_url = "https://www.nasouth.ie/bmlt/main_server/client_interface/json/";
+      var search_url = js_vars.bmlt_server;
+      search_url += "client_interface/json/";
       search_url += "?switcher=GetSearchResults";
       search_url += "&data_field_key=meeting_name,weekday_tinyint,start_time,location_text,location_street,location_info,location_sub_province,distance_in_km,latitude,longitude,formats";
       search_url += "&get_used_formats";

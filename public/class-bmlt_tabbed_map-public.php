@@ -75,7 +75,7 @@ class Bmlt_tabbed_map_Public
         $wp_scripts = wp_scripts();
         wp_enqueue_style(
              $this->plugin_name,
-                 'https://ajax.googleapis.com/ajax/libs/jqueryui/' . $wp_scripts->registered['jquery-ui-core']->ver . '/themes/smoothness/jquery-ui.css',
+                 'https://ajax.googleapis.com/ajax/libs/jqueryui/' . $wp_scripts->registered['jquery-ui-core']->ver . '/themes/hot-sneaks/jquery-ui.css',
                  false,
                  $this->version,
                  false
@@ -116,7 +116,7 @@ class Bmlt_tabbed_map_Public
 
         wp_enqueue_script($this->plugin_name, plugin_dir_url(__FILE__) . 'js/bmlt_tabbed_map-public.js', array( 'jquery' ), $this->version, false);
 
-        $script_data = array( 'image_path' => plugin_dir_url(__FILE__) . '/img/' );
+        $script_data = array( 'image_path' => plugin_dir_url(__FILE__) . '/img/', 'bmlt_server' => "https://bmlt.nasouth.ie/main_server/" );
         wp_localize_script($this->plugin_name, 'js_vars', $script_data);
     }
 
