@@ -7,6 +7,7 @@ var bmlt_tabbed_map_js = function($) {
   var infowindow;
   var markers = [];
   var infowindows = [];
+  var spinner;
 
   var SunExpandLi = "";
   var MonExpandLi = "";
@@ -64,6 +65,8 @@ var bmlt_tabbed_map_js = function($) {
   }
 
   var showDayOnMap = function(day) {
+    console.log("showDayOnMap " + day);
+    console.log("There are " + markers.length + " markers");
     closeInfoWindows();
     hideAllMarkersOnMap();
     for (var i = 0; i < markers.length; i++) {
@@ -213,7 +216,35 @@ var bmlt_tabbed_map_js = function($) {
         hideAllMarkersOnMap();
         populateTextTabs();
 
+        $("#tabs").tabs({
+          activate: function(event, ui) {
+            switch (ui.newPanel.attr('id')) {
+              case "SunResult":  showDayOnMap("Sun"); break;
+              case "MonResult":  showDayOnMap("Mon"); break;
+              case "TueResult":  showDayOnMap("Tue"); break;
+              case "WedResult":  showDayOnMap("Wed"); break;
+              case "ThuResult":  showDayOnMap("Thu"); break;
+              case "FriResult":  showDayOnMap("Fri"); break;
+              case "SatResult":  showDayOnMap("Sat"); break;
+            }
+          }
+        });
+
+        var today = new Date().getDay() || 7;
+        $('#tabs').tabs("option", "active", today );
+
+        //hover states on the static widgets
+        $('#dialog_link, ul#icons li').hover(
+          function() {
+            $(this).addClass('ui-state-hover');
+          },
+          function() {
+            $(this).removeClass('ui-state-hover');
+          }
+        );
+
         $("div#meeting-loader").hide();
+        spinner.stop();
       });
     });
 
@@ -221,47 +252,9 @@ var bmlt_tabbed_map_js = function($) {
 
   $(window).load(function() {
     $("div#meeting-loader").show();
+    var target = document.getElementById('tabs');
+    spinner = new Spinner().spin(target);
     initialize();
-
-    $("#tabs").tabs({
-      beforeActivate: function(event, ui) {
-        switch (ui.newPanel.attr('id')) {
-          case "SunResult":
-            showDayOnMap("Sun");
-            break;
-          case "MonResult":
-            showDayOnMap("Mon");
-            break;
-          case "TueResult":
-            showDayOnMap("Tue");
-            break;
-          case "WedResult":
-            showDayOnMap("Wed");
-            break;
-          case "ThuResult":
-            showDayOnMap("Thu");
-            break;
-          case "FriResult":
-            showDayOnMap("Fri");
-            break;
-          case "SatResult":
-            showDayOnMap("Sat");
-            break;
-        }
-      }
-    });
-
-    $('#tabs').tabs("option", "active", (new Date().getDay() || 7) );
-
-    //hover states on the static widgets
-    $('#dialog_link, ul#icons li').hover(
-      function() {
-        $(this).addClass('ui-state-hover');
-      },
-      function() {
-        $(this).removeClass('ui-state-hover');
-      }
-    );
   });
 
 
