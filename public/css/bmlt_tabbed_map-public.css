@@ -2,3 +2,21 @@
  * All of the CSS for your public-facing functionality should be
  * included in this file.
  */
+
+.style-tabs {
+  padding: 0px  !important;
+  margin:  0em  !important;
+}
+
+.ui-corner-all, .ui-corner-bottom, .ui-corner-right, .ui-corner-br {
+  border-bottom-right-radius: 0px  !important;
+  border-bottom-left-radius:  0px  !important;
+}
+
+.dataTables_wrapper .dataTables_filter input {
+  margin-left: 0 !important;
+}
+
+.direct {
+  font-size: 1.5em !important;
+}

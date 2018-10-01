@@ -73,14 +73,16 @@ class Bmlt_tabbed_map_Public
          * class.
          */
         $wp_scripts = wp_scripts();
+
         wp_enqueue_style(
-             $this->plugin_name,
-                 'https://ajax.googleapis.com/ajax/libs/jqueryui/' . $wp_scripts->registered['jquery-ui-core']->ver . '/themes/smoothness/jquery-ui.css',
+             'jquery-ui-tabs',
+                 'https://ajax.googleapis.com/ajax/libs/jqueryui/' . $wp_scripts->registered['jquery-ui-core']->ver . '/themes/redmond/jquery-ui.css',
                  false,
                  $this->version,
-                 false
+                 'all'
          );
-        wp_enqueue_style($this->plugin_name, plugin_dir_url(__FILE__) . 'css/bmlt_tabbed_map-public.css', array(), $this->version, 'all');
+         wp_enqueue_style('dataTables_css', 'https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css', false, $this->version, 'all');
+         wp_enqueue_style($this->plugin_name, plugin_dir_url(__FILE__) . 'css/bmlt_tabbed_map-public.css', array(), $this->version, 'all');
     }
 
     /**
@@ -107,47 +109,45 @@ class Bmlt_tabbed_map_Public
         $oms_source = 'https://cdnjs.cloudflare.com/ajax/libs/OverlappingMarkerSpiderfier/1.0.3/oms.min.js';
         $markerclusterer_source = 'https://cdnjs.cloudflare.com/ajax/libs/js-marker-clusterer/1.0.0/markerclusterer_compiled.js';
         $spin_source = 'https://cdnjs.cloudflare.com/ajax/libs/spin.js/2.3.2/spin.min.js';
+        $dataTable_source = 'https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js';
 
         wp_enqueue_script('google-maps', $googlemaps_source);
         wp_enqueue_script('oms', $oms_source);
         wp_enqueue_script('markerclusterer', $markerclusterer_source);
         wp_enqueue_script('spin', $spin_source);
+        wp_enqueue_script('datatables', $dataTable_source);
         wp_enqueue_script('jquery-ui-tabs');
 
         wp_enqueue_script($this->plugin_name, plugin_dir_url(__FILE__) . 'js/bmlt_tabbed_map-public.js', array( 'jquery' ), $this->version, false);
 
-        $script_data = array( 'image_path' => plugin_dir_url(__FILE__) . '/img/' );
+        $script_data = array( 'image_path' => plugin_dir_url(__FILE__) . '/img/',
+                              'bmlt_server' => "https://bmlt.nasouth.ie/main_server/" );
         wp_localize_script($this->plugin_name, 'js_vars', $script_data);
     }
 
     public function bmlt_tabbed_map_shortcode($atts)
     {
-        $output = '<div id="meeting-loader"  >';
-        $output .= '<strong><em>Please wait while the meetings load</em></strong>
-		</div>
-
-
-		<div id="map-canvas" style="width: 100%; height: 600px;" ></div>
-    <div id="tabs">
-      <ul>
-   	    <li><a href="#SunResult">Sun</a></li>
-   	    <li><a href="#MonResult">Mon</a></li>
-        <li><a href="#TueResult">Tue</a></li>
-        <li><a href="#WedResult">Wed</a></li>
-        <li><a href="#ThuResult">Thu</a></li>
-        <li><a href="#FriResult">Fri</a></li>
-        <li><a href="#SatResult">Sat</a></li>
-      </ul>
-  			<div id="SunResult"></div>
-  			<div id="MonResult"></div>
-  			<div id="TueResult"></div>
-  			<div id="WedResult"></div>
-  			<div id="ThuResult"></div>
-  			<div id="FriResult"></div>
-  			<div id="SatResult"></div>
-    </div>
-
-		';
+        $output  = '<div id="meeting-loader">';
+        $output .= '<strong><em>Please wait while the meetings load</em></strong></div>';
+        $output .= ' <div id="tabs" class="style-tabs">  ';
+        $output .= '  <ul> ';
+        $output .= '    <li><a href="#SunResult">Sun</a></li>  ';
+        $output .= '    <li><a href="#MonResult">Mon</a></li>  ';
+        $output .= '    <li><a href="#TueResult">Tue</a></li>  ';
+        $output .= '    <li><a href="#WedResult">Wed</a></li>  ';
+        $output .= '    <li><a href="#ThuResult">Thu</a></li>  ';
+        $output .= '    <li><a href="#FriResult">Fri</a></li>  ';
+        $output .= '    <li><a href="#SatResult">Sat</a></li>  ';
+        $output .= '  </ul>  ';
+        $output .= '  <div id="map-canvas" style="width: 100%; height: 600px;" ></div> ';
+        $output .= '  <div id="SunResult" class="style-tabs"></div>  ';
+        $output .= '  <div id="MonResult" class="style-tabs"></div>  ';
+        $output .= '  <div id="TueResult" class="style-tabs"></div>  ';
+        $output .= '  <div id="WedResult" class="style-tabs"></div>  ';
+        $output .= '  <div id="ThuResult" class="style-tabs"></div>  ';
+        $output .= '  <div id="FriResult" class="style-tabs"></div>  ';
+        $output .= '  <div id="SatResult" class="style-tabs"></div>  ';
+        $output .= '</div>  ';
 
         return $output;
     }
