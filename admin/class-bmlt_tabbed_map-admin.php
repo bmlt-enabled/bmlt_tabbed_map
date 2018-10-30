@@ -179,17 +179,17 @@ class Bmlt_tabbed_map_Admin
 						<fieldset>
 							<label>
 								<input type="radio" name="<?php echo $this->option_name . '_position' ?>" id="<?php echo $this->option_name . '_position' ?>" value="before" <?php checked( $position, 'before' ); ?>>
-								<?php _e( 'Before the content', 'outdated-notice' ); ?>
+								<?php _e( 'Before the content', 'bmlt_tabbed_map' ); ?>
 							</label>
 							<br>
 							<label>
 								<input type="radio" name="<?php echo $this->option_name . '_position' ?>" value="after" <?php checked( $position, 'after' ); ?>>
-								<?php _e( 'After the content', 'outdated-notice' ); ?>
+								<?php _e( 'After the content', 'bmlt_tabbed_map' ); ?>
 							</label>
 						</fieldset>
 					<?php
 				}
-  
+
 
     /**
      * Render the text for the general section
