@@ -143,6 +143,8 @@ class Bmlt_tabbed_map {
 
 	}
 
+
+
 	/**
 	 * Register all of the hooks related to the admin area functionality
 	 * of the plugin.
@@ -158,6 +160,9 @@ class Bmlt_tabbed_map {
 		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_scripts' );
     $this->loader->add_action( 'admin_menu', $plugin_admin, 'add_options_page' );
 		$this->loader->add_action( 'admin_init', $plugin_admin, 'register_setting' );
+		$this->loader->add_action( 'wp_ajax_wpa_49691', $plugin_admin, 'wpa_49691_callback' );
+		$this->loader->add_action( 'wp_ajax_nopriv_wpa_49691', $plugin_admin, 'wpa_49691_callback' );
+
 	}
 
 	/**
@@ -171,7 +176,7 @@ class Bmlt_tabbed_map {
 
 		$plugin_public = new Bmlt_tabbed_map_Public( $this->get_plugin_name(), $this->get_version() );
 
-		$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_styles' );
+		$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_styles', 100000 );
 		$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_scripts' );
     $this->loader->add_shortcode( "bmlt_tabbed_map", $plugin_public, "bmlt_tabbed_map_shortcode", 10, 2 );
 	}

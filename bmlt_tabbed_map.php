@@ -58,6 +58,8 @@ function deactivate_bmlt_tabbed_map() {
 register_activation_hook( __FILE__, 'activate_bmlt_tabbed_map' );
 register_deactivation_hook( __FILE__, 'deactivate_bmlt_tabbed_map' );
 
+
+
 /**
  * The core plugin class that is used to define internationalization,
  * admin-specific hooks, and public-facing site hooks.

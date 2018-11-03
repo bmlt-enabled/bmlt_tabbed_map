@@ -1,81 +1,22 @@
 <?php
 
-/**
- * The public-facing functionality of the plugin.
- *
- * @link       https://www.na-ireland.org
- * @since      1.0.0
- *
- * @package    Bmlt_tabbed_map
- * @subpackage Bmlt_tabbed_map/public
- */
-
-/**
- * The public-facing functionality of the plugin.
- *
- * Defines the plugin name, version, and two examples hooks for how to
- * enqueue the public-facing stylesheet and JavaScript.
- *
- * @package    Bmlt_tabbed_map
- * @subpackage Bmlt_tabbed_map/public
- * @author     Paul N <web@na-ireland.org>
- */
 class Bmlt_tabbed_map_Public
 {
 
-    /**
-     * The ID of this plugin.
-     *
-     * @since    1.0.0
-     * @access   private
-     * @var      string    $plugin_name    The ID of this plugin.
-     */
     private $plugin_name;
-
-    /**
-     * The version of this plugin.
-     *
-     * @since    1.0.0
-     * @access   private
-     * @var      string    $version    The current version of this plugin.
-     */
     private $version;
 
-    /**
-     * Initialize the class and set its properties.
-     *
-     * @since    1.0.0
-     * @param      string    $plugin_name       The name of the plugin.
-     * @param      string    $version    The version of this plugin.
-     */
     public function __construct($plugin_name, $version)
     {
         $this->plugin_name = $plugin_name;
         $this->version = $version;
     }
 
-    /**
-     * Register the stylesheets for the public-facing side of the site.
-     *
-     * @since    1.0.0
-     */
     public function enqueue_styles()
     {
-
-        /**
-         *
-         * An instance of this class should be passed to the run() function
-         * defined in Bmlt_tabbed_map_Loader as all of the hooks are defined
-         * in that particular class.
-         *
-         * The Bmlt_tabbed_map_Loader will then create the relationship
-         * between the defined hooks and the functions defined in this
-         * class.
-         */
         $wp_scripts = wp_scripts();
 
         wp_enqueue_style(bootstrap_css, plugin_dir_url(__FILE__) . 'css/bootstrap.min.css', array(), $this->version, 'all');
-        wp_enqueue_style(data_table_css, plugin_dir_url(__FILE__) . 'css/dataTables.bootstrap4.min.css', array(), $this->version, 'all');
         wp_enqueue_style(jquery-ui_css, plugin_dir_url(__FILE__) . 'css/jquery-ui.css', array(), $this->version, 'all');
         wp_enqueue_style(leaflet_css, plugin_dir_url(__FILE__) . 'css/leaflet.css', array(), $this->version, 'all');
         wp_enqueue_style(L_control, plugin_dir_url(__FILE__) . 'css/L.Control.Locate.min.css', array(), $this->version, 'all');
@@ -84,28 +25,13 @@ class Bmlt_tabbed_map_Public
         wp_enqueue_style(theme, plugin_dir_url(__FILE__) . 'css/theme.css', array(), $this->version, 'all');
         wp_enqueue_style(fa_solid, 'https://use.fontawesome.com/releases/v5.4.1/css/solid.css', array(), $this->version, 'all');
         wp_enqueue_style(fa, 'https://use.fontawesome.com/releases/v5.4.1/css/fontawesome.css', array(), $this->version, 'all');
-
+        wp_enqueue_style(data_table_css, plugin_dir_url(__FILE__) . 'css/dataTables.bootstrap4.min.css', array(), $this->version, 'all');
+        wp_enqueue_style(datatable_jquery, 'https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css', array(), $this->version, 'all');
         wp_enqueue_style($this->plugin_name, plugin_dir_url(__FILE__) . 'css/bmlt_tabbed_map-public.css', array(), $this->version, 'all');
     }
 
-    /**
-     * Register the JavaScript for the public-facing side of the site.
-     *
-     * @since    1.0.0
-     */
     public function enqueue_scripts()
     {
-
-        /**
-         *
-         * An instance of this class should be passed to the run() function
-         * defined in Bmlt_tabbed_map_Loader as all of the hooks are defined
-         * in that particular class.
-         *
-         * The Bmlt_tabbed_map_Loader will then create the relationship
-         * between the defined hooks and the functions defined in this
-         * class.
-         */
 
         wp_enqueue_script(jquery,             plugin_dir_url(__FILE__) . 'js/jquery.min.js',             array( 'jquery' ), $this->version, false);
         wp_enqueue_script(bootstrap_min_js,   plugin_dir_url(__FILE__) . 'js/bootstrap.min.js',          array( 'jquery' ), $this->version, false);

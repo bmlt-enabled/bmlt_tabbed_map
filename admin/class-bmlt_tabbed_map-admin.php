@@ -1,130 +1,55 @@
 <?php
 
-/**
- * The admin-specific functionality of the plugin.
- *
- * @link       https://www.na-ireland.org
- * @since      1.0.0
- *
- * @package    Bmlt_tabbed_map
- * @subpackage Bmlt_tabbed_map/admin
- */
-
-/**
- * The admin-specific functionality of the plugin.
- *
- * Defines the plugin name, version, and two examples hooks for how to
- * enqueue the admin-specific stylesheet and JavaScript.
- *
- * @package    Bmlt_tabbed_map
- * @subpackage Bmlt_tabbed_map/admin
- * @author     Paul N <web@na-ireland.org>
- */
 class Bmlt_tabbed_map_Admin
 {
 
-    /**
-     * The ID of this plugin.
-     *
-     * @since    1.0.0
-     * @access   private
-     * @var      string    $plugin_name    The ID of this plugin.
-     */
     private $plugin_name;
 
-    /**
-     * The version of this plugin.
-     *
-     * @since    1.0.0
-     * @access   private
-     * @var      string    $version    The current version of this plugin.
-     */
     private $version;
 
-    /**
-         * The options name to be used in this plugin
-         *
-         * @since  	1.0.0
-         * @access 	private
-         * @var  	string 		$option_name 	Option name of this plugin
-         */
     private $option_name = 'bmlt_tabbed_map';
 
-    /**
-     * Initialize the class and set its properties.
-     *
-     * @since    1.0.0
-     * @param      string    $plugin_name       The name of this plugin.
-     * @param      string    $version    The version of this plugin.
-     */
     public function __construct($plugin_name, $version)
     {
         $this->plugin_name = $plugin_name;
         $this->version = $version;
+        add_action( 'wp_ajax_wpa_49691', 'wpa_49691_callback' );
+add_action( 'wp_ajax_nopriv_wpa_49691', 'wpa_49691_callback' );
     }
 
-    /**
-     * Register the stylesheets for the admin area.
-     *
-     * @since    1.0.0
-     */
     public function enqueue_styles()
     {
-
-        /**
-         * This function is provided for demonstration purposes only.
-         *
-         * An instance of this class should be passed to the run() function
-         * defined in Bmlt_tabbed_map_Loader as all of the hooks are defined
-         * in that particular class.
-         *
-         * The Bmlt_tabbed_map_Loader will then create the relationship
-         * between the defined hooks and the functions defined in this
-         * class.
-         */
-
+        wp_enqueue_style(leaflet_admin, plugin_dir_url(__FILE__) . 'css/leaflet.css', array(), $this->version, 'all');
+        wp_enqueue_style(L_control_admin, plugin_dir_url(__FILE__) . 'css/L.Control.Locate.min.css', array(), $this->version, 'all');
+        wp_enqueue_style(fa_solid_admin, 'https://use.fontawesome.com/releases/v5.4.1/css/solid.css', array(), $this->version, 'all');
+        wp_enqueue_style(fa_admin, 'https://use.fontawesome.com/releases/v5.4.1/css/fontawesome.css', array(), $this->version, 'all');
         wp_enqueue_style($this->plugin_name, plugin_dir_url(__FILE__) . 'css/bmlt_tabbed_map-admin.css', array(), $this->version, 'all');
     }
 
-    /**
-     * Register the JavaScript for the admin area.
-     *
-     * @since    1.0.0
-     */
     public function enqueue_scripts()
     {
-
-        /**
-         * This function is provided for demonstration purposes only.
-         *
-         * An instance of this class should be passed to the run() function
-         * defined in Bmlt_tabbed_map_Loader as all of the hooks are defined
-         * in that particular class.
-         *
-         * The Bmlt_tabbed_map_Loader will then create the relationship
-         * between the defined hooks and the functions defined in this
-         * class.
-         */
-
+        wp_enqueue_script(leaflet_admin, plugin_dir_url(__FILE__) . 'js/leaflet.js', array(), $this->version, false);
+        wp_enqueue_script(leafletlocate_admin, plugin_dir_url(__FILE__) . 'js/L.Control.Locate.min.js', array(), $this->version, false);
         wp_enqueue_script($this->plugin_name, plugin_dir_url(__FILE__) . 'js/bmlt_tabbed_map-admin.js', array( 'jquery' ), $this->version, false);
+        $script_data = array( 'zoom_js' => get_option($this->option_name . '_zoom_position'),
+                              'lat_js' => get_option($this->option_name . '_lat_position'),
+                              'lng_js'  => get_option($this->option_name . '_lng_position') );
+        wp_localize_script($this->plugin_name, 'js_vars', $script_data);
+
+
     }
 
     public function add_options_page()
     {
         $this->plugin_screen_hook_suffix = add_options_page(
-        __('BMLT Tabbed Map Settings', 'bmlt_tabbed_map'),
-        __('BMLT Tabbed Map', 'bmlt_tabbed_map'),
-        'manage_options',
-        $this->plugin_name,
-        array( $this, 'display_options_page' )
-    );
+            __('BMLT Tabbed Map Settings', 'bmlt_tabbed_map'),
+            __('BMLT Tabbed Map', 'bmlt_tabbed_map'),
+            'manage_options',
+            $this->plugin_name,
+            array( $this, 'display_options_page' )
+        );
     }
 
-    /**
-         * Render the options page for plugin
-         *
-         * @since  1.0.0
-         */
     public function display_options_page()
     {
         include_once 'partials/bmlt_tabbed_map-admin-display.php';
@@ -132,72 +57,106 @@ class Bmlt_tabbed_map_Admin
 
     public function register_setting()
     {
-        // Add a General section
-        add_settings_section(
-            $this->option_name . '_general',
-            __('General', 'bmlt_tabbed_map'),
-            array( $this, $this->option_name . '_general_cb' ),
-            $this->plugin_name
-        );
+      // Add a General section
+      add_settings_section(
+        $this->option_name . '_general',
+        __('Position the map as you would like it to appear on your webpage and then click on Save Changes', 'bmlt_tabbed_map'),
+        array( $this, $this->option_name . '_general_cb' ),
+        $this->plugin_name
+      );
 
-        add_settings_field(
-                    $this->option_name . '_position',
-                    __('Map start position', 'bmlt_tabbed_map'),
-                    array( $this, $this->option_name . '_position_cb' ),
-                    $this->plugin_name,
-                    $this->option_name . '_general',
-                    array( 'label_for' => $this->option_name . '_position' )
-                );
 
-        register_setting($this->plugin_name, $this->option_name . '_position', array( $this, $this->option_name . '_sanitize_position' ));
-  //      register_setting($this->plugin_name, $this->option_name . '_day', 'intval');
+      add_settings_field(
+        $this->option_name . '_lat_position',
+        __('Map Latitude position', 'bmlt_tabbed_map'),
+        array( $this, $this->option_name . '_lat_position_cb' ),
+        $this->plugin_name,
+        $this->option_name . '_general',
+        array( 'label_for' => $this->option_name . '_lat_position' )
+      );
+
+      $lat_args = array(
+              'type' => 'number',
+              'sanitize_callback' => NULL,
+              'default' => '53.341318',
+              );
+
+      register_setting($this->plugin_name, $this->option_name . '_lat_position', $lat_args);
+
+
+      add_settings_field(
+        $this->option_name . '_lng_position',
+        __('Map Longitude position', 'bmlt_tabbed_map'),
+        array( $this, $this->option_name . '_lng_position_cb' ),
+        $this->plugin_name,
+        $this->option_name . '_general',
+        array( 'label_for' => $this->option_name . '_lng_position' )
+      );
+
+      $lng_args = array(
+              'type' => 'number',
+              'sanitize_callback' => NULL,
+              'default' => '-6.270205',
+              );
+
+      register_setting($this->plugin_name, $this->option_name . '_lng_position', $lng_args);
+
+
+      add_settings_field(
+        $this->option_name . '_zoom_position',
+        __('Map zoom level', 'bmlt_tabbed_map'),
+        array( $this, $this->option_name . '_zoom_position_cb' ),
+        $this->plugin_name,
+        $this->option_name . '_general',
+        array( 'label_for' => $this->option_name . '_zoom_position' )
+      );
+
+      $zoom_args = array(
+              'type' => 'integer',
+              'sanitize_callback' => NULL,
+              'default' => '10',
+              );
+
+      register_setting($this->plugin_name, $this->option_name . '_zoom_position', $zoom_args);
+
+    }
+
+    public function bmlt_tabbed_map_lat_position_cb()
+    {
+      update_option( $this->option_name . '_lat_position', '44' );
+      $lat_position = get_option($this->option_name . '_lat_position'); ?>
+      <p><?php echo $lat_position ?></p>
+
+			<?php
+    }
+
+    public function bmlt_tabbed_map_lng_position_cb()
+    {
+      update_option( $this->option_name . '_lng_position', '55' );
+      $lng_position = get_option($this->option_name . '_lng_position'); ?>
+      <p><?php echo $lng_position ?></p>
+
+      <?php
+    }
+
+    public function bmlt_tabbed_map_zoom_position_cb()
+    {
+      update_option( $this->option_name . '_zoom_position', '17' );
+      $zoom_position = get_option($this->option_name . '_zoom_position'); ?>
+      <p><?php echo $zoom_position ?></p>
+
+      <?php
     }
 
 
-		/**
-			 * Sanitize the text position value before being saved to database
-			 *
-			 * @param  string $position $_POST value
-			 * @since  1.0.0
-			 * @return string           Sanitized value
-			 */
-			public function bmlt_tabbed_map_sanitize_position( $position ) {
-				if ( in_array( $position, array( 'before', 'after' ), true ) ) {
-			        return $position;
-			    }
-			}
+    function wpa_49691_callback() {
+        // Do whatever you need with update_option() here.
+        // You have full access to the $_POST object.
+        update_option( $this->option_name . '_zoom_position', '9' );
+        ?>
+        <p><?php echo $zoom_position ?></p>
 
-    /**
-     * Render the radio input field for position option
-     *
-     * @since  1.0.0
-     */
-    public function bmlt_tabbed_map_position_cb()
-    {
-			$position = get_option( $this->option_name . '_position' );
-					?>
-						<fieldset>
-							<label>
-								<input type="radio" name="<?php echo $this->option_name . '_position' ?>" id="<?php echo $this->option_name . '_position' ?>" value="before" <?php checked( $position, 'before' ); ?>>
-								<?php _e( 'Before the content', 'bmlt_tabbed_map' ); ?>
-							</label>
-							<br>
-							<label>
-								<input type="radio" name="<?php echo $this->option_name . '_position' ?>" value="after" <?php checked( $position, 'after' ); ?>>
-								<?php _e( 'After the content', 'bmlt_tabbed_map' ); ?>
-							</label>
-						</fieldset>
-					<?php
-				}
-
-
-    /**
-     * Render the text for the general section
-     *
-     * @since  1.0.0
-     */
-    public function bmlt_tabbed_mp_general_cb()
-    {
-        echo '<p>' . __('Please change the settings accordingly.', 'bmlt_tabbed_map') . '</p>';
+        <?php
     }
+
 }
