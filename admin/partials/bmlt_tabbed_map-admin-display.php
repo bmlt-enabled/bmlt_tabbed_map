@@ -20,7 +20,7 @@
 	    <form action="options.php" method="post">
 	        <?php
                 settings_fields($this->plugin_name);
-                do_settings_sections($this->plugin_name); 
+                do_settings_sections($this->plugin_name);
 								?>
 								<div id="map"> </div>
 
@@ -30,7 +30,7 @@
 
 <?php
 
-                submit_button();
+//                submit_button();
             ?>
 	    </form>
  <div>

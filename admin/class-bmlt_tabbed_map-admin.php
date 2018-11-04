@@ -90,7 +90,7 @@ class Bmlt_tabbed_map_Admin
         // Add a General section
         add_settings_section(
           $this->option_name . '_general',
-          __('Position the map as you would like it to appear on your webpage and then click on Save Changes', 'bmlt_tabbed_map'),
+          __('Center the map as you would like it to appear on your webpage', 'bmlt_tabbed_map'),
           array( $this, $this->option_name . '_general_cb' ),
           $this->plugin_name
         );
