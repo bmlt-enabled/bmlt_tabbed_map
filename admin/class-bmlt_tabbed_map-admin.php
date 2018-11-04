@@ -18,7 +18,7 @@ class Bmlt_tabbed_map_Admin
         $this->version = $version;
     }
 
-    public function my_action()
+    public function receive_new_settings()
     {
         $nonce = $_POST['nextNonce'];
         if (! wp_verify_nonce($nonce, 'myajax-next-nonce')) {

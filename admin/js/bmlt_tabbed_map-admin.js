@@ -14,6 +14,8 @@ const bmlt_tabbed_map_admin = function($) {
   }
 
   if (js_vars.lat_js && js_vars.lng_js) {
+    console.log("Setting latLng from plugin to ", js_vars.lat_js);
+
     myLatLng = new L.latLng(js_vars.lat_js, js_vars.lng_js);
   }
 
@@ -29,7 +31,7 @@ const bmlt_tabbed_map_admin = function($) {
     DEBUG && console && console.log("New Zoom = : ", newZoom);
 
     var sendDataToWP = {
-      action       : 'my_action',
+      action       : 'receive_new_settings',
       zoomPosition : newZoom,
       latPosition  : newLat,
       lngPosition  : newLng,
