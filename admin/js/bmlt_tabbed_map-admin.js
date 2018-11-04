@@ -5,8 +5,18 @@ const bmlt_tabbed_map_admin = function($) {
   var DEBUG = true;
   // Dont forget to comment all of this
   var map = null;
-  var searchZoom = js_vars.zoom_js;
-  var myLatLng = new L.latLng(js_vars.lat_js, js_vars.lng_js);
+  if (js_vars.zoom_js) {
+    var searchZoom = js_vars.zoom_js;
+  } else {
+    var searchZoom = 7;
+
+  }
+  if (js_vars.lat_js && js_vars.lng_js) {
+    var myLatLng = new L.latLng(js_vars.lat_js, js_vars.lng_js);
+  } else {
+    var myLatLng = new L.latLng(34, -117);
+
+  }
 
   var writeSettings = function() {
 
