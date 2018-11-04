@@ -16,18 +16,18 @@ class Bmlt_tabbed_map_Public
     {
         $wp_scripts = wp_scripts();
 
-        wp_enqueue_style(bootstrap_css, plugin_dir_url(__FILE__) . 'css/bootstrap.min.css', array(), $this->version, 'all');
-        wp_enqueue_style(jquery-ui_css, plugin_dir_url(__FILE__) . 'css/jquery-ui.css', array(), $this->version, 'all');
-        wp_enqueue_style(leaflet_css, plugin_dir_url(__FILE__) . 'css/leaflet.css', array(), $this->version, 'all');
-        wp_enqueue_style(L_control, plugin_dir_url(__FILE__) . 'css/L.Control.Locate.min.css', array(), $this->version, 'all');
-        wp_enqueue_style(marker_cluster_css, plugin_dir_url(__FILE__) . 'css/MarkerCluster.css', array(), $this->version, 'all');
-        wp_enqueue_style(marker_cluster_default, plugin_dir_url(__FILE__) . 'css/MarkerCluster.Default.css', array(), $this->version, 'all');
-        wp_enqueue_style(theme, plugin_dir_url(__FILE__) . 'css/theme.css', array(), $this->version, 'all');
-        wp_enqueue_style(fa_solid, 'https://use.fontawesome.com/releases/v5.4.1/css/solid.css', array(), $this->version, 'all');
-        wp_enqueue_style(fa, 'https://use.fontawesome.com/releases/v5.4.1/css/fontawesome.css', array(), $this->version, 'all');
-        wp_enqueue_style(data_table_css, plugin_dir_url(__FILE__) . 'css/dataTables.bootstrap4.min.css', array(), $this->version, 'all');
-        wp_enqueue_style(datatable_jquery, 'https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css', array(), $this->version, 'all');
-        wp_enqueue_style($this->plugin_name, plugin_dir_url(__FILE__) . 'css/bmlt_tabbed_map-public.css', array(), $this->version, 'all');
+        wp_enqueue_style(bootstrap_css,      plugin_dir_url(__FILE__) . 'css/bootstrap.min.css',                 array(), $this->version, 'all');
+        wp_enqueue_style(jquery-ui_css,      plugin_dir_url(__FILE__) . 'css/jquery-ui.css',                     array(), $this->version, 'all');
+        wp_enqueue_style(leaflet_css,        plugin_dir_url(__FILE__) . 'css/leaflet.css',                       array(), $this->version, 'all');
+        wp_enqueue_style(L_control,          plugin_dir_url(__FILE__) . 'css/L.Control.Locate.min.css',          array(), $this->version, 'all');
+        wp_enqueue_style(marker_cluster_css, plugin_dir_url(__FILE__) . 'css/MarkerCluster.css',                 array(), $this->version, 'all');
+        wp_enqueue_style(marker_cluster_default, plugin_dir_url(__FILE__) . 'css/MarkerCluster.Default.css',     array(), $this->version, 'all');
+        wp_enqueue_style(theme,              plugin_dir_url(__FILE__) . 'css/theme.css',                         array(), $this->version, 'all');
+        wp_enqueue_style(fa_solid,           'https://use.fontawesome.com/releases/v5.4.1/css/solid.css',        array(), $this->version, 'all');
+        wp_enqueue_style(fa,                 'https://use.fontawesome.com/releases/v5.4.1/css/fontawesome.css',  array(), $this->version, 'all');
+        wp_enqueue_style(data_table_css,     plugin_dir_url(__FILE__) . 'css/dataTables.bootstrap4.min.css',     array(), $this->version, 'all');
+        wp_enqueue_style(datatable_jquery,   'https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css', array(), $this->version, 'all');
+        wp_enqueue_style($this->plugin_name, plugin_dir_url(__FILE__) . 'css/bmlt_tabbed_map-public.css',        array(), $this->version, 'all');
     }
 
     public function enqueue_scripts()
