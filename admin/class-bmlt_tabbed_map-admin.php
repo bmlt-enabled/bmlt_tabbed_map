@@ -90,18 +90,9 @@ class Bmlt_tabbed_map_Admin
         // Add a General section
         add_settings_section(
           $this->option_name . '_general',
-          __('Center the map as you would like it to appear on your webpage', 'bmlt_tabbed_map'),
+          __('Center and zoom the map', 'bmlt_tabbed_map'),
           array( $this, $this->option_name . '_general_cb' ),
           $this->plugin_name
-        );
-
-        add_settings_field(
-          $this->option_name . '_lat_position',
-          __('Map Latitude position', 'bmlt_tabbed_map'),
-          array( $this, $this->option_name . '_lat_position_cb' ),
-          $this->plugin_name,
-          $this->option_name . '_general',
-          array( 'label_for' => $this->option_name . '_lat_position' )
         );
 
         $lat_args = array(
@@ -112,16 +103,6 @@ class Bmlt_tabbed_map_Admin
 
         register_setting($this->plugin_name, $this->option_name . '_lat_position', $lat_args);
 
-
-        add_settings_field(
-          $this->option_name . '_lng_position',
-          __('Map Longitude position', 'bmlt_tabbed_map'),
-          array( $this, $this->option_name . '_lng_position_cb' ),
-          $this->plugin_name,
-          $this->option_name . '_general',
-          array( 'label_for' => $this->option_name . '_lng_position' )
-        );
-
         $lng_args = array(
               'type' => 'number',
               'sanitize_callback' => null,
@@ -129,16 +110,6 @@ class Bmlt_tabbed_map_Admin
               );
 
         register_setting($this->plugin_name, $this->option_name . '_lng_position', $lng_args);
-
-
-        add_settings_field(
-          $this->option_name . '_zoom_position',
-          __('Map zoom level', 'bmlt_tabbed_map'),
-          array( $this, $this->option_name . '_zoom_position_cb' ),
-          $this->plugin_name,
-          $this->option_name . '_general',
-          array( 'label_for' => $this->option_name . '_zoom_position' )
-        );
 
         $zoom_args = array(
               'type' => 'integer',

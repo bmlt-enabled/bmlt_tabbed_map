@@ -9,11 +9,20 @@ const bmlt_tabbed_map_admin = function($) {
   var myLatLng = new L.latLng(js_vars.lat_js, js_vars.lng_js);
 
   var writeSettings = function() {
+
     DEBUG && console && console.log("Save settings here: ");
     var newZoom = map.getZoom();
     var newLat = map.getCenter().lat;
     var newLng = map.getCenter().lng;
     var nonce = js_vars.nextNonce;
+
+    var zoomFeedback = "Zoom : " + newZoom;
+    var latFeedback = "Latitude : " + newLat;
+    var lngFeedback = "Longitude : " + newLng;
+
+    $("#zoom").html(zoomFeedback);
+    $("#latitude").html(latFeedback);
+    $("#longitude").html(lngFeedback);
 
     DEBUG && console && console.log("New lat  = : ", newLat);
     DEBUG && console && console.log("New lng  = : ", newLng);

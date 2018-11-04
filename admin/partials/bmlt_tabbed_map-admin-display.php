@@ -23,6 +23,9 @@
                 do_settings_sections($this->plugin_name);
 								?>
 								<div id="map"> </div>
+								<div id="zoom"> </div>
+								<div id="latitude"> </div>
+							  <div id="longitude"> </div>
 
 								  <script>
 								    bmlt_tabbed_map_admin.showMap();
