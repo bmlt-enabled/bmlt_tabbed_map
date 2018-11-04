@@ -88,7 +88,7 @@ const bmlt_tabbed_map_js = function($) {
       // 	attribution: '<a href="https://wikimediafoundation.org/wiki/Maps_Terms_of_Use">Wikimedia</a>'
       // }).addTo(map);
 
-      map.setView(myLatLng, 9);
+      map.setView(myLatLng, searchZoom);
       L.control.locate().addTo(map);
       map.spin(false);
     }
