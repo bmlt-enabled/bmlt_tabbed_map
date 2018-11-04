@@ -7,8 +7,8 @@ const bmlt_tabbed_map_js = function($) {
     var map = null;
     var circle = null;
     var markerClusterer = null;
-    var myLatLng = new L.latLng(53.341318, -6.270205); // Irish Service Office
-    var searchZoom = 10; // default to 10
+    var myLatLng = new L.latLng(js_vars.lat_js, js_vars.lng_js);
+    var searchZoom = js_vars.zoom_js;
     var jsonQuery;
     var activeTab;
 

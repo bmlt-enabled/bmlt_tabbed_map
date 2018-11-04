@@ -5,6 +5,7 @@ class Bmlt_tabbed_map_Public
 
     private $plugin_name;
     private $version;
+    private $option_name = 'bmlt_tabbed_map';
 
     public function __construct($plugin_name, $version)
     {
@@ -43,12 +44,15 @@ class Bmlt_tabbed_map_Public
         wp_enqueue_script('leafletmarker',      plugin_dir_url(__FILE__) . 'js/leaflet.markercluster.js',  array(), $this->version, false);
         wp_enqueue_script('leafletspin',        plugin_dir_url(__FILE__) . 'js/leaflet.spin.js',           array(), $this->version, false);
         wp_enqueue_script('spinmin',            plugin_dir_url(__FILE__) . 'js/spin.min.js',               array(), $this->version, false);
-        wp_enqueue_script($this->plugin_name, plugin_dir_url(__FILE__) . 'js/bmlt_tabbed_map-public.js', array( 'jquery' ), $this->version, false);
+        wp_enqueue_script($this->plugin_name,   plugin_dir_url(__FILE__) . 'js/bmlt_tabbed_map-public.js', array( 'jquery' ), $this->version, false);
 
-        // not used...
-        $script_data = array( 'image_path' => plugin_dir_url(__FILE__) . '/img/',
-                              'bmlt_server' => "https://bmlt.nasouth.ie/main_server/" );
+
+        $script_data = array( 'zoom_js'   => get_option($this->option_name . '_zoom_position'),
+                              'lat_js'    => get_option($this->option_name . '_lat_position'),
+                              'lng_js'    => get_option($this->option_name . '_lng_position') );
         wp_localize_script($this->plugin_name, 'js_vars', $script_data);
+
+
     }
 
     public function bmlt_tabbed_map_shortcode($atts)

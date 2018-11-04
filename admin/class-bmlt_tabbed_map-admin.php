@@ -20,21 +20,23 @@ class Bmlt_tabbed_map_Admin
 
     public function receive_new_settings()
     {
+
         $nonce = $_POST['nextNonce'];
         if (! wp_verify_nonce($nonce, 'myajax-next-nonce')) {
-            die('Busted!');
+            die();
         }
 
         global $wpdb;
 
-        $this->tmpZoomPosition = intval($_POST['zoomPosition']);
+        $this->tmpZoomPosition = $_POST['zoomPosition'];
         $this->tmpLngPosition  = $_POST['lngPosition'];
         $this->tmpLatPosition  = $_POST['latPosition'];
 
-        header("Content-Type: application/json");
-        echo $this->tmpZoomPosition;
-        echo $this->tmpLngPosition;
-        echo $this->tmpLatPosition;
+        $response = json_encode( $_POST );
+      	// response output
+      	header( "Content-Type: application/json" );
+      	echo $response;
+
 
         update_option($this->option_name . '_zoom_position', $this->tmpZoomPosition);
         update_option($this->option_name . '_lat_position', $this->tmpLatPosition);
@@ -105,7 +107,7 @@ class Bmlt_tabbed_map_Admin
         $lat_args = array(
               'type' => 'number',
               'sanitize_callback' => null,
-              'default' => '53.341318',
+              'default' => null
               );
 
         register_setting($this->plugin_name, $this->option_name . '_lat_position', $lat_args);
@@ -123,7 +125,7 @@ class Bmlt_tabbed_map_Admin
         $lng_args = array(
               'type' => 'number',
               'sanitize_callback' => null,
-              'default' => '-6.270205',
+              'default' =>  null
               );
 
         register_setting($this->plugin_name, $this->option_name . '_lng_position', $lng_args);
@@ -141,7 +143,7 @@ class Bmlt_tabbed_map_Admin
         $zoom_args = array(
               'type' => 'integer',
               'sanitize_callback' => null,
-              'default' => '10',
+              'default' =>  null
               );
 
         register_setting($this->plugin_name, $this->option_name . '_zoom_position', $zoom_args);
