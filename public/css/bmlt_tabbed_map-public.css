@@ -20,3 +20,109 @@
 .direct {
   font-size: 1.5em !important;
 }
+
+
+
+.container {
+  width: auto;
+}
+
+html, body {
+  height: 100%;
+}
+
+#map {
+  width: 100%;
+  height: 600px;
+}
+
+#list_result {
+
+}
+.custom-popup {
+  font-size:   10pt;
+  line-height: 10pt;
+}
+
+.nav-tabs .nav-item .nav-link.active {
+  background-color: #0080FF;
+  color: #FFFFFF;
+}
+
+
+.pagination {
+    border-top: initial;
+    font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji" !important;
+    font-size: initial;
+    font-size: initial;
+    margin: initial;
+    min-height: initial;
+    position: initial;
+}
+
+.pagination .prev,
+.pagination .next {
+	background-color: initial;
+	color: initial;
+	display: initial;
+	height: initial;
+	margin: initial;
+	overflow: initial;
+	padding: initial;
+	position: initial;
+	top: initial;
+	width: initial;
+	z-index: initial;
+}
+
+.pagination .prev:before,
+.pagination .next:before {
+	font-size: initial;
+	height: initial;
+	line-height: initial;
+	position: initial;
+	width: initial;
+}
+
+.pagination .prev:hover,
+.pagination .prev:focus,
+.pagination .next:hover,
+.pagination .next:focus {
+	background-color: initial;
+	color: initial;
+}
+
+.pagination .prev:focus,
+.pagination .next:focus {
+	outline: initial;
+}
+
+.pagination .prev {
+	right: initial;
+}
+
+.pagination .prev:before {
+	content: initial;
+	left: -initial;
+	top: -initial;
+}
+
+.pagination .next {
+	right: initial;
+}
+
+.pagination .next:before {
+	content: initial;
+	right: initial;
+	top: initial;
+}
+
+.pagination:before, .pagination:after {
+    background-color: initial;
+    content: initial;
+    height: initial;
+    position: initial;
+    top: initial;
+    width: initial;
+    z-index: initial;
+}

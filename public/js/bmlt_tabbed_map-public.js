@@ -377,9 +377,9 @@ const bmlt_tabbed_map_js = function($) {
         map.addLayer(markerClusterer);
         map.spin(false);
 
-        $('#monday-table').DataTable();
-        $('#tuesday-table').DataTable();
-        $('#wednesday-table').DataTable();
+        $('#monday-table').DataTable( );
+        $('#tuesday-table').DataTable( );
+        $('#wednesday-table').DataTable( );
         $('#thursday-table').DataTable();
         $('#friday-table').DataTable();
         $('#saturday-table').DataTable();
