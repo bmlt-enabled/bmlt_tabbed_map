@@ -30,7 +30,8 @@ class Bmlt_tabbed_map_Public
 
     public function enqueue_scripts()
     {
-
+        // We need jquery 3.3.1
+    
         wp_enqueue_script('jquery',             'https://code.jquery.com/jquery-3.3.1.slim.min.js', array(), $this->version, false);
         wp_enqueue_script('popper',             'https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js', array(), $this->version, false);
         wp_enqueue_script('bootstrap',          'https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js', array(), $this->version, false);
