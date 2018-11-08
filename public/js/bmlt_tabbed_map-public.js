@@ -2,7 +2,7 @@ const bmlt_tabbed_map_js = function($) {
 
     "use strict";
 
-    var DEBUG = true;
+    var DEBUG = false;
     // Dont forget to comment all of this
     var map = null;
     var circle = null;
