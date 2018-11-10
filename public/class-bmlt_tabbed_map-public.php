@@ -31,7 +31,7 @@ class Bmlt_tabbed_map_Public
     public function enqueue_scripts()
     {
         // We need jquery 3.3.1
-    
+
         wp_enqueue_script('jquery',             'https://code.jquery.com/jquery-3.3.1.slim.min.js', array(), $this->version, false);
         wp_enqueue_script('popper',             'https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js', array(), $this->version, false);
         wp_enqueue_script('bootstrap',          'https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js', array(), $this->version, false);
@@ -55,38 +55,24 @@ class Bmlt_tabbed_map_Public
 
     public function bmlt_tabbed_map_shortcode($atts)
     {
-        $output  = '      <ul class="nav nav-tabs nav-fill" role="tablist" id="myTab" >
-                            <li class="nav-item">
-                              <a class="nav-link" id="sunday-tab" data-toggle="tab" href="#sunday" role="tab" >Sun <span id="sunday-badge" class="badge badge-primary"></span></a>
-                            </li>
-                            <li class="nav-item  ">
-                              <a class="nav-link" id="monday-tab" data-toggle="tab" href="#monday" role="tab" >Mon <span id="monday-badge" class="badge badge-primary"></span></a>
-                            </li>
-                            <li class="nav-item ">
-                              <a class="nav-link" id="tuesday-tab" data-toggle="tab" href="#tuesday" role="tab" >Tue <span id="tuesday-badge" class="badge badge-primary"></span></a>
-                            </li>
-                            <li class="nav-item r ">
-                              <a class="nav-link" id="wednesday-tab" data-toggle="tab" href="#wednesday" role="tab" >Wed <span id="wednesday-badge" class="badge badge-primary"></span></a>
-                            </li>
-                            <li class="nav-item  ">
-                              <a class="nav-link" id="thursday-tab" data-toggle="tab" href="#thursday" role="tab" >Thu <span id="thursday-badge" class="badge badge-primary"></span></a>
-                            </li>
-                            <li class="nav-item ">
-                              <a class="nav-link" id="friday-tab" data-toggle="tab" href="#friday" role="tab" >Fri <span id="friday-badge" class="badge badge-primary"></span></a>
-                            </li>
-                            <li class="nav-item  ">
-                              <a class="nav-link" id="saturday-tab" data-toggle="tab" href="#saturday" role="tab" >Sat <span id="saturday-badge" class="badge badge-primary"></span></a>
-                            </li>
-                          </ul>
+        $output  = '
 
-
-                          <div id="map"> </div>
-
-                          <div id="list_result"></div>
-                          <script>
-                            bmlt_tabbed_map_js.doIt();
-                          </script>';
-
+        <div>
+          <nav class="nav nav-pills nav-fill flex-column flex-md-row" id="myTab" >
+            <a class="nav-item  nav-link" id="sunday-tab"    data-toggle="tab"  href="#sunday"    role="tab" >Sun <span id="sunday-badge"    class="badge  badge-primary"></span></a>
+            <a class="nav-item  nav-link" id="monday-tab"    data-toggle="tab"  href="#monday"    role="tab" >Mon <span id="monday-badge"    class="badge  badge-primary"></span></a>
+            <a class="nav-item  nav-link" id="tuesday-tab"   data-toggle="tab"  href="#tuesday"   role="tab" >Tue <span id="tuesday-badge"   class="badge  badge-primary"></span></a>
+            <a class="nav-item  nav-link" id="wednesday-tab" data-toggle="tab"  href="#wednesday" role="tab" >Wed <span id="wednesday-badge" class="badge  badge-primary"></span></a>
+            <a class="nav-item  nav-link" id="thursday-tab"  data-toggle="tab"  href="#thursday"  role="tab" >Thu <span id="thursday-badge"  class="badge  badge-primary"></span></a>
+            <a class="nav-item  nav-link" id="friday-tab"    data-toggle="tab"  href="#friday"    role="tab" >Fri <span id="friday-badge"    class="badge  badge-primary"></span></a>
+            <a class="nav-item  nav-link" id="saturday-tab"  data-toggle="tab"  href="#saturday"  role="tab" >Sat <span id="saturday-badge"  class="badge  badge-primary"></span></a>
+          </nav>
+          <div id="map"> </div>
+          <div id="list_result"></div>
+          <script>
+            bmlt_tabbed_map_js.doIt();
+          </script>
+        </div>';
         return $output;
     }
 }

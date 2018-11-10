@@ -126,3 +126,8 @@ html, body {
     width: initial;
     z-index: initial;
 }
+
+.nav>a {
+    padding-top: 1px;
+    padding-bottom: 1px;
+}
