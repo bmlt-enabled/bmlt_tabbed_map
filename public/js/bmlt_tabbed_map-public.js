@@ -137,7 +137,7 @@ const bmltTabbedMapJS = function($) {
   var processSingleJSONMeetingResult = function(val) {
     if (isMeetingOnMap(val)) {
 
-      var listContent = "<tr><td>" + timeConvert(val.start_time) + " " + dayOfWeekAsString(val.weekday_tinyint) + "</td><td>";
+      var listContent = "<tr><td>" + timeConvert(val.start_time) +  " </td><td>";
       if (val.meeting_name != "NA Meeting") {
         listContent += "<b>" + val.meeting_name + ", </b>";
       }

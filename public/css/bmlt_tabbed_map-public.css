@@ -172,11 +172,14 @@ tr:nth-child(even) {
   margin-left: 5px;
 }
 
+.container .dataTables_wrapper .dataTables_filter input {
+    margin-left: -0.5em;
+}
+
 .badge {
   float: right;
   position: relative;
-  line-height: 16px;
-  height: 16px;
+
   padding: 0 5px;
   font-family: Arial, sans-serif;
   color: white;
