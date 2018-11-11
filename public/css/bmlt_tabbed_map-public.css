@@ -2,33 +2,7 @@
  * All of the CSS for your public-facing functionality should be
  * included in this file.
  */
-.style-tabs {
-  padding: 0px !important;
-  margin: 0em !important;
-}
-
-.ui-corner-all, .ui-corner-bottom, .ui-corner-right, .ui-corner-br {
-  border-bottom-right-radius: 0px !important;
-  border-bottom-left-radius: 0px !important;
-}
-
-.dataTables_wrapper .dataTables_filter input {
-  margin-left: 0 !important;
-}
-
-.direct {
-  font-size: 1.5em !important;
-}
-
-.container {
-  width: auto;
-}
-
-html, body {
-  height: 100%;
-}
-
-#map {
+ #map {
   width: 100%;
   height: 600px;
 }
@@ -40,157 +14,132 @@ html, body {
   line-height: 10pt;
 }
 
-.nav-tabs .nav-item .nav-link.active {
-  background-color: #0080FF;
-  color: #FFFFFF;
-}
-
-/* .pagination {
-  border-top: initial;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji" !important;
-  font-size: initial;
-  font-size: initial;
-  margin: initial;
-  min-height: initial;
-  position: initial;
-}
-
-.pagination .prev,
-.pagination .next {
-  background-color: initial;
-  color: initial;
-  display: initial;
-  height: initial;
-  margin: initial;
-  overflow: initial;
-  padding: initial;
-  position: initial;
-  top: initial;
-  width: initial;
-  z-index: initial;
-}
-
-.pagination .prev:before,
-.pagination .next:before {
-  font-size: initial;
-  height: initial;
-  line-height: initial;
-  position: initial;
-  width: initial;
-}
-
-.pagination .prev:hover,
-.pagination .prev:focus,
-.pagination .next:hover,
-.pagination .next:focus {
-  background-color: initial;
-  color: initial;
-}
-
-.pagination .prev:focus,
-.pagination .next:focus {
-  outline: initial;
-}
-
-.pagination .prev {
-  right: initial;
-}
-
-.pagination .prev:before {
-  content: initial;
-  left: -initial;
-  top: -initial;
-}
-
-.pagination .next {
-  right: initial;
-}
-
-.pagination .next:before {
-  content: initial;
-  right: initial;
-  top: initial;
-}
-
-.pagination:before, .pagination:after {
-  background-color: initial;
-  content: initial;
-  height: initial;
-  position: initial;
-  top: initial;
-  width: initial;
-  z-index: initial;
-} */
-
-
-.bordered-tab-contents > .pagination {
-  display: -ms-flexbox;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji" !important;
-  display: flex;
-  padding-left: 0;
-  list-style: none;
-  border-radius: 0.25rem;
-}
-
-.bordered-tab-contents > .pagination-lg  .page-link {
-  padding: 0.75rem 1.5rem;
-  font-size: 1.25rem;
-  line-height: 1.5;
-}
-
-.bordered-tab-contents > .pagination-lg  .page-item:first-child  .page-link {
-  border-top-left-radius: 0.3rem;
-  border-bottom-left-radius: 0.3rem;
-}
-
-.bordered-tab-contents > .pagination-lg ..page-item:last-child  .page-link {
-  border-top-right-radius: 0.3rem;
-  border-bottom-right-radius: 0.3rem;
-}
-
-.bordered-tab-contents > .pagination-sm .page-link {
-  padding: 0.25rem 0.5rem;
-  font-size: 0.875rem;
-  line-height: 1.5;
-}
-
-.bordered-tab-contents > .pagination-sm .page-item:first-child .page-link {
-  border-top-left-radius: 0.2rem;
-  border-bottom-left-radius: 0.2rem;
-}
-
-.bordered-tab-contents > .pagination-sm .page-item:last-child .page-link {
-  border-top-right-radius: 0.2rem;
-  border-bottom-right-radius: 0.2rem;
-}
-
-.nav>a {
-  padding-top: 1px;
-  padding-bottom: 1px;
-}
-
-.bordered-tab-contents > a > .nav_item > .nav_link {
-
-}
-#list_result {
+#tabs {
   width: 100%;
 }
 
-.bordered-tab-contents > #sunday-tab {
-    border-left: 1px solid #ddd;
-    border-right: 1px solid #ddd;
-    border-bottom: 1px solid #ddd;
-    border-radius: 0px 0px 5px 5px;
-    padding: 10px;
+a {
+  cursor: pointer;
 }
 
-.bordered-tab-contents > .nav-tabs {
-    margin-bottom: 0;
-      border-radius: 0rem;
+ul {
+    display: flex;
+    flex-wrap:  no-wrap;
+    margin: 0 0 0 0;
+    padding: 0 0 0 0;
 }
 
-.bordered-tab-contents > .nav-pills .nav-link {
-     border-bottom-left-radius: 0rem;
-     border-bottom-right-radius: 0rem;
-     border: 0rem;
+ul li {
+    width: 100%;
+}
+
+tr:nth-child(even) {
+  background-color: #dddddd;
+}
+
+#tabs li {
+  float: left;
+  list-style: none;
+  border-top: 1px solid #ccc;
+  border-left: 1px solid #ccc;
+  border-right: 1px solid #ccc;
+  margin-right: 0px;
+  border-top-left-radius: 3px;
+  border-top-right-radius: 3px;
+  outline: none;
+}
+
+#tabs li a {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: small;
+  font-weight: bold;
+  color: #5685bc;
+  padding-top: 5px;
+  padding-left: 7px;
+  padding-right: 7px;
+  padding-bottom: 8px;
+  display: block;
+  background: #FFF;
+  border-top-left-radius: 3px;
+  border-top-right-radius: 3px;
+  text-decoration: none;
+  outline: none;
+}
+
+#tabs li a.inactive {
+  padding-top: 5px;
+  padding-bottom: 8px;
+  padding-left: 7px;
+  padding-right: 7px;
+  color: #666666;
+  background: #EEE;
+  outline: none;
+  border-bottom: solid 1px #CCC;
+}
+
+#tabs li a:hover, #tabs li a.inactive:hover {
+  color: #5685bc;
+  outline: none;
+}
+
+.container {
+  clear: both;
+  width: 100%;
+  border-left: solid 1px #CCC;
+  border-right: solid 1px #CCC;
+  border-bottom: solid 1px #CCC;
+  text-align: left;
+  padding-top: 20px;
+}
+
+.container h2 {
+  margin-left: 15px;
+  margin-right: 15px;
+  margin-bottom: 10px;
+  color: #5685bc;
+}
+
+.container p {
+  margin-left: 15px;
+  margin-right: 15px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  line-height: 1.3;
+  font-size: small;
+}
+
+.container ul {
+  margin-left: 25px;
+  font-size: small;
+  line-height: 1.4;
+  list-style-type: disc;
+}
+
+.container li {
+  padding-bottom: 5px;
+  margin-left: 5px;
+}
+
+.badge {
+  float: right;
+  position: relative;
+  line-height: 16px;
+  height: 16px;
+  padding: 0 5px;
+  font-family: Arial, sans-serif;
+  color: white;
+  text-shadow: 0 1px rgba(0, 0, 0, 0.25);
+  border: 1px solid;
+  border-radius: 10px;
+
+}
+
+.badge {
+  background: #67c1ef;
+  border-color: #30aae9;
+}
+
+.badge.green {
+  background: #77cc51;
+  border-color: #59ad33;
 }
