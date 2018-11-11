@@ -2,7 +2,7 @@
  * All of the CSS for your public-facing functionality should be
  * included in this file.
  */
- #map {
+#map {
   width: 100%;
   height: 600px;
 }
@@ -23,15 +23,17 @@ a {
 }
 
 ul {
-    display: flex;
-    flex-wrap:  no-wrap;
-    margin: 0 0 0 0;
-    padding: 0 0 0 0;
+  display: flex;
+  flex-wrap: no-wrap;
+  margin: 0 0 0 0;
+  padding: 0 0 0 0;
 }
 
 ul li {
-    width: 100%;
+  width: 100%;
 }
+
+@media only screen and (max-width: 600px) {}
 
 tr:nth-child(even) {
   background-color: #dddddd;
@@ -80,6 +82,56 @@ tr:nth-child(even) {
 #tabs li a:hover, #tabs li a.inactive:hover {
   color: #5685bc;
   outline: none;
+}
+
+@media only screen and (max-width: 300px) {
+  #tabs li a {
+    font-size: 40%;
+  }
+
+  .badge {
+    visibility: hidden;
+  }
+}
+
+@media only screen and (min-width: 300px) {
+  #tabs li a {
+    font-size: 55%;
+  }
+
+  .badge {
+    visibility: hidden;
+  }
+}
+
+@media only screen and (min-width: 600px) {
+  #tabs li a {
+    font-size: 65%;
+  }
+
+  .badge {
+    visibility: hidden;
+  }
+}
+
+@media only screen and (min-width: 800px) {
+  #tabs li a {
+    font-size: 75%;
+  }
+
+  .badge {
+    visibility: visible;
+  }
+}
+
+@media only screen and (min-width: 1024px) {
+  #tabs li a {
+    font-size: 100%;
+  }
+
+  .badge {
+    visibility: visible;
+  }
 }
 
 .container {
@@ -131,7 +183,6 @@ tr:nth-child(even) {
   text-shadow: 0 1px rgba(0, 0, 0, 0.25);
   border: 1px solid;
   border-radius: 10px;
-
 }
 
 .badge {
