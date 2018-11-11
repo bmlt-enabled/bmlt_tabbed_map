@@ -360,13 +360,13 @@ const bmltTabbedMapJS = function($) {
 
       markerClusterer.clearLayers();
       switch (activeTab) {
-        case "sundayTab":    markerClusterer.addLayers(sundayTabMarkerLayer);    break;
-        case "mondayTab":    markerClusterer.addLayers(mondayTabMarkerLayer);    break;
-        case "tuesdayTab":   markerClusterer.addLayers(tuesdayTabMarkerLayer);   break;
-        case "wednesdayTab": markerClusterer.addLayers(wednesdayTabMarkerLayer); break;
-        case "thursdayTab":  markerClusterer.addLayers(thursdayTabMarkerLayer);  break;
-        case "fridayTab":    markerClusterer.addLayers(fridayTabMarkerLayer);    break;
-        case "saturdayTab":  markerClusterer.addLayers(saturdayTabMarkerLayer);  break;
+        case "sundayTab":    markerClusterer.addLayers(sundayTabMarkerLayer);    $('#sundayTabTable').DataTable();break;
+        case "mondayTab":    markerClusterer.addLayers(mondayTabMarkerLayer);    $('#mondayTabTable').DataTable();break;
+        case "tuesdayTab":   markerClusterer.addLayers(tuesdayTabMarkerLayer);   $('#tuesdayTabTable').DataTable();break;
+        case "wednesdayTab": markerClusterer.addLayers(wednesdayTabMarkerLayer); $('#wednesdayTabTable').DataTable();break;
+        case "thursdayTab":  markerClusterer.addLayers(thursdayTabMarkerLayer);  $('#thursdayTabTable').DataTable();break;
+        case "fridayTab":    markerClusterer.addLayers(fridayTabMarkerLayer);    $('#fridayTabTable').DataTable();break;
+        case "saturdayTab":  markerClusterer.addLayers(saturdayTabMarkerLayer);  $('#saturdayTabTable').DataTable(); break;
         }
 
     });
