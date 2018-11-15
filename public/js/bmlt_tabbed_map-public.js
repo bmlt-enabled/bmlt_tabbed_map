@@ -1,4 +1,4 @@
-const bmlt_tabbed_map_js = function($) {
+const bmltTabbedMapJS = function($) {
 
   "use strict";
 
@@ -11,6 +11,7 @@ const bmlt_tabbed_map_js = function($) {
   var searchZoom = js_vars.zoom_js;
   var jsonQuery;
   var activeTab;
+  var tabClicked = true;
 
   var sunCount = 0;
   var monCount = 0;
@@ -28,13 +29,13 @@ const bmlt_tabbed_map_js = function($) {
   var friExpandLi = "";
   var satExpandLi = "";
 
-  var sunMarkers = [];
-  var monMarkers = [];
-  var tueMarkers = [];
-  var wedMarkers = [];
-  var thuMarkers = [];
-  var friMarkers = [];
-  var satMarkers = [];
+  var sundayTabMarkerLayer = [];
+  var mondayTabMarkerLayer = [];
+  var tuesdayTabMarkerLayer = [];
+  var wednesdayTabMarkerLayer = [];
+  var thursdayTabMarkerLayer = [];
+  var fridayTabMarkerLayer = [];
+  var saturdayTabMarkerLayer = [];
 
   var openTable = "  <thead>";
   openTable += "   <tr>";
@@ -44,7 +45,7 @@ const bmlt_tabbed_map_js = function($) {
   openTable += "  </thead>";
   openTable += "  <tbody>";
 
-  var closeTable = "  </tbody></table></div></div>";
+  var closeTable = "  </tbody></table></div>";
 
   var isEmpty = function(object) {
     for (var i in object) {
@@ -91,6 +92,9 @@ const bmlt_tabbed_map_js = function($) {
     map.setView(myLatLng, searchZoom);
     L.control.locate().addTo(map);
     map.spin(false);
+
+    $('#tabs li a').addClass('inactive');
+    $('.container').hide();
   }
 
   var dayOfWeekAsString = function(dayIndex) {
@@ -133,7 +137,7 @@ const bmlt_tabbed_map_js = function($) {
   var processSingleJSONMeetingResult = function(val) {
     if (isMeetingOnMap(val)) {
 
-      var listContent = "<tr><td>" + val.start_time.substring(0, 5) + "&nbsp;<i>(" + timeConvert(val.start_time) + ")</i>&nbsp;</td><td>";
+      var listContent = "<tr><td>" + timeConvert(val.start_time) +  " </td><td>";
       if (val.meeting_name != "NA Meeting") {
         listContent += "<b>" + val.meeting_name + ", </b>";
       }
@@ -182,83 +186,83 @@ const bmlt_tabbed_map_js = function($) {
         case "1":
           sunCount++;
           sunExpandLi = sunExpandLi + listContent;
-          sunMarkers.push(aMarker);
+          sundayTabMarkerLayer.push(aMarker);
           break;
         case "2":
           monCount++;
           monExpandLi = monExpandLi + listContent;
-          monMarkers.push(aMarker);
+          mondayTabMarkerLayer.push(aMarker);
           break;
         case "3":
           tueCount++;
           tueExpandLi = tueExpandLi + listContent;
-          tueMarkers.push(aMarker);
+          tuesdayTabMarkerLayer.push(aMarker);
           break;
         case "4":
           wedCount++;
           wedExpandLi = wedExpandLi + listContent;
-          wedMarkers.push(aMarker);
+          wednesdayTabMarkerLayer.push(aMarker);
           break;
         case "5":
           thuCount++;
           thuExpandLi = thuExpandLi + listContent;
-          thuMarkers.push(aMarker);
+          thursdayTabMarkerLayer.push(aMarker);
           break;
         case "6":
           friCount++;
           friExpandLi = friExpandLi + listContent;
-          friMarkers.push(aMarker);
+          fridayTabMarkerLayer.push(aMarker);
           break;
         case "7":
           satCount++;
           satExpandLi = satExpandLi + listContent;
-          satMarkers.push(aMarker);
+          saturdayTabMarkerLayer.push(aMarker);
           break;
       }
     }
   }
 
   var generateResultTable = function() {
-    var result = "<div class='tab-content' id='myTabContent'>";
+    var result = "<div>";
 
-    result += "<div id='sunday' class='tab-pane fade show active' role='tabpanel' aria-labelledby='sunday-tab'>";
-    result += "<div class='table-responsive'> <table id='sunday-table'  class='table table-bordered table-striped display'>";
+    result += "<div class='container' id='sundayTabTableContents'>";
+    result += "<table id='sundayTabTable'>";
     result += openTable;
     result += sunExpandLi;
     result += closeTable;
 
-    result += "  <div id='monday' class='tab-pane fade' role='tabpanel' aria-labelledby='monday-tab'>";
-    result += "   <div class='table-responsive'> <table id='monday-table'  class='table table-bordered table-striped display'>";
+    result += "  <div class='container' id='mondayTabTableContents'>";
+    result += "   <table id='mondayTabTable'>";
     result += openTable;
     result += monExpandLi;
     result += closeTable;
 
-    result += "  <div id='tuesday' class='tab-pane fade' role='tabpanel' aria-labelledby='tuesday-tab'>";
-    result += "   <div class='table-responsive'> <table id='tuesday-table'  class='table table-bordered table-striped display'>";
+    result += "  <div class='container' id='tuesdayTabTableContents'>";
+    result += "   <table id='tuesdayTabTable'>";
     result += openTable;
     result += tueExpandLi;
     result += closeTable;
 
-    result += "  <div id='wednesday' class='tab-pane fade' role='tabpanel' aria-labelledby='wednesday-tab'>";
-    result += "   <div class='table-responsive'> <table id='wednesday-table'  class='table table-bordered table-striped display'>";
+    result += "  <div  class='container' id='wednesdayTabTableContents'>";
+    result += "   <table id='wednesdayTabTable'>";
     result += openTable;
     result += wedExpandLi;
     result += closeTable;
 
-    result += "  <div id='thursday' class='tab-pane fade' role='tabpanel' aria-labelledby='thursday-tab'>";
-    result += "   <div class='table-responsive'> <table id='thursday-table'  class='table table-bordered table-striped display'>";
+    result += "  <div  class='container' id='thursdayTabTableContents'>";
+    result += "   <table id='thursdayTabTable'>";
     result += openTable;
     result += thuExpandLi;
     result += closeTable;
 
-    result += "  <div id='friday' class='tab-pane fade' role='tabpanel' aria-labelledby='friday-tab'>";
-    result += "   <div class='table-responsive'> <table id='friday-table'  class='table table-bordered table-striped display'>";
+    result += "  <div  class='container' id='fridayTabTableContents'>";
+    result += "   <table id='fridayTabTable' >";
     result += openTable;
     result += friExpandLi;
     result += closeTable;
 
-    result += "  <div id='saturday' class='tab-pane fade' role='tabpanel' aria-labelledby='saturday-tab'>";
-    result += "   <div class='table-responsive'> <table id='saturday-table'  class='table table-bordered table-striped display'>";
+    result += "  <div  class='container' id='saturdayTabTableContents'>";
+    result += "   <table id='saturdayTabTable'>";
     result += openTable;
     result += satExpandLi;
     result += closeTable;
@@ -283,7 +287,7 @@ const bmlt_tabbed_map_js = function($) {
       map.spin(true);
     }
 
-    monMarkers.length = tueMarkers.length = wedMarkers.length = thuMarkers.length = friMarkers.length = satMarkers.length = sunMarkers.length = 0;
+    mondayTabMarkerLayer.length = tuesdayTabMarkerLayer.length = wednesdayTabMarkerLayer.length = thursdayTabMarkerLayer.length = fridayTabMarkerLayer.length = saturdayTabMarkerLayer.length = sundayTabMarkerLayer.length = 0;
     sunCount = monCount = tueCount = wedCount = thuCount = friCount = satCount = 0;
     sunExpandLi = monExpandLi = tueExpandLi = wedExpandLi = thuExpandLi = friExpandLi = satExpandLi = "";
   }
@@ -323,148 +327,54 @@ const bmlt_tabbed_map_js = function($) {
 
       markerClusterer.clearLayers();
 
-      DEBUG && console && console.log("activeTab : ", activeTab);
-
-      switch (activeTab) {
-        case "sunday-tab":
-          markerClusterer.addLayers(sunMarkers);
-          break;
-        case "monday-tab":
-          markerClusterer.addLayers(monMarkers);
-          $('[href="#sunday"]').tab('show');
-          $('[href="#monday"]').tab('show');
-          break;
-        case "tuesday-tab":
-          markerClusterer.addLayers(tueMarkers);
-          $('[href="#sunday"]').tab('show');
-          $('[href="#tuesday"]').tab('show');
-          break;
-        case "wednesday-tab":
-          markerClusterer.addLayers(wedMarkers);
-          $('[href="#sunday"]').tab('show');
-          $('[href="#wednesday"]').tab('show');
-          break;
-        case "thursday-tab":
-          markerClusterer.addLayers(thuMarkers);
-          $('[href="#sunday"]').tab('show');
-          $('[href="#thursday"]').tab('show');
-          break;
-        case "friday-tab":
-          markerClusterer.addLayers(friMarkers);
-          $('[href="#sunday"]').tab('show');
-          $('[href="#friday"]').tab('show');
-          break;
-        case "saturday-tab":
-          markerClusterer.addLayers(satMarkers);
-          $('[href="#sunday"]').tab('show');
-          $('[href="#saturday"]').tab('show');
-          break;
-        default:
-          // Set active tab to today
-          var today = new Date().getDay();
-          DEBUG && console && console.log("Today is :", today);
-          switch (today) {
-            case 0:
-              $('[href="#sunday"]').tab('show');
-              activeTab = "sunday-tab";
-              break;
-            case 1:
-              $('[href="#monday"]').tab('show');
-              activeTab = "monday-tab";
-              break;
-            case 2:
-              $('[href="#tuesday"]').tab('show');
-              activeTab = "tuesday-tab";
-              break;
-            case 3:
-              $('[href="#wednesday"]').tab('show');
-              activeTab = "wednesday-tab";
-              break;
-            case 4:
-              $('[href="#thursday"]').tab('show');
-              activeTab = "thursday-tab";
-              break;
-            case 5:
-              $('[href="#friday"]').tab('show');
-              activeTab = "friday-tab";
-              break;
-            case 6:
-              $('[href="#saturday"]').tab('show');
-              activeTab = "saturday-tab";
-              break;
-          }
+      if (!activeTab) {
+        DEBUG && console && console.log("!!! activeTab : ", activeTab);
+        var today = new Date().getDay();
+        DEBUG && console && console.log("Today is ", today);
+        $('#tabs li a').eq(today).click();
+      } else {
+        DEBUG && console && console.log("Search was run, with ni click event yet: ", activeTab);
+          $("#tabs li a:not('.inactive')").click();
       }
 
       map.addLayer(markerClusterer);
       map.spin(false);
 
-      $('#monday-table').DataTable({"columnDefs": [{ "width": "20%", "targets": 0 }]});
-      $('#tuesday-table').DataTable({"columnDefs": [{ "width": "20%", "targets": 0 }]});
-      $('#wednesday-table').DataTable({"columnDefs": [{ "width": "20%", "targets": 0 }]});
-      $('#thursday-table').DataTable({"columnDefs": [{ "width": "20%", "targets": 0 }]});
-      $('#friday-table').DataTable({"columnDefs": [{ "width": "20%", "targets": 0 }]});
-      $('#saturday-table').DataTable({"columnDefs": [{ "width": "20%", "targets": 0 }]});
-      $('#sunday-table').DataTable({"columnDefs": [{ "width": "20%", "targets": 0 }]});
+    });
+  }
+
+  var registerTabClickEvent = function () {
+    $('#tabs li a').click(function() {
+      activeTab = $(this).attr('id');
+      DEBUG && console && console.log("Tab has been clicked: ", activeTab);
+
+      if ($(this).hasClass('inactive')) {
+        DEBUG && console && console.log("Tab was inactive: ", activeTab);
+        $('#tabs li a').addClass('inactive');
+        $(this).removeClass('inactive');
+      }
+      $('.container').hide();
+      DEBUG && console && console.log("Fading in the tab: ", activeTab + 'TableContents');
+
+      $('#' + activeTab + 'TableContents').fadeIn('slow');
+
+      markerClusterer.clearLayers();
+      switch (activeTab) {
+        case "sundayTab":    markerClusterer.addLayers(sundayTabMarkerLayer);    $('#sundayTabTable').DataTable();break;
+        case "mondayTab":    markerClusterer.addLayers(mondayTabMarkerLayer);    $('#mondayTabTable').DataTable();break;
+        case "tuesdayTab":   markerClusterer.addLayers(tuesdayTabMarkerLayer);   $('#tuesdayTabTable').DataTable();break;
+        case "wednesdayTab": markerClusterer.addLayers(wednesdayTabMarkerLayer); $('#wednesdayTabTable').DataTable();break;
+        case "thursdayTab":  markerClusterer.addLayers(thursdayTabMarkerLayer);  $('#thursdayTabTable').DataTable();break;
+        case "fridayTab":    markerClusterer.addLayers(fridayTabMarkerLayer);    $('#fridayTabTable').DataTable();break;
+        case "saturdayTab":  markerClusterer.addLayers(saturdayTabMarkerLayer);  $('#saturdayTabTable').DataTable(); break;
+        }
 
     });
   }
 
-  $(document).ready(function() {
-    $('#sunday-tab').on('shown.bs.tab', function(e) {
-      DEBUG && console && console.log("#sunday-tab -> shown.bs.tab");
-      DEBUG && console && console.log("activeTab : [", e.target.id, "]");
-      activeTab = e.target.id;
-      markerClusterer.clearLayers();
-      markerClusterer.addLayers(sunMarkers);
-    })
-    $('#monday-tab').on('shown.bs.tab', function(e) {
-      DEBUG && console && console.log("#monday-tab -> shown.bs.tab");
-      DEBUG && console && console.log("activeTab : ", e.target.id);
-
-      activeTab = e.target.id;
-      markerClusterer.clearLayers();
-      markerClusterer.addLayers(monMarkers);
-    })
-    $('#tuesday-tab').on('shown.bs.tab', function(e) {
-      DEBUG && console && console.log("#tuesday-tab -> shown.bs.tab");
-      DEBUG && console && console.log("activeTab : ", e.target.id);
-      activeTab = e.target.id;
-      markerClusterer.clearLayers();
-      markerClusterer.addLayers(tueMarkers);
-    })
-    $('#wednesday-tab').on('shown.bs.tab', function(e) {
-      DEBUG && console && console.log("#wednesday-tab -> shown.bs.tab");
-      DEBUG && console && console.log("activeTab : ", e.target.id);
-      activeTab = e.target.id;
-      markerClusterer.clearLayers();
-      markerClusterer.addLayers(wedMarkers);
-    })
-    $('#thursday-tab').on('shown.bs.tab', function(e) {
-      DEBUG && console && console.log("#thursday-tab -> shown.bs.tab");
-      DEBUG && console && console.log("activeTab : ", e.target.id);
-      activeTab = e.target.id;
-      markerClusterer.clearLayers();
-      markerClusterer.addLayers(thuMarkers);
-    })
-    $('#friday-tab').on('shown.bs.tab', function(e) {
-      DEBUG && console && console.log("#friday-tab -> shown.bs.tab");
-      DEBUG && console && console.log("activeTab : ", e.target.id);
-      activeTab = e.target.id;
-      markerClusterer.clearLayers();
-      markerClusterer.addLayers(friMarkers);
-    })
-    $('#saturday-tab').on('shown.bs.tab', function(e) {
-      DEBUG && console && console.log("#saturday-tab -> shown.bs.tab");
-      DEBUG && console && console.log("activeTab : ", e.target.id);
-      activeTab = e.target.id;
-      markerClusterer.clearLayers();
-      markerClusterer.addLayers(satMarkers);
-    })
-
-  });
-
   return {
     doIt: function() {
+      registerTabClickEvent();
       newMap();
     }
   };
