@@ -22,10 +22,13 @@
                 settings_fields($this->plugin_name);
                 do_settings_sections($this->plugin_name);
 								?>
+								<div><h4>Any changes you make to the position of the map here will be be seen in your [bmlt_tabbed_map] pages </h4></div>
+
 								<div id="map"> </div>
 								<div id="zoom"> </div>
 								<div id="latitude"> </div>
 							  <div id="longitude"> </div>
+								<div><h3>Just add the shortcode [bmlt_tabbed_map] to any webpage, and the map will be displayed along with the meetings</h3></div>
 
 								  <script>
 								    bmlt_tabbed_map_admin.showMap();
