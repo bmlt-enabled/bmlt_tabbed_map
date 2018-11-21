@@ -137,7 +137,7 @@ const bmltTabbedMapJS = function($) {
   var processSingleJSONMeetingResult = function(val) {
     if (isMeetingOnMap(val)) {
 
-      var listContent = "<tr><td>" + timeConvert(val.start_time) +  " </td><td>";
+      var listContent = "<tr><td>" + timeConvert(val.start_time) + " </td><td>";
       if (val.meeting_name != "NA Meeting") {
         listContent += "<b>" + val.meeting_name + ", </b>";
       }
@@ -334,7 +334,7 @@ const bmltTabbedMapJS = function($) {
         $('#tabs li a').eq(today).click();
       } else {
         DEBUG && console && console.log("Search was run, with ni click event yet: ", activeTab);
-          $("#tabs li a:not('.inactive')").click();
+        $("#tabs li a:not('.inactive')").click();
       }
 
       map.addLayer(markerClusterer);
@@ -343,7 +343,7 @@ const bmltTabbedMapJS = function($) {
     });
   }
 
-  var registerTabClickEvent = function () {
+  var registerTabClickEvent = function() {
     $('#tabs li a').click(function() {
       activeTab = $(this).attr('id');
       DEBUG && console && console.log("Tab has been clicked: ", activeTab);
@@ -360,15 +360,77 @@ const bmltTabbedMapJS = function($) {
 
       markerClusterer.clearLayers();
       switch (activeTab) {
-        case "sundayTab":    markerClusterer.addLayers(sundayTabMarkerLayer);    $('#sundayTabTable').DataTable();break;
-        case "mondayTab":    markerClusterer.addLayers(mondayTabMarkerLayer);    $('#mondayTabTable').DataTable();break;
-        case "tuesdayTab":   markerClusterer.addLayers(tuesdayTabMarkerLayer);   $('#tuesdayTabTable').DataTable();break;
-        case "wednesdayTab": markerClusterer.addLayers(wednesdayTabMarkerLayer); $('#wednesdayTabTable').DataTable();break;
-        case "thursdayTab":  markerClusterer.addLayers(thursdayTabMarkerLayer);  $('#thursdayTabTable').DataTable();break;
-        case "fridayTab":    markerClusterer.addLayers(fridayTabMarkerLayer);    $('#fridayTabTable').DataTable();break;
-        case "saturdayTab":  markerClusterer.addLayers(saturdayTabMarkerLayer);  $('#saturdayTabTable').DataTable(); break;
-        }
-
+        case "sundayTab":
+          markerClusterer.addLayers(sundayTabMarkerLayer);
+          $('#sundayTabTable').DataTable({
+            "ordering": false,
+            "columnDefs": [{
+              "width": "20%",
+              "targets": 0
+            }]
+          });
+          break;
+        case "mondayTab":
+          markerClusterer.addLayers(mondayTabMarkerLayer);
+          $('#mondayTabTable').DataTable({
+            "ordering": false,
+            "columnDefs": [{
+              "width": "20%",
+              "targets": 0
+            }]
+          });
+          break;
+        case "tuesdayTab":
+          markerClusterer.addLayers(tuesdayTabMarkerLayer);
+          $('#tuesdayTabTable').DataTable({
+            "ordering": false,
+            "columnDefs": [{
+              "width": "20%",
+              "targets": 0
+            }]
+          });
+          break;
+        case "wednesdayTab":
+          markerClusterer.addLayers(wednesdayTabMarkerLayer);
+          $('#wednesdayTabTable').DataTable({
+            "ordering": false,
+            "columnDefs": [{
+              "width": "20%",
+              "targets": 0
+            }]
+          });
+          break;
+        case "thursdayTab":
+          markerClusterer.addLayers(thursdayTabMarkerLayer);
+          $('#thursdayTabTable').DataTable({
+            "ordering": false,
+            "columnDefs": [{
+              "width": "20%",
+              "targets": 0
+            }]
+          });
+          break;
+        case "fridayTab":
+          markerClusterer.addLayers(fridayTabMarkerLayer);
+          $('#fridayTabTable').DataTable({
+            "ordering": false,
+            "columnDefs": [{
+              "width": "20%",
+              "targets": 0
+            }]
+          });
+          break;
+        case "saturdayTab":
+          markerClusterer.addLayers(saturdayTabMarkerLayer);
+          $('#saturdayTabTable').DataTable({
+            "ordering": false,
+            "columnDefs": [{
+              "width": "20%",
+              "targets": 0
+            }]
+          });
+          break;
+      }
     });
   }
 
