@@ -362,73 +362,87 @@ const bmltTabbedMapJS = function($) {
       switch (activeTab) {
         case "sundayTab":
           markerClusterer.addLayers(sundayTabMarkerLayer);
-          $('#sundayTabTable').DataTable({
-            "ordering": false,
-            "columnDefs": [{
-              "width": "20%",
-              "targets": 0
-            }]
-          });
+          if ( ! $.fn.DataTable.isDataTable( '#sundayTabTable' ) ) {
+            $('#sundayTabTable').DataTable({
+              "ordering": false,
+              "columnDefs": [{
+                "width": "20%",
+                "targets": 0
+              }]
+            });
+          }
           break;
         case "mondayTab":
           markerClusterer.addLayers(mondayTabMarkerLayer);
-          $('#mondayTabTable').DataTable({
-            "ordering": false,
-            "columnDefs": [{
-              "width": "20%",
-              "targets": 0
-            }]
-          });
+          if ( ! $.fn.DataTable.isDataTable( '#mondayTabTable' ) ) {
+            $('#mondayTabTable').DataTable({
+              "ordering": false,
+              "columnDefs": [{
+                "width": "20%",
+                "targets": 0
+              }]
+            });
+          }
           break;
         case "tuesdayTab":
           markerClusterer.addLayers(tuesdayTabMarkerLayer);
-          $('#tuesdayTabTable').DataTable({
-            "ordering": false,
-            "columnDefs": [{
-              "width": "20%",
-              "targets": 0
-            }]
-          });
+          if ( ! $.fn.DataTable.isDataTable( '#tuesdayTabTable' ) ) {
+            $('#tuesdayTabTable').DataTable({
+              "ordering": false,
+              "columnDefs": [{
+                "width": "20%",
+                "targets": 0
+              }]
+            });
+          }
           break;
         case "wednesdayTab":
           markerClusterer.addLayers(wednesdayTabMarkerLayer);
-          $('#wednesdayTabTable').DataTable({
-            "ordering": false,
-            "columnDefs": [{
-              "width": "20%",
-              "targets": 0
-            }]
-          });
+          if ( ! $.fn.DataTable.isDataTable( '#wednesdayTabTable' ) ) {
+            $('#wednesdayTabTable').DataTable({
+              "ordering": false,
+              "columnDefs": [{
+                "width": "20%",
+                "targets": 0
+              }]
+            });
+          }
           break;
         case "thursdayTab":
           markerClusterer.addLayers(thursdayTabMarkerLayer);
-          $('#thursdayTabTable').DataTable({
-            "ordering": false,
-            "columnDefs": [{
-              "width": "20%",
-              "targets": 0
-            }]
-          });
+          if ( ! $.fn.DataTable.isDataTable( '#thursdayTabTable' ) ) {
+            $('#thursdayTabTable').DataTable({
+              "ordering": false,
+              "columnDefs": [{
+                "width": "20%",
+                "targets": 0
+              }]
+            });
+          }
           break;
         case "fridayTab":
           markerClusterer.addLayers(fridayTabMarkerLayer);
-          $('#fridayTabTable').DataTable({
-            "ordering": false,
-            "columnDefs": [{
-              "width": "20%",
-              "targets": 0
-            }]
-          });
+          if ( ! $.fn.DataTable.isDataTable( '#fridayTabTable' ) ) {
+            $('#fridayTabTable').DataTable({
+              "ordering": false,
+              "columnDefs": [{
+                "width": "20%",
+                "targets": 0
+              }]
+            });
+          }
           break;
         case "saturdayTab":
           markerClusterer.addLayers(saturdayTabMarkerLayer);
-          $('#saturdayTabTable').DataTable({
-            "ordering": false,
-            "columnDefs": [{
-              "width": "20%",
-              "targets": 0
-            }]
-          });
+          if ( ! $.fn.DataTable.isDataTable( '#saturdayTabTable' ) ) {
+            $('#saturdayTabTable').DataTable({
+              "ordering": false,
+              "columnDefs": [{
+                "width": "20%",
+                "targets": 0
+              }]
+            });
+          }
           break;
       }
     });
