@@ -29,7 +29,7 @@ class Bmlt_tabbed_map_Public
     public function enqueue_scripts()
     {
         // We need jquery 3.3.1
-        wp_enqueue_script('jquery', 'https://code.jquery.com/jquery-3.3.1.slim.min.js', array(), $this->version, false); 
+        wp_enqueue_script('jquery', 'https://code.jquery.com/jquery-3.3.1.slim.min.js', array(), $this->version, false);
         wp_enqueue_script('leaflet', plugin_dir_url(__FILE__) . 'js/leaflet.js', array(), $this->version, false);
         wp_enqueue_script('leafletlocate', plugin_dir_url(__FILE__) . 'js/L.Control.Locate.min.js', array(), $this->version, false);
         wp_enqueue_script('leafletmarker', plugin_dir_url(__FILE__) . 'js/leaflet.markercluster.js', array(), $this->version, false);
@@ -50,22 +50,23 @@ class Bmlt_tabbed_map_Public
         $output  = '
 
         <div class="bordered-tab-contents">
-
-        <ul id="tabs">
-          <li><a id="sundayTab"    >Sun <span id="sunday-badge"    class="badge"></span></a></li>
-          <li><a id="mondayTab"    >Mon <span id="monday-badge"    class="badge"></span></a></li>
-          <li><a id="tuesdayTab"   >Tue <span id="tuesday-badge"    class="badge"></span></a></li>
-          <li><a id="wednesdayTab" >Wed <span id="wednesday-badge"    class="badge"></span></a></li>
-          <li><a id="thursdayTab"  >Thu <span id="thursday-badge"    class="badge"></span></a></li>
-          <li><a id="fridayTab"    >Fri <span id="friday-badge"    class="badge"></span></a></li>
-          <li><a id="saturdayTab"  >Sat <span id="saturday-badge"    class="badge"></span></a></li>
-        </ul>
+           <ul id="tabs">
+            <li><a id="sundayTab"    >Sun <span id="sunday-badge"    class="badge"></span></a></li>
+            <li><a id="mondayTab"    >Mon <span id="monday-badge"    class="badge"></span></a></li>
+            <li><a id="tuesdayTab"   >Tue <span id="tuesday-badge"    class="badge"></span></a></li>
+            <li><a id="wednesdayTab" >Wed <span id="wednesday-badge"    class="badge"></span></a></li>
+            <li><a id="thursdayTab"  >Thu <span id="thursday-badge"    class="badge"></span></a></li>
+            <li><a id="fridayTab"    >Fri <span id="friday-badge"    class="badge"></span></a></li>
+            <li><a id="saturdayTab"  >Sat <span id="saturday-badge"    class="badge"></span></a></li>
+          </ul>
           <div id="map"> </div>
           <div id="list_result">
-          <script>
-            bmltTabbedMapJS.doIt();
-          </script>
-        </div>';
+            <script>
+              bmltTabbedMapJS.doIt();
+            </script>
+          </div>
+        </div>
+        ';
         return $output;
     }
 }
