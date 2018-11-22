@@ -53,15 +53,15 @@ class Bmlt_tabbed_map_Public
     {
         $output  = '
 
-        <div class="bordered-tab-contents">
-           <ul id="tabs">
+        <div class="bmlt_tabbed_map_container">
+          <ul id="tabs">
             <li><a id="sundayTab"    >Sun </a></li>
-            <li><a id="mondayTab"    >Mon </span></a></li>
-            <li><a id="tuesdayTab"   >Tue </span></a></li>
-            <li><a id="wednesdayTab" >Wed </span></a></li>
-            <li><a id="thursdayTab"  >Thu </span></a></li>
-            <li><a id="fridayTab"    >Fri </span></a></li>
-            <li><a id="saturdayTab"  >Sat </span></a></li>
+            <li><a id="mondayTab"    >Mon </a></li>
+            <li><a id="tuesdayTab"   >Tue </a></li>
+            <li><a id="wednesdayTab" >Wed </a></li>
+            <li><a id="thursdayTab"  >Thu </a></li>
+            <li><a id="fridayTab"    >Fri </a></li>
+            <li><a id="saturdayTab"  >Sat </a></li>
           </ul>
           <div id="map"> </div>
           <div id="list_result">
