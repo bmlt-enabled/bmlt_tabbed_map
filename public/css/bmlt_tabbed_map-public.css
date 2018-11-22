@@ -49,6 +49,7 @@ tr:nth-child(even) {
   border-top-left-radius: 3px;
   border-top-right-radius: 3px;
   outline: none;
+  position: relative;
 }
 
 #tabs li a {
@@ -109,9 +110,6 @@ tr:nth-child(even) {
     font-size: 65%;
   }
 
-  .badge {
-    visibility: hidden;
-  }
 }
 
 @media only screen and (min-width: 800px) {
@@ -119,9 +117,6 @@ tr:nth-child(even) {
     font-size: 75%;
   }
 
-  .badge {
-    visibility: visible;
-  }
 }
 
 @media only screen and (min-width: 1024px) {
@@ -129,9 +124,6 @@ tr:nth-child(even) {
     font-size: 100%;
   }
 
-  .badge {
-    visibility: visible;
-  }
 }
 
 .container {
@@ -174,16 +166,4 @@ tr:nth-child(even) {
 
 .container .dataTables_wrapper .dataTables_filter input {
   margin-left: -0.5em;
-}
-
-.badge {
-  float: right;
-  display: inline;
-  
-  padding: .1em;
-  border-radius: 50%;
-  text-align: center;
-  color: #fefefe;
-  background: #67c1ef;
-  border-color: #30aae9;
 }
