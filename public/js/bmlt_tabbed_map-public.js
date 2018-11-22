@@ -317,13 +317,22 @@ const bmltTabbedMapJS = function($) {
       var result = generateResultTable();
 
       document.getElementById("list_result").innerHTML = result;
-      document.getElementById("sunday-badge").innerHTML = sunCount;
-      document.getElementById("monday-badge").innerHTML = monCount;
-      document.getElementById("tuesday-badge").innerHTML = tueCount;
-      document.getElementById("wednesday-badge").innerHTML = wedCount;
-      document.getElementById("thursday-badge").innerHTML = thuCount;
-      document.getElementById("friday-badge").innerHTML = friCount;
-      document.getElementById("saturday-badge").innerHTML = satCount;
+      // document.getElementById("sunday-badge").innerHTML = sunCount;
+      // document.getElementById("monday-badge").innerHTML = monCount;
+      // document.getElementById("tuesday-badge").innerHTML = tueCount;
+      // document.getElementById("wednesday-badge").innerHTML = wedCount;
+      // document.getElementById("thursday-badge").innerHTML = thuCount;
+      // document.getElementById("friday-badge").innerHTML = friCount;
+      // document.getElementById("saturday-badge").innerHTML = satCount;
+
+      $( '#sundayTab' ).badge( sunCount, 'top', true );
+      $( '#mondayTab' ).badge( monCount, 'top', true );
+      $( '#tuesdayTab' ).badge( tueCount, 'top', true );
+      $( '#wednesdayTab' ).badge( wedCount, 'top', true );
+      $( '#thursdayTab' ).badge( thuCount, 'top', true );
+      $( '#fridayTab' ).badge( friCount, 'top', true );
+      $( '#saturdayTab' ).badge( satCount, 'top', true );
+
 
       markerClusterer.clearLayers();
 
