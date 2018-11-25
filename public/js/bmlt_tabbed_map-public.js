@@ -14,13 +14,7 @@ const bmltTabbedMapJS = function($) {
 
   var dayCounts = [0, 0, 0, 0, 0, 0, 0];
 
-  var sunExpandLi = "";
-  var monExpandLi = "";
-  var tueExpandLi = "";
-  var wedExpandLi = "";
-  var thuExpandLi = "";
-  var friExpandLi = "";
-  var satExpandLi = "";
+  var dayExpandLi = ["", "", "", "", "", "", "", ""];
 
   var sundayTabMarkerLayer = [];
   var mondayTabMarkerLayer = [];
@@ -204,37 +198,37 @@ const bmltTabbedMapJS = function($) {
       switch (val.weekday_tinyint) {
         case "1":
           dayCounts[0]++;
-          sunExpandLi = sunExpandLi + listContent;
+          dayExpandLi[0] = dayExpandLi[0] + listContent;
           sundayTabMarkerLayer.push(aMarker);
           break;
         case "2":
           dayCounts[1]++;
-          monExpandLi = monExpandLi + listContent;
+          dayExpandLi[1] = dayExpandLi[1] + listContent;
           mondayTabMarkerLayer.push(aMarker);
           break;
         case "3":
           dayCounts[2]++;
-          tueExpandLi = tueExpandLi + listContent;
+          dayExpandLi[2] = dayExpandLi[2] + listContent;
           tuesdayTabMarkerLayer.push(aMarker);
           break;
         case "4":
           dayCounts[3]++;
-          wedExpandLi = wedExpandLi + listContent;
+          dayExpandLi[3] = dayExpandLi[3] + listContent;
           wednesdayTabMarkerLayer.push(aMarker);
           break;
         case "5":
           dayCounts[4]++;
-          thuExpandLi = thuExpandLi + listContent;
+          dayExpandLi[4] = dayExpandLi[4] + listContent;
           thursdayTabMarkerLayer.push(aMarker);
           break;
         case "6":
           dayCounts[5]++;
-          friExpandLi = friExpandLi + listContent;
+          dayExpandLi[5] = dayExpandLi[5] + listContent;
           fridayTabMarkerLayer.push(aMarker);
           break;
         case "7":
           dayCounts[6]++;
-          satExpandLi = satExpandLi + listContent;
+          dayExpandLi[6] = dayExpandLi[6] + listContent;
           saturdayTabMarkerLayer.push(aMarker);
           break;
       }
@@ -244,37 +238,37 @@ const bmltTabbedMapJS = function($) {
   var generateResultTable = function() {
     var result = "<div><div class='container' id='sundayTabTableContents'><table id='sundayTabTable'>";
     result += openTable;
-    result += sunExpandLi;
+    result += dayExpandLi[0];
     result += closeTable;
 
     result += "<div class='container' id='mondayTabTableContents'><table id='mondayTabTable'>";
     result += openTable;
-    result += monExpandLi;
+    result += dayExpandLi[1];
     result += closeTable;
 
     result += "<div class='container' id='tuesdayTabTableContents'><table id='tuesdayTabTable'>";
     result += openTable;
-    result += tueExpandLi;
+    result += dayExpandLi[2];
     result += closeTable;
 
     result += "<div class='container' id='wednesdayTabTableContents'><table id='wednesdayTabTable'>";
     result += openTable;
-    result += wedExpandLi;
+    result += dayExpandLi[3];
     result += closeTable;
 
     result += "<div class='container' id='thursdayTabTableContents'><table id='thursdayTabTable'>";
     result += openTable;
-    result += thuExpandLi;
+    result += dayExpandLi[4];
     result += closeTable;
 
     result += "<div class='container' id='fridayTabTableContents'><table id='fridayTabTable' >";
     result += openTable;
-    result += friExpandLi;
+    result += dayExpandLi[5];
     result += closeTable;
 
     result += "<div class='container' id='saturdayTabTableContents'><table id='saturdayTabTable'>";
     result += openTable;
-    result += satExpandLi;
+    result += dayExpandLi[6];
     result += closeTable;
 
     result += "</div>";
@@ -299,7 +293,7 @@ const bmltTabbedMapJS = function($) {
 
     mondayTabMarkerLayer.length = tuesdayTabMarkerLayer.length = wednesdayTabMarkerLayer.length = thursdayTabMarkerLayer.length = fridayTabMarkerLayer.length = saturdayTabMarkerLayer.length = sundayTabMarkerLayer.length = 0;
     dayCounts.fill(0);
-    sunExpandLi = monExpandLi = tueExpandLi = wedExpandLi = thuExpandLi = friExpandLi = satExpandLi = "";
+    dayExpandLi.fill("");
   }
 
   var runSearch = function() {
