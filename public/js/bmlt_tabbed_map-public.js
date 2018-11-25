@@ -12,13 +12,7 @@ const bmltTabbedMapJS = function($) {
   var activeTab;
   var tabClicked = true;
 
-  var sunCount = 0;
-  var monCount = 0;
-  var tueCount = 0;
-  var wedCount = 0;
-  var thuCount = 0;
-  var friCount = 0;
-  var satCount = 0;
+  var dayCounts = [0, 0, 0, 0, 0, 0, 0];
 
   var sunExpandLi = "";
   var monExpandLi = "";
@@ -209,37 +203,37 @@ const bmltTabbedMapJS = function($) {
 
       switch (val.weekday_tinyint) {
         case "1":
-          sunCount++;
+          dayCounts[0]++;
           sunExpandLi = sunExpandLi + listContent;
           sundayTabMarkerLayer.push(aMarker);
           break;
         case "2":
-          monCount++;
+          dayCounts[1]++;
           monExpandLi = monExpandLi + listContent;
           mondayTabMarkerLayer.push(aMarker);
           break;
         case "3":
-          tueCount++;
+          dayCounts[2]++;
           tueExpandLi = tueExpandLi + listContent;
           tuesdayTabMarkerLayer.push(aMarker);
           break;
         case "4":
-          wedCount++;
+          dayCounts[3]++;
           wedExpandLi = wedExpandLi + listContent;
           wednesdayTabMarkerLayer.push(aMarker);
           break;
         case "5":
-          thuCount++;
+          dayCounts[4]++;
           thuExpandLi = thuExpandLi + listContent;
           thursdayTabMarkerLayer.push(aMarker);
           break;
         case "6":
-          friCount++;
+          dayCounts[5]++;
           friExpandLi = friExpandLi + listContent;
           fridayTabMarkerLayer.push(aMarker);
           break;
         case "7":
-          satCount++;
+          dayCounts[6]++;
           satExpandLi = satExpandLi + listContent;
           saturdayTabMarkerLayer.push(aMarker);
           break;
@@ -304,7 +298,7 @@ const bmltTabbedMapJS = function($) {
     }
 
     mondayTabMarkerLayer.length = tuesdayTabMarkerLayer.length = wednesdayTabMarkerLayer.length = thursdayTabMarkerLayer.length = fridayTabMarkerLayer.length = saturdayTabMarkerLayer.length = sundayTabMarkerLayer.length = 0;
-    sunCount = monCount = tueCount = wedCount = thuCount = friCount = satCount = 0;
+    dayCounts.fill(0);
     sunExpandLi = monExpandLi = tueExpandLi = wedExpandLi = thuExpandLi = friExpandLi = satExpandLi = "";
   }
 
@@ -334,13 +328,13 @@ const bmltTabbedMapJS = function($) {
 
       document.getElementById("list_result").innerHTML = result;
 
-      $('#sundayTab').badge(sunCount, 'top', true);
-      $('#mondayTab').badge(monCount, 'top', true);
-      $('#tuesdayTab').badge(tueCount, 'top', true);
-      $('#wednesdayTab').badge(wedCount, 'top', true);
-      $('#thursdayTab').badge(thuCount, 'top', true);
-      $('#fridayTab').badge(friCount, 'top', true);
-      $('#saturdayTab').badge(satCount, 'top', true);
+      $('#sundayTab').badge(dayCounts[0], 'top', true);
+      $('#mondayTab').badge(dayCounts[1], 'top', true);
+      $('#tuesdayTab').badge(dayCounts[2], 'top', true);
+      $('#wednesdayTab').badge(dayCounts[3], 'top', true);
+      $('#thursdayTab').badge(dayCounts[4], 'top', true);
+      $('#fridayTab').badge(dayCounts[5], 'top', true);
+      $('#saturdayTab').badge(dayCounts[6], 'top', true);
 
       markerClusterer.clearLayers();
 
