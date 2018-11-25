@@ -3,7 +3,6 @@ const bmltTabbedMapJS = function($) {
   "use strict";
 
   var DEBUG = false;
-  // Dont forget to comment all of this
   var map = null;
   var circle = null;
   var markerClusterer = null;
@@ -11,23 +10,10 @@ const bmltTabbedMapJS = function($) {
   var searchZoom = js_vars.zoom_js;
   var jsonQuery;
   var activeTab;
-  var tabClicked = true;
 
-  var sunCount = 0;
-  var monCount = 0;
-  var tueCount = 0;
-  var wedCount = 0;
-  var thuCount = 0;
-  var friCount = 0;
-  var satCount = 0;
+  var dayCounts = [0, 0, 0, 0, 0, 0, 0];
 
-  var sunExpandLi = "";
-  var monExpandLi = "";
-  var tueExpandLi = "";
-  var wedExpandLi = "";
-  var thuExpandLi = "";
-  var friExpandLi = "";
-  var satExpandLi = "";
+  var dayExpandLi = ["", "", "", "", "", "", "", ""];
 
   var sundayTabMarkerLayer = [];
   var mondayTabMarkerLayer = [];
@@ -37,15 +23,9 @@ const bmltTabbedMapJS = function($) {
   var fridayTabMarkerLayer = [];
   var saturdayTabMarkerLayer = [];
 
-  var openTable = "  <thead>";
-  openTable += "   <tr>";
-  openTable += "    <th>Time</th>";
-  openTable += "    <th>Meeting</th>";
-  openTable += "   </tr>";
-  openTable += "  </thead>";
-  openTable += "  <tbody>";
+  var openTable = "<thead><tr><th>Time</th><th>Meeting</th></tr></thead><tbody>";
 
-  var closeTable = "  </tbody></table></div>";
+  var closeTable = "</tbody></table></div>";
 
   var isEmpty = function(object) {
     for (var i in object) {
@@ -60,6 +40,36 @@ const bmltTabbedMapJS = function($) {
     var ampm = H < 12 ? "am" : "pm";
     timeString = h + timeString.substr(2, 3) + ampm;
     return timeString;
+  }
+
+  var getMeetingFinishTime = function(startTime, durationTime) {
+
+    var duration = durationTime.split(":");
+    var start = startTime.split(":");
+
+    var startHour = parseInt(start[0]);
+    var startMin = parseInt(start[1]);
+    var durationHour = parseInt(duration[0]);
+    var durationMin = parseInt(duration[1]);
+    var finishHour = 0;
+    var finishMin = 0;
+
+    finishMin = startMin + durationMin;
+    if (finishMin >= 60) {
+      finishHour = startHour + durationHour + 1;
+      finishMin = finishMin - 60;
+    } else {
+      finishHour = startHour + durationHour;
+    }
+
+    if (finishHour > 24) {
+      finishHour = finishHour - 24;
+    }
+
+    if (finishMin == 0) {
+      finishMin = "00";
+    }
+    return finishHour + ":" + finishMin;
   }
 
   var newMap = function() {
@@ -115,10 +125,11 @@ const bmltTabbedMapJS = function($) {
     search_url += "&long_val=" + map.getCenter().lng;
     search_url += "&lat_val=" + map.getCenter().lat;
     search_url += "&sort_key=weekday_tinyint,start_time";
-    search_url += "&data_field_key=weekday_tinyint,start_time,";
-    search_url += "meeting_name,location_text,location_info,location_street,location_city_subsection,location_neighborhood,location_municipality,location_sub_province,location_province,";
+    search_url += "&data_field_key=weekday_tinyint,start_time,duration_time,";
+    search_url += "meeting_name,location_text,location_info,location_street,location_city_subsection,";
+    search_url += "location_neighborhood,location_municipality,location_sub_province,location_province,";
     search_url += "latitude,longitude,formats";
-    search_url += "&callingApp=tomato_map_search";
+    search_url += "&callingApp=bmlt_tabbed_map_wp_plugin";
 
     DEBUG && console && console.log("Search URL = " + search_url);
 
@@ -136,8 +147,9 @@ const bmltTabbedMapJS = function($) {
 
   var processSingleJSONMeetingResult = function(val) {
     if (isMeetingOnMap(val)) {
+      var endTime = getMeetingFinishTime(val.start_time, val.duration_time);
 
-      var listContent = "<tr><td>" + timeConvert(val.start_time) + " </td><td>";
+      var listContent = "<tr><td><time>" + timeConvert(val.start_time) + "</time> - <time>" + timeConvert(endTime) + "</time></td><td>";
       if (val.meeting_name != "NA Meeting") {
         listContent += "<b>" + val.meeting_name + ", </b>";
       }
@@ -184,38 +196,38 @@ const bmltTabbedMapJS = function($) {
 
       switch (val.weekday_tinyint) {
         case "1":
-          sunCount++;
-          sunExpandLi = sunExpandLi + listContent;
+          dayCounts[0]++;
+          dayExpandLi[0] = dayExpandLi[0] + listContent;
           sundayTabMarkerLayer.push(aMarker);
           break;
         case "2":
-          monCount++;
-          monExpandLi = monExpandLi + listContent;
+          dayCounts[1]++;
+          dayExpandLi[1] = dayExpandLi[1] + listContent;
           mondayTabMarkerLayer.push(aMarker);
           break;
         case "3":
-          tueCount++;
-          tueExpandLi = tueExpandLi + listContent;
+          dayCounts[2]++;
+          dayExpandLi[2] = dayExpandLi[2] + listContent;
           tuesdayTabMarkerLayer.push(aMarker);
           break;
         case "4":
-          wedCount++;
-          wedExpandLi = wedExpandLi + listContent;
+          dayCounts[3]++;
+          dayExpandLi[3] = dayExpandLi[3] + listContent;
           wednesdayTabMarkerLayer.push(aMarker);
           break;
         case "5":
-          thuCount++;
-          thuExpandLi = thuExpandLi + listContent;
+          dayCounts[4]++;
+          dayExpandLi[4] = dayExpandLi[4] + listContent;
           thursdayTabMarkerLayer.push(aMarker);
           break;
         case "6":
-          friCount++;
-          friExpandLi = friExpandLi + listContent;
+          dayCounts[5]++;
+          dayExpandLi[5] = dayExpandLi[5] + listContent;
           fridayTabMarkerLayer.push(aMarker);
           break;
         case "7":
-          satCount++;
-          satExpandLi = satExpandLi + listContent;
+          dayCounts[6]++;
+          dayExpandLi[6] = dayExpandLi[6] + listContent;
           saturdayTabMarkerLayer.push(aMarker);
           break;
       }
@@ -223,48 +235,39 @@ const bmltTabbedMapJS = function($) {
   }
 
   var generateResultTable = function() {
-    var result = "<div>";
-
-    result += "<div class='container' id='sundayTabTableContents'>";
-    result += "<table id='sundayTabTable'>";
+    var result = "<div><div class='container' id='sundayTabTableContents'><table id='sundayTabTable'>";
     result += openTable;
-    result += sunExpandLi;
+    result += dayExpandLi[0];
     result += closeTable;
 
-    result += "  <div class='container' id='mondayTabTableContents'>";
-    result += "   <table id='mondayTabTable'>";
+    result += "<div class='container' id='mondayTabTableContents'><table id='mondayTabTable'>";
     result += openTable;
-    result += monExpandLi;
+    result += dayExpandLi[1];
     result += closeTable;
 
-    result += "  <div class='container' id='tuesdayTabTableContents'>";
-    result += "   <table id='tuesdayTabTable'>";
+    result += "<div class='container' id='tuesdayTabTableContents'><table id='tuesdayTabTable'>";
     result += openTable;
-    result += tueExpandLi;
+    result += dayExpandLi[2];
     result += closeTable;
 
-    result += "  <div  class='container' id='wednesdayTabTableContents'>";
-    result += "   <table id='wednesdayTabTable'>";
+    result += "<div class='container' id='wednesdayTabTableContents'><table id='wednesdayTabTable'>";
     result += openTable;
-    result += wedExpandLi;
+    result += dayExpandLi[3];
     result += closeTable;
 
-    result += "  <div  class='container' id='thursdayTabTableContents'>";
-    result += "   <table id='thursdayTabTable'>";
+    result += "<div class='container' id='thursdayTabTableContents'><table id='thursdayTabTable'>";
     result += openTable;
-    result += thuExpandLi;
+    result += dayExpandLi[4];
     result += closeTable;
 
-    result += "  <div  class='container' id='fridayTabTableContents'>";
-    result += "   <table id='fridayTabTable' >";
+    result += "<div class='container' id='fridayTabTableContents'><table id='fridayTabTable' >";
     result += openTable;
-    result += friExpandLi;
+    result += dayExpandLi[5];
     result += closeTable;
 
-    result += "  <div  class='container' id='saturdayTabTableContents'>";
-    result += "   <table id='saturdayTabTable'>";
+    result += "<div class='container' id='saturdayTabTableContents'><table id='saturdayTabTable'>";
     result += openTable;
-    result += satExpandLi;
+    result += dayExpandLi[6];
     result += closeTable;
 
     result += "</div>";
@@ -288,8 +291,8 @@ const bmltTabbedMapJS = function($) {
     }
 
     mondayTabMarkerLayer.length = tuesdayTabMarkerLayer.length = wednesdayTabMarkerLayer.length = thursdayTabMarkerLayer.length = fridayTabMarkerLayer.length = saturdayTabMarkerLayer.length = sundayTabMarkerLayer.length = 0;
-    sunCount = monCount = tueCount = wedCount = thuCount = friCount = satCount = 0;
-    sunExpandLi = monExpandLi = tueExpandLi = wedExpandLi = thuExpandLi = friExpandLi = satExpandLi = "";
+    dayCounts.fill(0);
+    dayExpandLi.fill("");
   }
 
   var runSearch = function() {
@@ -317,22 +320,14 @@ const bmltTabbedMapJS = function($) {
       var result = generateResultTable();
 
       document.getElementById("list_result").innerHTML = result;
-      // document.getElementById("sunday-badge").innerHTML = sunCount;
-      // document.getElementById("monday-badge").innerHTML = monCount;
-      // document.getElementById("tuesday-badge").innerHTML = tueCount;
-      // document.getElementById("wednesday-badge").innerHTML = wedCount;
-      // document.getElementById("thursday-badge").innerHTML = thuCount;
-      // document.getElementById("friday-badge").innerHTML = friCount;
-      // document.getElementById("saturday-badge").innerHTML = satCount;
 
-      $( '#sundayTab' ).badge( sunCount, 'top', true );
-      $( '#mondayTab' ).badge( monCount, 'top', true );
-      $( '#tuesdayTab' ).badge( tueCount, 'top', true );
-      $( '#wednesdayTab' ).badge( wedCount, 'top', true );
-      $( '#thursdayTab' ).badge( thuCount, 'top', true );
-      $( '#fridayTab' ).badge( friCount, 'top', true );
-      $( '#saturdayTab' ).badge( satCount, 'top', true );
-
+      $('#sundayTab').badge(dayCounts[0], 'top', true);
+      $('#mondayTab').badge(dayCounts[1], 'top', true);
+      $('#tuesdayTab').badge(dayCounts[2], 'top', true);
+      $('#wednesdayTab').badge(dayCounts[3], 'top', true);
+      $('#thursdayTab').badge(dayCounts[4], 'top', true);
+      $('#fridayTab').badge(dayCounts[5], 'top', true);
+      $('#saturdayTab').badge(dayCounts[6], 'top', true);
 
       markerClusterer.clearLayers();
 
@@ -342,7 +337,7 @@ const bmltTabbedMapJS = function($) {
         DEBUG && console && console.log("Today is ", today);
         $('#tabs li a').eq(today).click();
       } else {
-        DEBUG && console && console.log("Search was run, with ni click event yet: ", activeTab);
+        DEBUG && console && console.log("Search was run, with no click event yet: ", activeTab);
         $("#tabs li a:not('.inactive')").click();
       }
 
@@ -365,13 +360,13 @@ const bmltTabbedMapJS = function($) {
       $('.container').hide();
       DEBUG && console && console.log("Fading in the tab: ", activeTab + 'TableContents');
 
-      $('#' + activeTab + 'TableContents').fadeIn('slow');
+      $('#' + activeTab + 'TableContents').fadeIn(100);
 
       markerClusterer.clearLayers();
       switch (activeTab) {
         case "sundayTab":
           markerClusterer.addLayers(sundayTabMarkerLayer);
-          if ( ! $.fn.DataTable.isDataTable( '#sundayTabTable' ) ) {
+          if (!$.fn.DataTable.isDataTable('#sundayTabTable')) {
             $('#sundayTabTable').DataTable({
               "ordering": false,
               "columnDefs": [{
@@ -383,7 +378,7 @@ const bmltTabbedMapJS = function($) {
           break;
         case "mondayTab":
           markerClusterer.addLayers(mondayTabMarkerLayer);
-          if ( ! $.fn.DataTable.isDataTable( '#mondayTabTable' ) ) {
+          if (!$.fn.DataTable.isDataTable('#mondayTabTable')) {
             $('#mondayTabTable').DataTable({
               "ordering": false,
               "columnDefs": [{
@@ -395,7 +390,7 @@ const bmltTabbedMapJS = function($) {
           break;
         case "tuesdayTab":
           markerClusterer.addLayers(tuesdayTabMarkerLayer);
-          if ( ! $.fn.DataTable.isDataTable( '#tuesdayTabTable' ) ) {
+          if (!$.fn.DataTable.isDataTable('#tuesdayTabTable')) {
             $('#tuesdayTabTable').DataTable({
               "ordering": false,
               "columnDefs": [{
@@ -407,7 +402,7 @@ const bmltTabbedMapJS = function($) {
           break;
         case "wednesdayTab":
           markerClusterer.addLayers(wednesdayTabMarkerLayer);
-          if ( ! $.fn.DataTable.isDataTable( '#wednesdayTabTable' ) ) {
+          if (!$.fn.DataTable.isDataTable('#wednesdayTabTable')) {
             $('#wednesdayTabTable').DataTable({
               "ordering": false,
               "columnDefs": [{
@@ -419,7 +414,7 @@ const bmltTabbedMapJS = function($) {
           break;
         case "thursdayTab":
           markerClusterer.addLayers(thursdayTabMarkerLayer);
-          if ( ! $.fn.DataTable.isDataTable( '#thursdayTabTable' ) ) {
+          if (!$.fn.DataTable.isDataTable('#thursdayTabTable')) {
             $('#thursdayTabTable').DataTable({
               "ordering": false,
               "columnDefs": [{
@@ -431,7 +426,7 @@ const bmltTabbedMapJS = function($) {
           break;
         case "fridayTab":
           markerClusterer.addLayers(fridayTabMarkerLayer);
-          if ( ! $.fn.DataTable.isDataTable( '#fridayTabTable' ) ) {
+          if (!$.fn.DataTable.isDataTable('#fridayTabTable')) {
             $('#fridayTabTable').DataTable({
               "ordering": false,
               "columnDefs": [{
@@ -443,7 +438,7 @@ const bmltTabbedMapJS = function($) {
           break;
         case "saturdayTab":
           markerClusterer.addLayers(saturdayTabMarkerLayer);
-          if ( ! $.fn.DataTable.isDataTable( '#saturdayTabTable' ) ) {
+          if (!$.fn.DataTable.isDataTable('#saturdayTabTable')) {
             $('#saturdayTabTable').DataTable({
               "ordering": false,
               "columnDefs": [{

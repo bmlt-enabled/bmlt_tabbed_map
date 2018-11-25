@@ -51,6 +51,10 @@ class Bmlt_tabbed_map
 
         $this->loader->add_action('wp_ajax_receive_new_settings',        $plugin_admin, 'receive_new_settings');
         $this->loader->add_action('wp_ajax_nopriv_receive_new_settings', $plugin_admin, 'receive_new_settings');
+
+        $plugin_basename = plugin_basename( plugin_dir_path( __DIR__ ) . $this->plugin_name . '.php' );
+        $this->loader->add_filter( 'plugin_action_links_' . $plugin_basename, $plugin_admin, 'add_action_links' );
+
     }
 
     private function define_public_hooks()
