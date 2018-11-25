@@ -10,7 +10,6 @@ const bmltTabbedMapJS = function($) {
   var searchZoom = js_vars.zoom_js;
   var jsonQuery;
   var activeTab;
-  var tabClicked = true;
 
   var dayCounts = [0, 0, 0, 0, 0, 0, 0];
 
@@ -150,7 +149,7 @@ const bmltTabbedMapJS = function($) {
     if (isMeetingOnMap(val)) {
       var endTime = getMeetingFinishTime(val.start_time, val.duration_time);
 
-      var listContent = "<tr><td>" + timeConvert(val.start_time) + " - " + timeConvert(endTime) + "</td><td>";
+      var listContent = "<tr><td><time>" + timeConvert(val.start_time) + "</time> - <time>" + timeConvert(endTime) + "</time></td><td>";
       if (val.meeting_name != "NA Meeting") {
         listContent += "<b>" + val.meeting_name + ", </b>";
       }
