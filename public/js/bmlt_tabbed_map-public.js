@@ -3,7 +3,6 @@ const bmltTabbedMapJS = function($) {
   "use strict";
 
   var DEBUG = false;
-  // Dont forget to comment all of this
   var map = null;
   var circle = null;
   var markerClusterer = null;
@@ -37,15 +36,9 @@ const bmltTabbedMapJS = function($) {
   var fridayTabMarkerLayer = [];
   var saturdayTabMarkerLayer = [];
 
-  var openTable = "  <thead>";
-  openTable += "   <tr>";
-  openTable += "    <th>Time</th>";
-  openTable += "    <th>Meeting</th>";
-  openTable += "   </tr>";
-  openTable += "  </thead>";
-  openTable += "  <tbody>";
+  var openTable = "<thead><tr><th>Time</th><th>Meeting</th></tr></thead><tbody>";
 
-  var closeTable = "  </tbody></table></div>";
+  var closeTable = "</tbody></table></div>";
 
   var isEmpty = function(object) {
     for (var i in object) {
@@ -68,18 +61,18 @@ const bmltTabbedMapJS = function($) {
     var start = startTime.split(":");
 
     var startHour = parseInt(start[0]);
-    var startMin  = parseInt(start[1]);
+    var startMin = parseInt(start[1]);
     var durationHour = parseInt(duration[0]);
-    var durationMin  = parseInt(duration[1]);
+    var durationMin = parseInt(duration[1]);
     var finishHour = 0;
-    var finishMin  = 0;
+    var finishMin = 0;
 
     finishMin = startMin + durationMin;
     if (finishMin >= 60) {
       finishHour = startHour + durationHour + 1;
       finishMin = finishMin - 60;
     } else {
-      finishHour = startHour + durationHour ;
+      finishHour = startHour + durationHour;
     }
 
     if (finishHour > 24) {
@@ -255,46 +248,37 @@ const bmltTabbedMapJS = function($) {
   }
 
   var generateResultTable = function() {
-    var result = "<div>";
-
-    result += "<div class='container' id='sundayTabTableContents'>";
-    result += "<table id='sundayTabTable'>";
+    var result = "<div><div class='container' id='sundayTabTableContents'><table id='sundayTabTable'>";
     result += openTable;
     result += sunExpandLi;
     result += closeTable;
 
-    result += "  <div class='container' id='mondayTabTableContents'>";
-    result += "   <table id='mondayTabTable'>";
+    result += "<div class='container' id='mondayTabTableContents'><table id='mondayTabTable'>";
     result += openTable;
     result += monExpandLi;
     result += closeTable;
 
-    result += "  <div class='container' id='tuesdayTabTableContents'>";
-    result += "   <table id='tuesdayTabTable'>";
+    result += "<div class='container' id='tuesdayTabTableContents'><table id='tuesdayTabTable'>";
     result += openTable;
     result += tueExpandLi;
     result += closeTable;
 
-    result += "  <div  class='container' id='wednesdayTabTableContents'>";
-    result += "   <table id='wednesdayTabTable'>";
+    result += "<div class='container' id='wednesdayTabTableContents'><table id='wednesdayTabTable'>";
     result += openTable;
     result += wedExpandLi;
     result += closeTable;
 
-    result += "  <div  class='container' id='thursdayTabTableContents'>";
-    result += "   <table id='thursdayTabTable'>";
+    result += "<div class='container' id='thursdayTabTableContents'><table id='thursdayTabTable'>";
     result += openTable;
     result += thuExpandLi;
     result += closeTable;
 
-    result += "  <div  class='container' id='fridayTabTableContents'>";
-    result += "   <table id='fridayTabTable' >";
+    result += "<div class='container' id='fridayTabTableContents'><table id='fridayTabTable' >";
     result += openTable;
     result += friExpandLi;
     result += closeTable;
 
-    result += "  <div  class='container' id='saturdayTabTableContents'>";
-    result += "   <table id='saturdayTabTable'>";
+    result += "<div class='container' id='saturdayTabTableContents'><table id='saturdayTabTable'>";
     result += openTable;
     result += satExpandLi;
     result += closeTable;
@@ -349,13 +333,6 @@ const bmltTabbedMapJS = function($) {
       var result = generateResultTable();
 
       document.getElementById("list_result").innerHTML = result;
-      // document.getElementById("sunday-badge").innerHTML = sunCount;
-      // document.getElementById("monday-badge").innerHTML = monCount;
-      // document.getElementById("tuesday-badge").innerHTML = tueCount;
-      // document.getElementById("wednesday-badge").innerHTML = wedCount;
-      // document.getElementById("thursday-badge").innerHTML = thuCount;
-      // document.getElementById("friday-badge").innerHTML = friCount;
-      // document.getElementById("saturday-badge").innerHTML = satCount;
 
       $('#sundayTab').badge(sunCount, 'top', true);
       $('#mondayTab').badge(monCount, 'top', true);
@@ -365,7 +342,6 @@ const bmltTabbedMapJS = function($) {
       $('#fridayTab').badge(friCount, 'top', true);
       $('#saturdayTab').badge(satCount, 'top', true);
 
-
       markerClusterer.clearLayers();
 
       if (!activeTab) {
@@ -374,7 +350,7 @@ const bmltTabbedMapJS = function($) {
         DEBUG && console && console.log("Today is ", today);
         $('#tabs li a').eq(today).click();
       } else {
-        DEBUG && console && console.log("Search was run, with ni click event yet: ", activeTab);
+        DEBUG && console && console.log("Search was run, with no click event yet: ", activeTab);
         $("#tabs li a:not('.inactive')").click();
       }
 
@@ -397,7 +373,7 @@ const bmltTabbedMapJS = function($) {
       $('.container').hide();
       DEBUG && console && console.log("Fading in the tab: ", activeTab + 'TableContents');
 
-      $('#' + activeTab + 'TableContents').fadeIn('slow');
+      $('#' + activeTab + 'TableContents').fadeIn(100);
 
       markerClusterer.clearLayers();
       switch (activeTab) {
