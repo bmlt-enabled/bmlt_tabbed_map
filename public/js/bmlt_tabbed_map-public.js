@@ -62,6 +62,36 @@ const bmltTabbedMapJS = function($) {
     return timeString;
   }
 
+  var getMeetingFinishTime = function(startTime, durationTime) {
+
+    var duration = durationTime.split(":");
+    var start = startTime.split(":");
+
+    var startHour = parseInt(start[0]);
+    var startMin  = parseInt(start[1]);
+    var durationHour = parseInt(duration[0]);
+    var durationMin  = parseInt(duration[1]);
+    var finishHour = 0;
+    var finishMin  = 0;
+
+    finishMin = startMin + durationMin;
+    if (finishMin >= 60) {
+      finishHour = startHour + durationHour + 1;
+      finishMin = finishMin - 60;
+    } else {
+      finishHour = startHour + durationHour ;
+    }
+
+    if (finishHour > 24) {
+      finishHour = finishHour - 24;
+    }
+
+    if (finishMin == 0) {
+      finishMin = "00";
+    }
+    return finishHour + ":" + finishMin;
+  }
+
   var newMap = function() {
     DEBUG && console && console.log("Running newMap()");
     map = L.map('map', {
@@ -115,10 +145,11 @@ const bmltTabbedMapJS = function($) {
     search_url += "&long_val=" + map.getCenter().lng;
     search_url += "&lat_val=" + map.getCenter().lat;
     search_url += "&sort_key=weekday_tinyint,start_time";
-    search_url += "&data_field_key=weekday_tinyint,start_time,";
-    search_url += "meeting_name,location_text,location_info,location_street,location_city_subsection,location_neighborhood,location_municipality,location_sub_province,location_province,";
+    search_url += "&data_field_key=weekday_tinyint,start_time,duration_time,";
+    search_url += "meeting_name,location_text,location_info,location_street,location_city_subsection,";
+    search_url += "location_neighborhood,location_municipality,location_sub_province,location_province,";
     search_url += "latitude,longitude,formats";
-    search_url += "&callingApp=tomato_map_search";
+    search_url += "&callingApp=bmlt_tabbed_map_wp_plugin";
 
     DEBUG && console && console.log("Search URL = " + search_url);
 
@@ -136,8 +167,9 @@ const bmltTabbedMapJS = function($) {
 
   var processSingleJSONMeetingResult = function(val) {
     if (isMeetingOnMap(val)) {
+      var endTime = getMeetingFinishTime(val.start_time, val.duration_time);
 
-      var listContent = "<tr><td>" + timeConvert(val.start_time) + " </td><td>";
+      var listContent = "<tr><td>" + timeConvert(val.start_time) + " - " + timeConvert(endTime) + "</td><td>";
       if (val.meeting_name != "NA Meeting") {
         listContent += "<b>" + val.meeting_name + ", </b>";
       }
@@ -325,13 +357,13 @@ const bmltTabbedMapJS = function($) {
       // document.getElementById("friday-badge").innerHTML = friCount;
       // document.getElementById("saturday-badge").innerHTML = satCount;
 
-      $( '#sundayTab' ).badge( sunCount, 'top', true );
-      $( '#mondayTab' ).badge( monCount, 'top', true );
-      $( '#tuesdayTab' ).badge( tueCount, 'top', true );
-      $( '#wednesdayTab' ).badge( wedCount, 'top', true );
-      $( '#thursdayTab' ).badge( thuCount, 'top', true );
-      $( '#fridayTab' ).badge( friCount, 'top', true );
-      $( '#saturdayTab' ).badge( satCount, 'top', true );
+      $('#sundayTab').badge(sunCount, 'top', true);
+      $('#mondayTab').badge(monCount, 'top', true);
+      $('#tuesdayTab').badge(tueCount, 'top', true);
+      $('#wednesdayTab').badge(wedCount, 'top', true);
+      $('#thursdayTab').badge(thuCount, 'top', true);
+      $('#fridayTab').badge(friCount, 'top', true);
+      $('#saturdayTab').badge(satCount, 'top', true);
 
 
       markerClusterer.clearLayers();
@@ -371,7 +403,7 @@ const bmltTabbedMapJS = function($) {
       switch (activeTab) {
         case "sundayTab":
           markerClusterer.addLayers(sundayTabMarkerLayer);
-          if ( ! $.fn.DataTable.isDataTable( '#sundayTabTable' ) ) {
+          if (!$.fn.DataTable.isDataTable('#sundayTabTable')) {
             $('#sundayTabTable').DataTable({
               "ordering": false,
               "columnDefs": [{
@@ -383,7 +415,7 @@ const bmltTabbedMapJS = function($) {
           break;
         case "mondayTab":
           markerClusterer.addLayers(mondayTabMarkerLayer);
-          if ( ! $.fn.DataTable.isDataTable( '#mondayTabTable' ) ) {
+          if (!$.fn.DataTable.isDataTable('#mondayTabTable')) {
             $('#mondayTabTable').DataTable({
               "ordering": false,
               "columnDefs": [{
@@ -395,7 +427,7 @@ const bmltTabbedMapJS = function($) {
           break;
         case "tuesdayTab":
           markerClusterer.addLayers(tuesdayTabMarkerLayer);
-          if ( ! $.fn.DataTable.isDataTable( '#tuesdayTabTable' ) ) {
+          if (!$.fn.DataTable.isDataTable('#tuesdayTabTable')) {
             $('#tuesdayTabTable').DataTable({
               "ordering": false,
               "columnDefs": [{
@@ -407,7 +439,7 @@ const bmltTabbedMapJS = function($) {
           break;
         case "wednesdayTab":
           markerClusterer.addLayers(wednesdayTabMarkerLayer);
-          if ( ! $.fn.DataTable.isDataTable( '#wednesdayTabTable' ) ) {
+          if (!$.fn.DataTable.isDataTable('#wednesdayTabTable')) {
             $('#wednesdayTabTable').DataTable({
               "ordering": false,
               "columnDefs": [{
@@ -419,7 +451,7 @@ const bmltTabbedMapJS = function($) {
           break;
         case "thursdayTab":
           markerClusterer.addLayers(thursdayTabMarkerLayer);
-          if ( ! $.fn.DataTable.isDataTable( '#thursdayTabTable' ) ) {
+          if (!$.fn.DataTable.isDataTable('#thursdayTabTable')) {
             $('#thursdayTabTable').DataTable({
               "ordering": false,
               "columnDefs": [{
@@ -431,7 +463,7 @@ const bmltTabbedMapJS = function($) {
           break;
         case "fridayTab":
           markerClusterer.addLayers(fridayTabMarkerLayer);
-          if ( ! $.fn.DataTable.isDataTable( '#fridayTabTable' ) ) {
+          if (!$.fn.DataTable.isDataTable('#fridayTabTable')) {
             $('#fridayTabTable').DataTable({
               "ordering": false,
               "columnDefs": [{
@@ -443,7 +475,7 @@ const bmltTabbedMapJS = function($) {
           break;
         case "saturdayTab":
           markerClusterer.addLayers(saturdayTabMarkerLayer);
-          if ( ! $.fn.DataTable.isDataTable( '#saturdayTabTable' ) ) {
+          if (!$.fn.DataTable.isDataTable('#saturdayTabTable')) {
             $('#saturdayTabTable').DataTable({
               "ordering": false,
               "columnDefs": [{
