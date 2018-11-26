@@ -29,7 +29,8 @@
 								<div id="latitude"> </div>
 							  <div id="longitude"> </div>
 								<div><h3>Just add the shortcode [bmlt_tabbed_map] to any webpage, and the map will be displayed along with the meetings</h3></div>
-
+                <div><h4>Or, you can override the settings page by passing the latitude, longitude and zoom levels to the shortcode i.e. [bmlt_tabbed_map lat=53.4 lng=-7.24 zoom=7 ]  </h4></div>
+								<div><p>If you come accross any bugs, or would like something added to this plugin, you can open an issue on github using this link <a href="https://github.com/bmlt-enabled/bmlt_tabbed_map/issues">Open Issue</a></p></div>
 								  <script>
 								    bmlt_tabbed_map_admin.showMap();
 								  </script>
