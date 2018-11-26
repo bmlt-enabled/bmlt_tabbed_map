@@ -29,19 +29,9 @@ const bmltTabbedMapJS = function($) {
 
   var setupParams = function(overwritten_lat, overwritten_lng, overwritten_zoom) {
     if ((overwritten_lng == 0) && (overwritten_lat == 0) && (overwritten_zoom == 0)) {
-      console.log("Parameters were not overwritten by shortcode");
-      console.log("Lat  =  " , js_vars.lat_js);
-      console.log("Lng  =  " , js_vars.lng_js);
-      console.log("Zoom =  " , js_vars.zoom_js);
-
       myLatLng = new L.latLng(js_vars.lat_js, js_vars.lng_js);
       searchZoom = js_vars.zoom_js;
     } else {
-      console.log("Parameters were overwritten by shortcode!!!!!!!!");
-      console.log("Lat  =  " , overwritten_lat);
-      console.log("Lng  =  ", overwritten_lng);
-      console.log("Zoom =  ", overwritten_zoom);
-
       myLatLng = new L.latLng(overwritten_lat, overwritten_lng);
       if ((overwritten_zoom > 17) || (overwritten_zoom < 7)) {
         overwritten_zoom = 12;
