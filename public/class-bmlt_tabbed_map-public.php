@@ -16,6 +16,7 @@ class Bmlt_tabbed_map_Public
     {
         $wp_scripts = wp_scripts();
 
+        wp_enqueue_style('roboto_font', 'https://fonts.googleapis.com/css?family=Roboto', array(), $this->version, 'all');
         wp_enqueue_style('leaflet_css', plugin_dir_url(__FILE__) . 'css/leaflet.css', array(), $this->version, 'all');
         wp_enqueue_style('L_control', plugin_dir_url(__FILE__) . 'css/L.Control.Locate.min.css', array(), $this->version, 'all');
         wp_enqueue_style('marker_cluster_css', plugin_dir_url(__FILE__) . 'css/MarkerCluster.css', array(), $this->version, 'all');
@@ -57,7 +58,6 @@ class Bmlt_tabbed_map_Public
 
 
         $output  = '
-        <div class="param_test"></div>
         <div class="bmlt_tabbed_map_container">
           <ul id="tabs">
             <li><a id="sundayTab"    >Sun </a></li>

@@ -195,7 +195,7 @@ const bmltTabbedMapJS = function($) {
       }
       listContent += '<br><a href="http://maps.google.com/maps?daddr=';
       listContent += val.latitude + ',' + val.longitude;
-      listContent += '"  target="_blank">Directions </a></td>';
+      listContent += '"  target="_blank">Directions <i>&#10149;</i></a></td>';
       listContent += "</tr>";
 
       var markerContent = dayOfWeekAsString(val.weekday_tinyint) + " ";
