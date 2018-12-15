@@ -10,6 +10,8 @@
   border-bottom: solid 1px #CCC;
   text-align: left;
   color: white;
+  font-family: 'Roboto Condensed', sans-serif !important;
+
 }
 
 .bmlt_tabbed_map_container h2 {
@@ -35,19 +37,24 @@
   flex-wrap: no-wrap;
   margin: 0 0 0 0;
   padding: 0 0 0 0;
+  font-family: 'Roboto', sans-serif;
 }
 
 .bmlt_tabbed_map_container ul li {
   width: 100%;
+  font-family: 'Roboto', sans-serif;
 }
 
 .bmlt_tabbed_map_container a {
   cursor: pointer;
   color: black;
+  font-family: 'Roboto', sans-serif;
+  text-decoration: none;
 }
 
 .bmlt_tabbed_map_container a:link {
     color: black;
+    text-decoration: none;
 }
 
 .bmlt_tabbed_map_container a:visited {
@@ -67,7 +74,7 @@
 }
 
 .bmlt_tabbed_map_container tr:nth-child(even) {
-  background-color: lightgrey;
+  background-color: #f2f2f2;
 }
 
 .bmlt_tabbed_map_container tr:nth-child(odd) {
@@ -79,7 +86,9 @@
   height: 600px;
 }
 
-.bmlt_tabbed_map_container #list_result {}
+.bmlt_tabbed_map_container #list_result {
+  font-family: 'Roboto', sans-serif !important;
+}
 
 .bmlt_tabbed_map_container .custom-popup {
   font-size: 10pt;
@@ -107,7 +116,7 @@
 }
 
 .bmlt_tabbed_map_container #tabs li a {
-  font-size: 1em;
+  font-size: 10pt;
   color: #5685bc;
   padding-top: 5px;
   padding-left: 7px;
@@ -119,6 +128,7 @@
   border-top-right-radius: 3px;
   text-decoration: none;
   outline: none;
+  font-family: 'Roboto', sans-serif;
 }
 
 .bmlt_tabbed_map_container #tabs li a.inactive {
@@ -135,4 +145,8 @@
 .bmlt_tabbed_map_container #tabs li a:hover, #tabs li a.inactive:hover {
   color: #5685bc;
   outline: none;
+}
+
+table.dataTable tbody th, table.dataTable tbody td {
+  word-break: normal !important;
 }
