@@ -28,9 +28,31 @@ class Bmlt_tabbed_map_Admin
 
         global $wpdb;
 
-        $this->tmpZoomPosition = $_POST['zoomPosition'];
-        $this->tmpLngPosition  = $_POST['lngPosition'];
-        $this->tmpLatPosition  = $_POST['latPosition'];
+        // Validate/sanitize zoomPosition POST
+        $safe_zoomPosition = intval( $_POST['zoomPosition'] );
+        if ( ! $safe_zoomPosition ) {
+          $safe_zoomPosition = 7;
+        }
+
+        if ( strlen( $safe_zoomPosition ) > 2 ) {
+          $safe_zoomPosition = substr( $safe_zoomPosition, 0, 2 );
+        }
+
+        $this->tmpZoomPosition = $safe_zoomPosition;
+
+        // Validate/sanitize lngPosition post
+        if ( is_numeric($_POST['lngPosition'])) {
+          $this->tmpLngPosition  = $_POST['lngPosition'];
+        } else {
+          $this->tmpLngPosition  = 0;
+        }
+
+        // Validate/sanitize latPosition post
+        if ( is_numeric($_POST['latPosition'])) {
+          $this->tmpLatPosition  = $_POST['latPosition'];
+        } else {
+          $this->tmpLatPosition  = 0;
+        }
 
         $response = json_encode( $_POST );
       	// response output
@@ -49,8 +71,7 @@ class Bmlt_tabbed_map_Admin
     {
         wp_enqueue_style('leaflet_admin', plugin_dir_url(__FILE__) . 'css/leaflet.css', array(), $this->version, 'all');
         wp_enqueue_style('L_control_admin', plugin_dir_url(__FILE__) . 'css/L.Control.Locate.min.css', array(), $this->version, 'all');
-        wp_enqueue_style('fa_solid_admin', 'https://use.fontawesome.com/releases/v5.4.1/css/solid.css', array(), $this->version, 'all');
-        wp_enqueue_style('fa_admin', 'https://use.fontawesome.com/releases/v5.4.1/css/fontawesome.css', array(), $this->version, 'all');
+        wp_enqueue_style('fa_solid_admin', plugin_dir_url(__FILE__) . 'css/fontawesome-5.6.1.css', array(), $this->version, 'all');
         wp_enqueue_style($this->plugin_name, plugin_dir_url(__FILE__) . 'css/bmlt_tabbed_map-admin.css', array(), $this->version, 'all');
     }
 
@@ -58,7 +79,6 @@ class Bmlt_tabbed_map_Admin
     {
         wp_enqueue_script('leaflet_admin', plugin_dir_url(__FILE__) . 'js/leaflet.js', array(), $this->version, false);
         wp_enqueue_script('leafletlocate_admin', plugin_dir_url(__FILE__) . 'js/L.Control.Locate.min.js', array(), $this->version, false);
-
         wp_enqueue_script($this->plugin_name, plugin_dir_url(__FILE__) . 'js/bmlt_tabbed_map-admin.js', array( 'jquery' ), $this->version, false);
 
         $script_data = array( 'zoom_js'   => get_option($this->option_name . '_zoom_position'),
@@ -123,7 +143,7 @@ class Bmlt_tabbed_map_Admin
     public function bmlt_tabbed_map_lat_position_cb()
     {
         $lat_position = get_option($this->option_name . '_lat_position'); ?>
-      <p><?php echo $lat_position ?></p>
+      <p><?php echo esc_html( $lat_position ) ?></p>
 
 			<?php
     }
@@ -131,7 +151,7 @@ class Bmlt_tabbed_map_Admin
     public function bmlt_tabbed_map_lng_position_cb()
     {
         $lng_position = get_option($this->option_name . '_lng_position'); ?>
-      <p><?php echo $lng_position ?></p>
+      <p><?php echo esc_html( $lng_position ) ?></p>
 
       <?php
     }
@@ -139,7 +159,7 @@ class Bmlt_tabbed_map_Admin
     public function bmlt_tabbed_map_zoom_position_cb()
     {
         $zoom_position = get_option($this->option_name . '_zoom_position'); ?>
-      <p><?php echo $zoom_position ?></p>
+      <p><?php echo esc_html( $zoom_position ) ?></p>
 
       <?php
     }
