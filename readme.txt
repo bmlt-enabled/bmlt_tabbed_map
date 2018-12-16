@@ -27,7 +27,7 @@ This plugin provides a Tabbed Map interface for the Basic Meeting List Toolbox (
 
 == Screenshots ==
 
-<a href="https://www.na-ireland.org/na-meetings/meeting-search/">Go to this Web page to get an idea of how this works.</a>
+<a href="https://www.na-ireland.org/na-meetings/meeting-search"> Go to this Web page to get an idea of how this works.</a>
 
 == Changelog ==
 
