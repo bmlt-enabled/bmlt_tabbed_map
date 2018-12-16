@@ -22,8 +22,7 @@ class Bmlt_tabbed_map_Public
         wp_enqueue_style('marker_cluster_css', plugin_dir_url(__FILE__) . 'css/MarkerCluster.css', array(), $this->version, 'all');
         wp_enqueue_style('marker_cluster_default', plugin_dir_url(__FILE__) . 'css/MarkerCluster.Default.css', array(), $this->version, 'all');
         wp_enqueue_style('badge_css', plugin_dir_url(__FILE__) . 'css/jquery.badge.css', array(), $this->version, 'all');
-        wp_enqueue_style('fa_solid', 'https://use.fontawesome.com/releases/v5.4.1/css/solid.css', array(), $this->version, 'all');
-        wp_enqueue_style('fa', 'https://use.fontawesome.com/releases/v5.4.1/css/fontawesome.css', array(), $this->version, 'all');
+        wp_enqueue_style('fa_solid', plugin_dir_url(__FILE__) . 'css/fontawesome-5.6.1.css', array(), $this->version, 'all');
         wp_enqueue_style('dataTablesCss', 'https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css', array(), $this->version, 'all');
         wp_enqueue_style($this->plugin_name, plugin_dir_url(__FILE__) . 'css/bmlt_tabbed_map-public.css', array(), $this->version, 'all');
     }
