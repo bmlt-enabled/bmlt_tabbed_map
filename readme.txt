@@ -31,6 +31,10 @@ This plugin provides a Tabbed Map interface for the Basic Meeting List Toolbox (
 
 == Changelog ==
 
+= 1.0.1 =
+
+* Updates for the wordpress plugin submission
+
 = 1.0.0 =
 
 * Initial release.

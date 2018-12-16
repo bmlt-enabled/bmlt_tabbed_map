@@ -10,8 +10,8 @@ class Bmlt_tabbed_map
 
     public function __construct()
     {
-        if (defined('PLUGIN_NAME_VERSION')) {
-            $this->version = PLUGIN_NAME_VERSION;
+        if (defined('BMLT_TABBED_MAP_PLUGIN_VERSION')) {
+            $this->version = BMLT_TABBED_MAP_PLUGIN_VERSION;
         } else {
             $this->version = '1.0.0';
         }
