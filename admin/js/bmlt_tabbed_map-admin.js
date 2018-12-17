@@ -48,16 +48,16 @@ const bmlt_tabbed_map_admin = function($) {
 
 
     $.post(ajaxurl, sendDataToWP, function(response) {
-        console.log('Got this from the server: ', response);
+        DEBUG && console && console.log('Got this from the server: ', response);
       })
       .done(function(response) {
-        console.log("second success", response);
+        DEBUG && console && console.log("second success", response);
       })
       .fail(function(response) {
-        console.log("error", response);
+        DEBUG && console && console.log("error", response);
       })
       .always(function(response) {
-        console.log("finished", response);
+        DEBUG && console && console.log("finished", response);
       });
 
   }
