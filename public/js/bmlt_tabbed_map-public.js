@@ -382,6 +382,9 @@ const bmltTabbedMapJS = function($) {
           if (!$.fn.DataTable.isDataTable('#sundayTabTable')) {
             $('#sundayTabTable').DataTable({
               "ordering": false,
+              "language": {
+                "emptyTable": "No meetings in this map location on Sunday"
+              },
               "columnDefs": [{
                 "width": "20%",
                 "targets": 0
@@ -394,6 +397,9 @@ const bmltTabbedMapJS = function($) {
           if (!$.fn.DataTable.isDataTable('#mondayTabTable')) {
             $('#mondayTabTable').DataTable({
               "ordering": false,
+              "language": {
+                "emptyTable": "No meetings in this map location on Monday"
+              },
               "columnDefs": [{
                 "width": "20%",
                 "targets": 0
@@ -406,6 +412,9 @@ const bmltTabbedMapJS = function($) {
           if (!$.fn.DataTable.isDataTable('#tuesdayTabTable')) {
             $('#tuesdayTabTable').DataTable({
               "ordering": false,
+              "language": {
+                "emptyTable": "No meetings in this map location on Tuesday"
+              },
               "columnDefs": [{
                 "width": "20%",
                 "targets": 0
@@ -418,6 +427,9 @@ const bmltTabbedMapJS = function($) {
           if (!$.fn.DataTable.isDataTable('#wednesdayTabTable')) {
             $('#wednesdayTabTable').DataTable({
               "ordering": false,
+              "language": {
+                "emptyTable": "No meetings in this map location on Wednesday"
+              },
               "columnDefs": [{
                 "width": "20%",
                 "targets": 0
@@ -430,6 +442,9 @@ const bmltTabbedMapJS = function($) {
           if (!$.fn.DataTable.isDataTable('#thursdayTabTable')) {
             $('#thursdayTabTable').DataTable({
               "ordering": false,
+              "language": {
+                "emptyTable": "No meetings in this map location on Thursday"
+              },
               "columnDefs": [{
                 "width": "20%",
                 "targets": 0
@@ -442,6 +457,9 @@ const bmltTabbedMapJS = function($) {
           if (!$.fn.DataTable.isDataTable('#fridayTabTable')) {
             $('#fridayTabTable').DataTable({
               "ordering": false,
+              "language": {
+                "emptyTable": "No meetings in this map location on Friday"
+              },
               "columnDefs": [{
                 "width": "20%",
                 "targets": 0
@@ -454,6 +472,9 @@ const bmltTabbedMapJS = function($) {
           if (!$.fn.DataTable.isDataTable('#saturdayTabTable')) {
             $('#saturdayTabTable').DataTable({
               "ordering": false,
+              "language": {
+                "emptyTable": "No meetings in this map location on Saturday"
+              },
               "columnDefs": [{
                 "width": "20%",
                 "targets": 0
