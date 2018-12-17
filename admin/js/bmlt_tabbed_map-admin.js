@@ -2,7 +2,7 @@ const bmlt_tabbed_map_admin = function($) {
 
   "use strict";
 
-  var DEBUG = true;
+  var DEBUG = false;
   // Dont forget to comment all of this
   var map = null;
   if (js_vars.zoom_js) {
