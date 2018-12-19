@@ -117,7 +117,7 @@ const bmltTabbedMapJS = function($) {
     map.spin(false);
 
     $('#tabs li a').addClass('inactive');
-    $('.container').hide();
+    $('.bmlt_tabbed_map_table_container').hide();
   }
 
   var dayOfWeekAsString = function(dayIndex) {
@@ -248,37 +248,37 @@ const bmltTabbedMapJS = function($) {
   }
 
   var generateResultTable = function() {
-    var result = "<div><div class='container' id='sundayTabTableContents'><table id='sundayTabTable'>";
+    var result = "<div><div class='bmlt_tabbed_map_table_container' id='sundayTabTableContents'><table id='sundayTabTable'>";
     result += openTable;
     result += dayExpandLi[0];
     result += closeTable;
 
-    result += "<div class='container' id='mondayTabTableContents'><table id='mondayTabTable'>";
+    result += "<div class='bmlt_tabbed_map_table_container' id='mondayTabTableContents'><table id='mondayTabTable'>";
     result += openTable;
     result += dayExpandLi[1];
     result += closeTable;
 
-    result += "<div class='container' id='tuesdayTabTableContents'><table id='tuesdayTabTable'>";
+    result += "<div class='bmlt_tabbed_map_table_container' id='tuesdayTabTableContents'><table id='tuesdayTabTable'>";
     result += openTable;
     result += dayExpandLi[2];
     result += closeTable;
 
-    result += "<div class='container' id='wednesdayTabTableContents'><table id='wednesdayTabTable'>";
+    result += "<div class='bmlt_tabbed_map_table_container' id='wednesdayTabTableContents'><table id='wednesdayTabTable'>";
     result += openTable;
     result += dayExpandLi[3];
     result += closeTable;
 
-    result += "<div class='container' id='thursdayTabTableContents'><table id='thursdayTabTable'>";
+    result += "<div class='bmlt_tabbed_map_table_container' id='thursdayTabTableContents'><table id='thursdayTabTable'>";
     result += openTable;
     result += dayExpandLi[4];
     result += closeTable;
 
-    result += "<div class='container' id='fridayTabTableContents'><table id='fridayTabTable' >";
+    result += "<div class='bmlt_tabbed_map_table_container' id='fridayTabTableContents'><table id='fridayTabTable' >";
     result += openTable;
     result += dayExpandLi[5];
     result += closeTable;
 
-    result += "<div class='container' id='saturdayTabTableContents'><table id='saturdayTabTable'>";
+    result += "<div class='bmlt_tabbed_map_table_container' id='saturdayTabTableContents'><table id='saturdayTabTable'>";
     result += openTable;
     result += dayExpandLi[6];
     result += closeTable;
@@ -370,7 +370,7 @@ const bmltTabbedMapJS = function($) {
         $('#tabs li a').addClass('inactive');
         $(this).removeClass('inactive');
       }
-      $('.container').hide();
+      $('.bmlt_tabbed_map_table_container').hide();
       DEBUG && console && console.log("Fading in the tab: ", activeTab + 'TableContents');
 
       $('#' + activeTab + 'TableContents').fadeIn(100);
@@ -494,4 +494,4 @@ const bmltTabbedMapJS = function($) {
     }
   };
 
-}(jQuery);
+}(jQuery );
