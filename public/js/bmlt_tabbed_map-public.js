@@ -113,11 +113,61 @@ const bmltTabbedMapJS = function($) {
     // }).addTo(map);
 
     map.setView(myLatLng, searchZoom);
-    L.control.locate().addTo(map);
+    var lc = L.control.locate().addTo(map);
+//    lc.start();
     map.spin(false);
 
     $('#tabs li a').addClass('inactive');
     $('.bmlt_tabbed_map_table_container').hide();
+
+    var mapLegend = L.control.htmllegend({
+        position: 'bottomright',
+        legends: [{
+            name: 'Legend',
+            elements: [{
+                label: 'Single NA Meeting',
+                html: '<img src="../wp-content/plugins/bmlt_tabbed_map/public/css/images/marker-icon.png">',
+                style: {
+                    'width': '12px',
+                    'height': '18px'
+                }
+            }, {
+                label: 'Between 2 and 9 meetings',
+                html: '',
+                style: {
+                    'background-color': 'rgba(110, 204, 57, 0.8)',
+                    'width': '15px',
+                    'height': '15px',
+                    'border-radius': '50%'
+                }
+            }, {
+                label: 'Between 10 and 99 meetings',
+                html: '',
+                style: {
+                    'background-color': 'rgba(240, 194, 12, 0.6)',
+                    'width': '15px',
+                    'height': '15px',
+                    'border-radius': '50%'
+                }
+            }, {
+                label: 'Over 100 meetings',
+                html: '',
+                style: {
+                    'background-color': 'rgba(241, 128, 23, 0.6)',
+                    'width': '15px',
+                    'height': '15px',
+                    'border-radius': '50%'
+                }
+            }
+
+          ]
+        }],
+        collapseSimple: true,
+        detectStretched: true,
+        collapsedOnInit: true
+    })
+    map.addControl(mapLegend);
+
   }
 
   var dayOfWeekAsString = function(dayIndex) {
@@ -162,7 +212,7 @@ const bmltTabbedMapJS = function($) {
     if (isMeetingOnMap(val)) {
       var endTime = getMeetingFinishTime(val.start_time, val.duration_time);
 
-      var listContent = "<tr><td><time>" + timeConvert(val.start_time) + "</time> - <time>" + timeConvert(endTime) + "</time></td><td>";
+      var listContent = "<tr><td><time>" + timeConvert(val.start_time) + "</time> - <time>" + timeConvert(endTime) + "</time>&nbsp;</td><td>";
       if (val.meeting_name != "NA Meeting") {
         listContent += "<b>" + val.meeting_name + ", </b>";
       }
@@ -383,7 +433,7 @@ const bmltTabbedMapJS = function($) {
             $('#sundayTabTable').DataTable({
               "ordering": false,
               "language": {
-                "emptyTable": "No meetings in this map location on Sunday"
+                "emptyTable": "No meetings in this map location on Sunday.  <a href=https://www.doihavethebmlt.org><u>Do I Have the BMLT?</u></a>"
               },
               "columnDefs": [{
                 "width": "20%",
@@ -398,7 +448,7 @@ const bmltTabbedMapJS = function($) {
             $('#mondayTabTable').DataTable({
               "ordering": false,
               "language": {
-                "emptyTable": "No meetings in this map location on Monday"
+                "emptyTable": "No meetings in this map location on Monday.  <a href=https://www.doihavethebmlt.org><u>Do I Have the BMLT?</u></a>"
               },
               "columnDefs": [{
                 "width": "20%",
@@ -413,7 +463,7 @@ const bmltTabbedMapJS = function($) {
             $('#tuesdayTabTable').DataTable({
               "ordering": false,
               "language": {
-                "emptyTable": "No meetings in this map location on Tuesday"
+                "emptyTable": "No meetings in this map location on Tuesday.  <a href=https://www.doihavethebmlt.org><u>Do I Have the BMLT?</u></a>"
               },
               "columnDefs": [{
                 "width": "20%",
@@ -428,7 +478,7 @@ const bmltTabbedMapJS = function($) {
             $('#wednesdayTabTable').DataTable({
               "ordering": false,
               "language": {
-                "emptyTable": "No meetings in this map location on Wednesday"
+                "emptyTable": "No meetings in this map location on Wednesday.  <a href=https://www.doihavethebmlt.org><u>Do I Have the BMLT?</u></a>"
               },
               "columnDefs": [{
                 "width": "20%",
@@ -443,7 +493,7 @@ const bmltTabbedMapJS = function($) {
             $('#thursdayTabTable').DataTable({
               "ordering": false,
               "language": {
-                "emptyTable": "No meetings in this map location on Thursday"
+                "emptyTable": "No meetings in this map location on Thursday.  <a href=https://www.doihavethebmlt.org><u>Do I Have the BMLT?</u></a>"
               },
               "columnDefs": [{
                 "width": "20%",
@@ -458,7 +508,7 @@ const bmltTabbedMapJS = function($) {
             $('#fridayTabTable').DataTable({
               "ordering": false,
               "language": {
-                "emptyTable": "No meetings in this map location on Friday"
+                "emptyTable": "No meetings in this map location on Friday.  <a href=https://www.doihavethebmlt.org><u>Do I Have the BMLT?</u></a>"
               },
               "columnDefs": [{
                 "width": "20%",
@@ -473,7 +523,7 @@ const bmltTabbedMapJS = function($) {
             $('#saturdayTabTable').DataTable({
               "ordering": false,
               "language": {
-                "emptyTable": "No meetings in this map location on Saturday"
+                "emptyTable": "No meetings in this map location on Saturday.  <a href=https://www.doihavethebmlt.org><u>Do I Have the BMLT?</u></a>"
               },
               "columnDefs": [{
                 "width": "20%",
