@@ -21,6 +21,8 @@ class Bmlt_tabbed_map_Public
         wp_enqueue_style('L_control', plugin_dir_url(__FILE__) . 'css/L.Control.Locate.min.css', array(), $this->version, 'all');
         wp_enqueue_style('marker_cluster_css', plugin_dir_url(__FILE__) . 'css/MarkerCluster.css', array(), $this->version, 'all');
         wp_enqueue_style('marker_cluster_default', plugin_dir_url(__FILE__) . 'css/MarkerCluster.Default.css', array(), $this->version, 'all');
+        wp_enqueue_style('leaflet_legend', plugin_dir_url(__FILE__) . 'css/L.Control.HtmlLegend.css', array(), $this->version, 'all');
+
         wp_enqueue_style('badge_css', plugin_dir_url(__FILE__) . 'css/jquery.badge.css', array(), $this->version, 'all');
         wp_enqueue_style('fa_solid', plugin_dir_url(__FILE__) . 'css/fontawesome-5.6.1.css', array(), $this->version, 'all');
         wp_enqueue_style('dataTablesCss', plugin_dir_url(__FILE__) . 'css/datatables-1.10.18.min.css', array(), $this->version, 'all');
@@ -33,6 +35,8 @@ class Bmlt_tabbed_map_Public
         wp_enqueue_script('leafletlocate', plugin_dir_url(__FILE__) . 'js/L.Control.Locate.min.js', array(), $this->version, false);
         wp_enqueue_script('leafletmarker', plugin_dir_url(__FILE__) . 'js/leaflet.markercluster.js', array(), $this->version, false);
         wp_enqueue_script('leafletspin', plugin_dir_url(__FILE__) . 'js/leaflet.spin.js', array(), $this->version, false);
+        wp_enqueue_script('leafletledend', plugin_dir_url(__FILE__) . 'js/L.Control.HtmlLegend.js', array(), $this->version, false);
+
         wp_enqueue_script('spinmin', plugin_dir_url(__FILE__) . 'js/spin.min.js', array(), $this->version, false);
         wp_enqueue_script('badge_js', plugin_dir_url(__FILE__) . 'js/jquery.badge.js', array( 'jquery' ), $this->version, false);
         wp_enqueue_script('dataTableJS', plugin_dir_url(__FILE__) . 'js/datatables-1.10.18.min.js', array( 'jquery' ), $this->version, false);

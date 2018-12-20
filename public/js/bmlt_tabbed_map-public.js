@@ -118,6 +118,55 @@ const bmltTabbedMapJS = function($) {
 
     $('#tabs li a').addClass('inactive');
     $('.bmlt_tabbed_map_table_container').hide();
+
+    var mapLegend = L.control.htmllegend({
+        position: 'bottomright',
+        legends: [{
+            name: 'Legend',
+            elements: [{
+                label: 'Single NA Meeting',
+                html: '<img src="../wp-content/plugins/bmlt_tabbed_map/public/css/images/marker-icon.png">',
+                style: {
+                    'width': '12px',
+                    'height': '18px'
+                }
+            }, {
+                label: 'Between 2 and 9 meetings',
+                html: '',
+                style: {
+                    'background-color': 'rgba(110, 204, 57, 0.8)',
+                    'width': '15px',
+                    'height': '15px',
+                    'border-radius': '50%'
+                }
+            }, {
+                label: 'Between 10 and 99 meetings',
+                html: '',
+                style: {
+                    'background-color': 'rgba(240, 194, 12, 0.6)',
+                    'width': '15px',
+                    'height': '15px',
+                    'border-radius': '50%'
+                }
+            }, {
+                label: 'Over 100 meetings',
+                html: '',
+                style: {
+                    'background-color': 'rgba(241, 128, 23, 0.6)',
+                    'width': '15px',
+                    'height': '15px',
+                    'border-radius': '50%'
+                }
+            }
+
+          ]
+        }],
+        collapseSimple: true,
+        detectStretched: true,
+        collapsedOnInit: true
+    })
+    map.addControl(mapLegend);
+
   }
 
   var dayOfWeekAsString = function(dayIndex) {
