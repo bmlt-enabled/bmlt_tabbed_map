@@ -113,7 +113,8 @@ const bmltTabbedMapJS = function($) {
     // }).addTo(map);
 
     map.setView(myLatLng, searchZoom);
-    L.control.locate().addTo(map);
+    var lc = L.control.locate().addTo(map);
+//    lc.start();
     map.spin(false);
 
     $('#tabs li a').addClass('inactive');
@@ -211,7 +212,7 @@ const bmltTabbedMapJS = function($) {
     if (isMeetingOnMap(val)) {
       var endTime = getMeetingFinishTime(val.start_time, val.duration_time);
 
-      var listContent = "<tr><td><time>" + timeConvert(val.start_time) + "</time> - <time>" + timeConvert(endTime) + "</time></td><td>";
+      var listContent = "<tr><td><time>" + timeConvert(val.start_time) + "</time> - <time>" + timeConvert(endTime) + "</time>&nbsp;</td><td>";
       if (val.meeting_name != "NA Meeting") {
         listContent += "<b>" + val.meeting_name + ", </b>";
       }
