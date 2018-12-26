@@ -5,9 +5,6 @@
 .bmlt_tabbed_map_container {
   clear: both;
   width: 100%;
-  border-left: solid 1px #CCC;
-  border-right: solid 1px #CCC;
-  border-bottom: solid 1px #CCC;
   text-align: left;
   color: white;
   font-family: 'Roboto Condensed', sans-serif !important;
@@ -103,11 +100,15 @@
   width: 100%;
 }
 
+.bmlt_tabbed_map_container #tabs ul{
+
+}
+
 .bmlt_tabbed_map_container #tabs li {
   list-style: none;
-  border-top: 1px solid #ccc;
-  border-left: 1px solid #ccc;
-  border-right: 1px solid #ccc;
+  border-top: 1px solid #bbb;
+  border-left: 1px solid #bbb;
+  border-right: 1px solid #bbb;
   margin-right: 0px;
   border-top-left-radius: 3px;
   border-top-right-radius: 3px;
@@ -137,14 +138,21 @@
   padding-left: 7px;
   padding-right: 7px;
   color: #666666;
-  background: #EEE;
+  background: #ccc;
   outline: none;
-  border-bottom: solid 1px #CCC;
+  border-bottom: solid 1px #bbb;
 }
 
 .bmlt_tabbed_map_container #tabs li a:hover, #tabs li a.inactive:hover {
   color: #5685bc;
   outline: none;
+}
+
+.dataTables_wrapper {
+  border-top: 1px solid #bbb;
+  border-bottom: 1px solid #bbb;
+  border-left: 1px solid #bbb;
+  border-right: 1px solid #bbb;
 }
 
 table.dataTable tbody th, table.dataTable tbody td {
