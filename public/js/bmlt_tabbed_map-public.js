@@ -72,17 +72,21 @@ const bmltTabbedMapJS = function($) {
       finishHour = startHour + durationHour + 1;
       finishMin = finishMin - 60;
     } else {
-      finishHour = startHour + durationHour;
+      finishHour = startHour + durationHour ;
     }
 
     if (finishHour > 24) {
       finishHour = finishHour - 24;
     }
 
+    if (finishHour < 10) {
+      finishHour = "0" + finishHour;
+    }
+
     if (finishMin == 0) {
       finishMin = "00";
     }
-    return finishHour + ":" + finishMin;
+    return finishHour + ":" + finishMin + ":00";
   }
 
   var newMap = function() {
