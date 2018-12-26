@@ -433,7 +433,7 @@ const bmltTabbedMapJS = function($) {
             $('#sundayTabTable').DataTable({
               "ordering": false,
               "language": {
-                "emptyTable": "No meetings in this map location on Sunday.  <a href=https://www.doihavethebmlt.org><u>Do I Have the BMLT?</u></a>"
+                "emptyTable": "No meetings in this map location on Sunday.  <a href=https://www.doihavethebmlt.org/?latitude=" + map.getCenter().lat + "&longitude=" + map.getCenter().lng + "><u>Is this area covered by the BMLT?</u></a>"
               },
               "columnDefs": [{
                 "width": "20%",
@@ -448,7 +448,7 @@ const bmltTabbedMapJS = function($) {
             $('#mondayTabTable').DataTable({
               "ordering": false,
               "language": {
-                "emptyTable": "No meetings in this map location on Monday.  <a href=https://www.doihavethebmlt.org><u>Do I Have the BMLT?</u></a>"
+                "emptyTable": "No meetings in this map location on Monday.  <a href=https://www.doihavethebmlt.org/?latitude=" + map.getCenter().lat + "&longitude=" + map.getCenter().lng + "><u>Is this area covered by the BMLT?</u></a>"
               },
               "columnDefs": [{
                 "width": "20%",
@@ -463,7 +463,7 @@ const bmltTabbedMapJS = function($) {
             $('#tuesdayTabTable').DataTable({
               "ordering": false,
               "language": {
-                "emptyTable": "No meetings in this map location on Tuesday.  <a href=https://www.doihavethebmlt.org><u>Do I Have the BMLT?</u></a>"
+                "emptyTable": "No meetings in this map location on Tuesday.  <a href=https://www.doihavethebmlt.org/?latitude=" + map.getCenter().lat + "&longitude=" + map.getCenter().lng + "><u>Is this area covered by the BMLT?</u></a>"
               },
               "columnDefs": [{
                 "width": "20%",
@@ -478,7 +478,7 @@ const bmltTabbedMapJS = function($) {
             $('#wednesdayTabTable').DataTable({
               "ordering": false,
               "language": {
-                "emptyTable": "No meetings in this map location on Wednesday.  <a href=https://www.doihavethebmlt.org><u>Do I Have the BMLT?</u></a>"
+                "emptyTable": "No meetings in this map location on Wednesday.  <a href=https://www.doihavethebmlt.org/?latitude=" + map.getCenter().lat + "&longitude=" + map.getCenter().lng + "><u>Is this area covered by the BMLT?</u></a>"
               },
               "columnDefs": [{
                 "width": "20%",
@@ -493,7 +493,7 @@ const bmltTabbedMapJS = function($) {
             $('#thursdayTabTable').DataTable({
               "ordering": false,
               "language": {
-                "emptyTable": "No meetings in this map location on Thursday.  <a href=https://www.doihavethebmlt.org><u>Do I Have the BMLT?</u></a>"
+                "emptyTable": "No meetings in this map location on Thursday.  <a href=https://www.doihavethebmlt.org/?latitude=" + map.getCenter().lat + "&longitude=" + map.getCenter().lng + "><u>Is this area covered by the BMLT?</u></a>"
               },
               "columnDefs": [{
                 "width": "20%",
@@ -508,7 +508,7 @@ const bmltTabbedMapJS = function($) {
             $('#fridayTabTable').DataTable({
               "ordering": false,
               "language": {
-                "emptyTable": "No meetings in this map location on Friday.  <a href=https://www.doihavethebmlt.org><u>Do I Have the BMLT?</u></a>"
+                "emptyTable": "No meetings in this map location on Friday.  <a href=https://www.doihavethebmlt.org/?latitude=" + map.getCenter().lat + "&longitude=" + map.getCenter().lng + "><u>Is this area covered by the BMLT?</u></a>"
               },
               "columnDefs": [{
                 "width": "20%",
@@ -523,7 +523,7 @@ const bmltTabbedMapJS = function($) {
             $('#saturdayTabTable').DataTable({
               "ordering": false,
               "language": {
-                "emptyTable": "No meetings in this map location on Saturday.  <a href=https://www.doihavethebmlt.org><u>Do I Have the BMLT?</u></a>"
+                "emptyTable": "No meetings in this map location on Saturday.  <a href=https://www.doihavethebmlt.org/?latitude=" + map.getCenter().lat + "&longitude=" + map.getCenter().lng + "><u>Is this area covered by the BMLT?</u></a>"
               },
               "columnDefs": [{
                 "width": "20%",
