@@ -34,6 +34,9 @@ This plugin provides a Tabbed Map interface for the Basic Meeting List Toolbox (
 = 1.0.5 =
 
 * Add a link to doihavethebmlt.org when no meetings are returned
+* Some CSS Updates
+* Fixed a bug in the time display
+* Added a legend to explain the map icons
 
 = 1.0.4 =
 
