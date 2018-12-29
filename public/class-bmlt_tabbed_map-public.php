@@ -44,7 +44,8 @@ class Bmlt_tabbed_map_Public
 
         $script_data = array( 'zoom_js'   => get_option($this->option_name . '_zoom_position'),
                               'lat_js'    => get_option($this->option_name . '_lat_position'),
-                              'lng_js'    => get_option($this->option_name . '_lng_position') );
+                              'lng_js'    => get_option($this->option_name . '_lng_position'),
+                              'plugin_folder' => plugins_url() );
         wp_localize_script($this->plugin_name, 'js_vars', $script_data);
     }
 

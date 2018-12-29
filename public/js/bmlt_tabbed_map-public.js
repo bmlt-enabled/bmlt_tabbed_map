@@ -130,7 +130,7 @@ const bmltTabbedMapJS = function($) {
             name: 'Legend',
             elements: [{
                 label: 'Single NA Meeting',
-                html: '<img src="../wp-content/plugins/bmlt_tabbed_map/public/css/images/marker-icon.png">',
+                html: '<img src=' + js_vars.plugin_folder + '/bmlt-tabbed-map/public/css/images/marker-icon-2x.png>',
                 style: {
                     'width': '12px',
                     'height': '18px'
