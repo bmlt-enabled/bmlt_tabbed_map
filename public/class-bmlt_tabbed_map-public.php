@@ -1,7 +1,10 @@
 <?php
-
+// phpcs:disable PSR1.Classes.ClassDeclaration.MissingNamespace
+// phpcs:disable Squiz.Classes.ValidClassName.NotCamelCaps
 class Bmlt_tabbed_map_Public
 {
+    // phpcs:enable PSR1.Classes.ClassDeclaration.MissingNamespace
+    // phpcs:enable Squiz.Classes.ValidClassName.NotCamelCaps
     private $plugin_name;
     private $version;
     private $option_name = 'bmlt_tabbed_map';
@@ -11,9 +14,10 @@ class Bmlt_tabbed_map_Public
         $this->plugin_name = $plugin_name;
         $this->version = $version;
     }
-
+    // phpcs:disable PSR1.Methods.CamelCapsMethodName.NotCamelCaps
     public function enqueue_styles()
     {
+        // phpcs:enable PSR1.Methods.CamelCapsMethodName.NotCamelCaps
         $wp_scripts = wp_scripts();
 
         wp_enqueue_style('roboto_font', 'https://fonts.googleapis.com/css?family=Roboto', array(), $this->version, 'all');
@@ -28,9 +32,10 @@ class Bmlt_tabbed_map_Public
         wp_enqueue_style('dataTablesCss', plugin_dir_url(__FILE__) . 'css/datatables-1.10.18.min.css', array(), $this->version, 'all');
         wp_enqueue_style($this->plugin_name, plugin_dir_url(__FILE__) . 'css/bmlt_tabbed_map-public.css', array(), $this->version, 'all');
     }
-
+    // phpcs:disable PSR1.Methods.CamelCapsMethodName.NotCamelCaps
     public function enqueue_scripts()
     {
+        // phpcs:enable PSR1.Methods.CamelCapsMethodName.NotCamelCaps
         wp_enqueue_script('leaflet', plugin_dir_url(__FILE__) . 'js/leaflet.js', array(), $this->version, false);
         wp_enqueue_script('leafletlocate', plugin_dir_url(__FILE__) . 'js/L.Control.Locate.min.js', array(), $this->version, false);
         wp_enqueue_script('leafletmarker', plugin_dir_url(__FILE__) . 'js/leaflet.markercluster.js', array(), $this->version, false);
@@ -48,15 +53,16 @@ class Bmlt_tabbed_map_Public
                               'plugin_folder' => plugins_url() );
         wp_localize_script($this->plugin_name, 'js_vars', $script_data);
     }
-
+    // phpcs:disable PSR1.Methods.CamelCapsMethodName.NotCamelCaps
     public function bmlt_tabbed_map_shortcode($atts)
     {
+        // phpcs:enable PSR1.Methods.CamelCapsMethodName.NotCamelCaps
         $atts = array_change_key_case((array)$atts, CASE_LOWER);
         extract(shortcode_atts(array(
-  				"lat" => '0',
-  				"lng" => '0',
-  				"zoom" => '0'
-  			), $atts));
+                "lat" => '0',
+                "lng" => '0',
+                "zoom" => '0'
+            ), $atts));
 
 
         $output  = '

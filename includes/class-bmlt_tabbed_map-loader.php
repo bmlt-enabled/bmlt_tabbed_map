@@ -1,7 +1,10 @@
 <?php
-
+// phpcs:disable PSR1.Classes.ClassDeclaration.MissingNamespace
+// phpcs:disable Squiz.Classes.ValidClassName.NotCamelCaps
 class Bmlt_tabbed_map_Loader
 {
+    // phpcs:enable PSR1.Classes.ClassDeclaration.MissingNamespace
+    // phpcs:enable Squiz.Classes.ValidClassName.NotCamelCaps
     protected $actions;
 
     protected $filters;
@@ -13,15 +16,17 @@ class Bmlt_tabbed_map_Loader
         $this->shortcodes = array();
     }
 
-
+    // phpcs:disable PSR1.Methods.CamelCapsMethodName.NotCamelCaps
     public function add_action($hook, $component, $callback, $priority = 10, $accepted_args = 1)
     {
+        // phpcs:enable PSR1.Methods.CamelCapsMethodName.NotCamelCaps
         $this->actions = $this->add($this->actions, $hook, $component, $callback, $priority, $accepted_args);
     }
 
-
+    // phpcs:disable PSR1.Methods.CamelCapsMethodName.NotCamelCaps
     public function add_filter($hook, $component, $callback, $priority = 10, $accepted_args = 1)
     {
+        // phpcs:enable PSR1.Methods.CamelCapsMethodName.NotCamelCaps
         $this->filters = $this->add($this->filters, $hook, $component, $callback, $priority, $accepted_args);
     }
 
@@ -38,9 +43,10 @@ class Bmlt_tabbed_map_Loader
 
         return $hooks;
     }
-
+    // phpcs:disable PSR1.Methods.CamelCapsMethodName.NotCamelCaps
     public function add_shortcode($tag, $component, $callback, $priority = 10, $accepted_args = 1)
     {
+        // phpcs:enable PSR1.Methods.CamelCapsMethodName.NotCamelCaps
         $this->shortcodes = $this->add($this->shortcodes, $tag, $component, $callback, $priority, $accepted_args);
     }
 
