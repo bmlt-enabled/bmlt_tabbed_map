@@ -1,4 +1,4 @@
-const bmltTabbedMapJS = function($) {
+const bmltTabbedMapJS = function ($) {
 
   "use strict";
 
@@ -27,7 +27,7 @@ const bmltTabbedMapJS = function($) {
 
   var closeTable = "</tbody></table></div>";
 
-  var setupParams = function(overwritten_lat, overwritten_lng, overwritten_zoom) {
+  var setupParams = function (overwritten_lat, overwritten_lng, overwritten_zoom) {
     if ((overwritten_lng == 0) && (overwritten_lat == 0) && (overwritten_zoom == 0)) {
       myLatLng = new L.latLng(js_vars.lat_js, js_vars.lng_js);
       searchZoom = js_vars.zoom_js;
@@ -40,14 +40,14 @@ const bmltTabbedMapJS = function($) {
     }
   }
 
-  var isEmpty = function(object) {
+  var isEmpty = function (object) {
     for (var i in object) {
       return true;
     }
     return false;
   }
 
-  var timeConvert = function(timeString) {
+  var timeConvert = function (timeString) {
     var H = +timeString.substr(0, 2);
     var h = (H % 12) || 12;
     var ampm = H < 12 ? "am" : "pm";
@@ -55,7 +55,7 @@ const bmltTabbedMapJS = function($) {
     return timeString;
   }
 
-  var getMeetingFinishTime = function(startTime, durationTime) {
+  var getMeetingFinishTime = function (startTime, durationTime) {
 
     var duration = durationTime.split(":");
     var start = startTime.split(":");
@@ -72,7 +72,7 @@ const bmltTabbedMapJS = function($) {
       finishHour = startHour + durationHour + 1;
       finishMin = finishMin - 60;
     } else {
-      finishHour = startHour + durationHour ;
+      finishHour = startHour + durationHour;
     }
 
     if (finishHour > 24) {
@@ -89,7 +89,7 @@ const bmltTabbedMapJS = function($) {
     return finishHour + ":" + finishMin + ":00";
   }
 
-  var newMap = function() {
+  var newMap = function () {
     DEBUG && console && console.log("Running newMap()");
     map = L.map('map', {
       minZoom: 7,
@@ -97,9 +97,9 @@ const bmltTabbedMapJS = function($) {
     });
     map.spin(true);
 
-    map.on('load', function(e) { // Fired when the map is initialized (when its center and zoom are set for the first time)
+    map.on('load', function (e) { // Fired when the map is initialized (when its center and zoom are set for the first time)
 
-      map.on('moveend', function(e) {
+      map.on('moveend', function (e) {
         DEBUG && console && console.log("****map moveend event**** : ", e);
         runSearch();
       });
@@ -118,74 +118,74 @@ const bmltTabbedMapJS = function($) {
 
     map.setView(myLatLng, searchZoom);
     var lc = L.control.locate().addTo(map);
-//    lc.start();
+    //    lc.start();
     map.spin(false);
 
     $('#tabs li a').addClass('inactive');
     $('.bmlt_tabbed_map_table_container').hide();
 
     var mapLegend = L.control.htmllegend({
-        position: 'bottomright',
-        legends: [{
-            name: 'Legend',
-            elements: [{
-                label: 'Single NA Meeting',
-                html: '<img src=' + js_vars.plugin_folder + '/bmlt-tabbed-map/public/css/images/marker-icon-2x.png>',
-                style: {
-                    'width': '12px',
-                    'height': '18px'
-                }
-            }, {
-                label: 'Between 2 and 9 meetings',
-                html: '',
-                style: {
-                    'background-color': 'rgba(110, 204, 57, 0.8)',
-                    'width': '15px',
-                    'height': '15px',
-                    'border-radius': '50%'
-                }
-            }, {
-                label: 'Between 10 and 99 meetings',
-                html: '',
-                style: {
-                    'background-color': 'rgba(240, 194, 12, 0.6)',
-                    'width': '15px',
-                    'height': '15px',
-                    'border-radius': '50%'
-                }
-            }, {
-                label: 'Over 100 meetings',
-                html: '',
-                style: {
-                    'background-color': 'rgba(241, 128, 23, 0.6)',
-                    'width': '15px',
-                    'height': '15px',
-                    'border-radius': '50%'
-                }
-            }
+      position: 'bottomright',
+      legends: [{
+        name: 'Legend',
+        elements: [{
+          label: 'Single NA Meeting',
+          html: '<img src=' + js_vars.plugin_folder + '/bmlt-tabbed-map/public/css/images/marker-icon-2x.png>',
+          style: {
+            'width': '12px',
+            'height': '18px'
+          }
+        }, {
+          label: 'Between 2 and 9 meetings',
+          html: '',
+          style: {
+            'background-color': 'rgba(110, 204, 57, 0.8)',
+            'width': '15px',
+            'height': '15px',
+            'border-radius': '50%'
+          }
+        }, {
+          label: 'Between 10 and 99 meetings',
+          html: '',
+          style: {
+            'background-color': 'rgba(240, 194, 12, 0.6)',
+            'width': '15px',
+            'height': '15px',
+            'border-radius': '50%'
+          }
+        }, {
+          label: 'Over 100 meetings',
+          html: '',
+          style: {
+            'background-color': 'rgba(241, 128, 23, 0.6)',
+            'width': '15px',
+            'height': '15px',
+            'border-radius': '50%'
+          }
+        }
 
-          ]
-        }],
-        collapseSimple: true,
-        detectStretched: true,
-        collapsedOnInit: true
+        ]
+      }],
+      collapseSimple: true,
+      detectStretched: true,
+      collapsedOnInit: true
     })
     map.addControl(mapLegend);
 
   }
 
-  var dayOfWeekAsString = function(dayIndex) {
+  var dayOfWeekAsString = function (dayIndex) {
     return ["not a day?", "Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"][dayIndex];
   }
 
-  var getMapCornerDistance = function() {
+  var getMapCornerDistance = function () {
     var mapCornerDistance = (map.distance(map.getBounds().getNorthEast(), map.getBounds().getSouthWest()) / 1000) / 2;
     DEBUG && console && console.log("mapCornerDistance : ", mapCornerDistance);
 
     return mapCornerDistance;
   }
 
-  var buildSearchURL = function() {
+  var buildSearchURL = function () {
     var search_url = "https://tomato.na-bmlt.org/main_server/client_interface/json/";
     search_url += "?switcher=GetSearchResults";
     search_url += "&geo_width_km=" + getMapCornerDistance();
@@ -203,7 +203,7 @@ const bmltTabbedMapJS = function($) {
     return search_url;
   }
 
-  var isMeetingOnMap = function(meeting) {
+  var isMeetingOnMap = function (meeting) {
     var thisMeetingLocation = new L.LatLng(meeting.latitude, meeting.longitude);
     if (map.getBounds().contains(thisMeetingLocation)) {
       return true;
@@ -212,7 +212,7 @@ const bmltTabbedMapJS = function($) {
     }
   }
 
-  var processSingleJSONMeetingResult = function(val) {
+  var processSingleJSONMeetingResult = function (val) {
     if (isMeetingOnMap(val)) {
       var endTime = getMeetingFinishTime(val.start_time, val.duration_time);
 
@@ -247,8 +247,8 @@ const bmltTabbedMapJS = function($) {
       if (val.formats) {
         listContent += "<br><i>Formats: </i>" + val.formats;
       }
-      listContent += '<br><a href="http://maps.google.com/maps?daddr=';
-      listContent += val.latitude + ',' + val.longitude;
+      listContent += '<br><a href="https://www.google.com/maps/dir/?api=1&destination=';
+      listContent += val.latitude + '%2C' + val.longitude;
       listContent += '"  target="_blank">Directions <i>&#10149;</i></a></td>';
       listContent += "</tr>";
 
@@ -301,7 +301,7 @@ const bmltTabbedMapJS = function($) {
     }
   }
 
-  var generateResultTable = function() {
+  var generateResultTable = function () {
     var result = "<div><div class='bmlt_tabbed_map_table_container' id='sundayTabTableContents'><table id='sundayTabTable'>";
     result += openTable;
     result += dayExpandLi[0];
@@ -342,7 +342,7 @@ const bmltTabbedMapJS = function($) {
     return result;
   }
 
-  var resetSearch = function() {
+  var resetSearch = function () {
     if (jsonQuery) {
       DEBUG && console && console.log("Delete old query...");
       map.spin(false);
@@ -362,14 +362,14 @@ const bmltTabbedMapJS = function($) {
     dayExpandLi.fill("");
   }
 
-  var runSearch = function() {
+  var runSearch = function () {
     DEBUG && console && console.log("**** runSearch()****");
 
     resetSearch();
 
     var search_url = buildSearchURL();
 
-    jsonQuery = $.getJSON(search_url, function(data) {
+    jsonQuery = $.getJSON(search_url, function (data) {
       DEBUG && console && console.log("**** runSearch() -> getJSON");
 
       $("#list-results").empty();
@@ -379,7 +379,7 @@ const bmltTabbedMapJS = function($) {
       });
 
       if (!jQuery.isEmptyObject(data)) {
-        $.each(data, function(key, val) {
+        $.each(data, function (key, val) {
           processSingleJSONMeetingResult(val);
         });
       }
@@ -414,8 +414,8 @@ const bmltTabbedMapJS = function($) {
     });
   }
 
-  var registerTabClickEvent = function() {
-    $('#tabs li a').click(function() {
+  var registerTabClickEvent = function () {
+    $('#tabs li a').click(function () {
       activeTab = $(this).attr('id');
       DEBUG && console && console.log("Tab has been clicked: ", activeTab);
 
@@ -541,11 +541,11 @@ const bmltTabbedMapJS = function($) {
   }
 
   return {
-    doIt: function(overwritten_lng, overwritten_lat, overwritten_zoom) {
+    doIt: function (overwritten_lng, overwritten_lat, overwritten_zoom) {
       setupParams(overwritten_lng, overwritten_lat, overwritten_zoom);
       registerTabClickEvent();
       newMap(overwritten_lng, overwritten_lat, overwritten_zoom);
     }
   };
 
-}(jQuery );
+}(jQuery);
