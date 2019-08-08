@@ -18,7 +18,7 @@ if (! defined('WPINC')) {
     die;
 }
 
-define('BMLT_TABBED_MAP_PLUGIN_VERSION', '1.0.5');
+define('BMLT_TABBED_MAP_PLUGIN_VERSION', '1.0.6');
 
 function activate_bmlt_tabbed_map()
 {
