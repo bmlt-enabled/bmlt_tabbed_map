@@ -192,10 +192,13 @@ const bmltTabbedMapJS = function ($) {
     search_url += "&long_val=" + map.getCenter().lng;
     search_url += "&lat_val=" + map.getCenter().lat;
     search_url += "&sort_key=weekday_tinyint,start_time";
-    search_url += "&data_field_key=weekday_tinyint,start_time,duration_time,";
-    search_url += "meeting_name,location_text,location_info,location_street,location_city_subsection,";
-    search_url += "location_neighborhood,location_municipality,location_sub_province,location_province,";
-    search_url += "latitude,longitude,formats";
+    // search_url += "&data_field_key=";
+    // search_url += "weekday_tinyint, start_time, duration_time, ";
+    // search_url += "meeting_name,location_text,location_info,location_street,location_city_subsection,";
+    // search_url += "location_neighborhood,location_municipality,location_sub_province,location_province,";
+    // search_url += "location_postal_code_1, location_nation, ";
+    // search_url += "comments, phone_meeting_number, virtual_meeting_link, "
+    // search_url += "latitude,longitude,formats";
     search_url += "&callingApp=bmlt_tabbed_map_wp_plugin";
 
     DEBUG && console && console.log("Search URL = " + search_url);
@@ -216,12 +219,12 @@ const bmltTabbedMapJS = function ($) {
     if (isMeetingOnMap(val)) {
       var endTime = getMeetingFinishTime(val.start_time, val.duration_time);
 
-      var listContent = "<tr><td><time>" + timeConvert(val.start_time) + "</time> - <time>" + timeConvert(endTime) + "</time>&nbsp;</td><td>";
+      var listContent = "<tr><td><time>" + timeConvert(val.start_time) + "</time> - <time>" + timeConvert(endTime) + "</time>&nbsp;</td><td><br>";
       if (val.meeting_name != "NA Meeting") {
-        listContent += "<b>" + val.meeting_name + ", </b>";
+        listContent += "<b>" + val.meeting_name + "</b><br>";
       }
       if (val.location_text) {
-        listContent += val.location_text + ", ";
+        listContent += val.location_text + ",<br>";
       }
       if (val.location_street) {
         listContent += val.location_street + ", ";
@@ -245,12 +248,25 @@ const bmltTabbedMapJS = function ($) {
         listContent += val.location_province;
       }
       if (val.formats) {
-        listContent += "<br><i>Formats: </i>" + val.formats;
+        listContent += "<br><i>Formats: </i>" + val.formats + "<br>";
       }
-      listContent += '<br><a href="https://www.google.com/maps/dir/?api=1&destination=';
-      listContent += val.latitude + '%2C' + val.longitude;
-      listContent += '"  target="_blank">Directions <i>&#10149;</i></a></td>';
-      listContent += "</tr>";
+      if ((val.virtual_meeting_link) || (val.phone_meeting_number)) {
+        if (val.virtual_meeting_link) {
+          listContent += '<br><b><a href="';
+          listContent += val.virtual_meeting_link;
+          listContent += '"  target="_blank">Click to join <i class="fas fa-users"></i></a></b><br>';
+        }
+        if (val.phone_meeting_number) {
+          listContent += '<br><b><a href="';
+          listContent += val.phone_meeting_number;
+          listContent += '"  target="_blank">Click to call <i class="fas fa-phone"></i></a></b><br>';
+        }
+      } else {
+        listContent += '<br><b><a href="https://www.google.com/maps/dir/?api=1&destination=';
+        listContent += val.latitude + '%2C' + val.longitude;
+        listContent += '"  target="_blank">Directions <i class="fas fa-map-signs"></i></a></b>';
+      }
+      listContent += " </td ></tr>";
 
       var markerContent = dayOfWeekAsString(val.weekday_tinyint) + " ";
       markerContent += listContent;
