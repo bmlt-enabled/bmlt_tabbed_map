@@ -32,7 +32,10 @@ jobs:
         - mkdir -p $DIST_DIR_S3 && cp $BUILD_DIR/$ZIP_FILENAME $DIST_DIR_S3/$ZIP_FILENAME
         - mkdir -p $DIST_DIR_GITHUB && cp $BUILD_DIR/$ZIP_FILENAME $DIST_DIR_GITHUB/$GITHUB_RELEASE_FILENAME
         - curl -LO https://raw.githubusercontent.com/bmlt-enabled/bmlt-wordpress-deploy/master/deploy-wordpress.sh
-        - chmod +x deploy-wordpress.sh    
+        - chmod +x deploy-wordpress.sh
+        - curl -LO https://raw.githubusercontent.com/bmlt-enabled/release-notes-tool/master/release-notes.sh
+        - chmod +x release-notes.sh
+        - ./release-notes.sh readme.txt "wp"
       deploy:
         - provider: s3
           access_key_id: AKIA3EWZC3OHKYCL5SIY
@@ -45,18 +48,30 @@ jobs:
           on:
             all_branches: true
         - provider: releases
-          api_key:
-            secure: a6JrIVAvDW5Fg+75Cmq9PrI5bFnzgYi51N7B54MLg4pUO3X8Q0bpfLZ6JTNqh9+Lee5pzco/cc4SdnwzGHowkwrFvYf2k/7AQiM3lNE4Qekg8JTf7SfojL90CHplLTxXD9hBkh9QKim2T7FxEvRt7TKtg3/7re53yJUTKOvckxsyBGuAD3Q7AvIWV/OaO08pVhzR/Pa1JsICvIzGUCi3UyeZn3hqRIOOvvamhg8jCfIaYU5tI5VApSJ/eBwA2tRTKRTOw4sYC3rNaUO7RMRuoBKxiU6U0JFQDgNFvKwdpiDL2BSXAAxxiYiA84rrTFyPuKOMRaT/ZI3HUTpQ2IBxD7u7oTOxnaozmltd+I57M/0EJBIOq+Ay+WJoLR/1ZLH1Pc6PJWVJegqdHVI+4TdGzlRORChSQgUXXNbVWT1JoScMuSNm55WSGpqG6AI2F5pihU8iDaAF3T98G7Z5V3Fx7cRmt3SvqNeqCW2VewGzeCxUZYcbkTMX3BcEHzrUkZMQ2+Ofvc7BbtoE+sIQZH2M8bCvsE9DENroq32JXkGSGMubp4qEDYsgfnMblJ/Qj52ZKEwJAwNq/BnO8Sss6ZpG4pUdXl6ZIQuw7mo66WLkTvTg0nDVk04/QjvifSe3WUQF9RqirmnekBFlFmdcivPruuoNPhHJXcM3VsZ8vMub51A=
+          edge: true
+          release_notes_file: "changelog.txt"
+          token:
+            secure: A4coY7WW7IWNWlDCnTXpm+J44KEUk/tV8byvzJIzLpDxRBq+EkJPYhwZfp+6BIpayVGZTd1OK4IefhqTmCPgo57SBJk29YVKqNSoI3W613K+l+ojO3T686aAwqyXak/U3p1Me20qFCIg2j7dXJXh0tQyVT9nfOIde67/wUQl6x+l+b9daXYQ40qyfMswXXvO4qDVlBZBRdHL9ty3dOY2apNv3R1RoLvIUN7gOxAj1rRO+aQiNm8SgmyoIkyIXCi4Sf3twMKL43ZqfyKo8lev13/PfLTJ/9xTjww/LzqWR7beYyBO7yc5ZWoYhlrZkq9Te69dgLz3vp+YqPblGbw3/wUVXq0UBJDNBnhMP7O9JRMt+Vurc3yA8LBBoxpYuC2UW4KFVZTNTCgkh7MksLF7/led3KLZiSuC/zQjljPFQrvBQ2G80+8E5/yuMJnqQrf9mQw/ZhvqbrNsbkiN3YNjBaGdLYK7o0PvTJPoWw19LlErDeGJXwSbZPVTxT1Nj9JwCiZvvXO4zjxPeMxYOI8u3eU3azZY5ncdYXFtxzEknLJSQaygefAnXC/lMjd9GucDftM7uj/nP2BfieoO8zHOfmANpSCqrDpql9hCcQvIcbyxIoqYyqUqaeCY3OX/c8wWlfWQIOjrMRx48oWP6j5lpqGTKY8N64sJ9jK3ee6kwuU=
           file: "$DIST_DIR_GITHUB/$GITHUB_RELEASE_FILENAME"
-          skip_cleanup: true
           name: "$TRAVIS_TAG"
           on:
             tags: true
+            condition: $TRAVIS_TAG != *beta*
+        - provider: releases
+          api_key:
+            secure: A4coY7WW7IWNWlDCnTXpm+J44KEUk/tV8byvzJIzLpDxRBq+EkJPYhwZfp+6BIpayVGZTd1OK4IefhqTmCPgo57SBJk29YVKqNSoI3W613K+l+ojO3T686aAwqyXak/U3p1Me20qFCIg2j7dXJXh0tQyVT9nfOIde67/wUQl6x+l+b9daXYQ40qyfMswXXvO4qDVlBZBRdHL9ty3dOY2apNv3R1RoLvIUN7gOxAj1rRO+aQiNm8SgmyoIkyIXCi4Sf3twMKL43ZqfyKo8lev13/PfLTJ/9xTjww/LzqWR7beYyBO7yc5ZWoYhlrZkq9Te69dgLz3vp+YqPblGbw3/wUVXq0UBJDNBnhMP7O9JRMt+Vurc3yA8LBBoxpYuC2UW4KFVZTNTCgkh7MksLF7/led3KLZiSuC/zQjljPFQrvBQ2G80+8E5/yuMJnqQrf9mQw/ZhvqbrNsbkiN3YNjBaGdLYK7o0PvTJPoWw19LlErDeGJXwSbZPVTxT1Nj9JwCiZvvXO4zjxPeMxYOI8u3eU3azZY5ncdYXFtxzEknLJSQaygefAnXC/lMjd9GucDftM7uj/nP2BfieoO8zHOfmANpSCqrDpql9hCcQvIcbyxIoqYyqUqaeCY3OX/c8wWlfWQIOjrMRx48oWP6j5lpqGTKY8N64sJ9jK3ee6kwuU=
+          file: "$DIST_DIR_GITHUB/$GITHUB_RELEASE_FILENAME"
+          skip_cleanup: true
+          name: "$TRAVIS_TAG"
+          prerelease: true
+          on:
+            tags: true
+            condition: $TRAVIS_TAG =~ "beta"
         - provider: script
           script: ./deploy-wordpress.sh
           skip_cleanup: true
           on:
-            tags: true  
+            tags: true
 notifications:
   slack:
     rooms:
