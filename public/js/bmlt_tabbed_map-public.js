@@ -318,37 +318,37 @@ const bmltTabbedMapJS = function ($) {
   }
 
   var generateResultTable = function () {
-    var result = "<div><div class='bmlt_tabbed_map_table_container' id='sundayTabTableContents'><table id='sundayTabTable'>";
+    var result = "<div><div class='bmlt_tabbed_map_table_container' id='sundayTabTableContents'><table id='sundayTabTable' class='display compact'>";
     result += openTable;
     result += dayExpandLi[0];
     result += closeTable;
 
-    result += "<div class='bmlt_tabbed_map_table_container' id='mondayTabTableContents'><table id='mondayTabTable'>";
+    result += "<div class='bmlt_tabbed_map_table_container' id='mondayTabTableContents'><table id='mondayTabTable' class='display compact'>";
     result += openTable;
     result += dayExpandLi[1];
     result += closeTable;
 
-    result += "<div class='bmlt_tabbed_map_table_container' id='tuesdayTabTableContents'><table id='tuesdayTabTable'>";
+    result += "<div class='bmlt_tabbed_map_table_container' id='tuesdayTabTableContents'><table id='tuesdayTabTable' class='display compact'>";
     result += openTable;
     result += dayExpandLi[2];
     result += closeTable;
 
-    result += "<div class='bmlt_tabbed_map_table_container' id='wednesdayTabTableContents'><table id='wednesdayTabTable'>";
+    result += "<div class='bmlt_tabbed_map_table_container' id='wednesdayTabTableContents'><table id='wednesdayTabTable' class='display compact'>";
     result += openTable;
     result += dayExpandLi[3];
     result += closeTable;
 
-    result += "<div class='bmlt_tabbed_map_table_container' id='thursdayTabTableContents'><table id='thursdayTabTable'>";
+    result += "<div class='bmlt_tabbed_map_table_container' id='thursdayTabTableContents'><table id='thursdayTabTable' class='display compact'>";
     result += openTable;
     result += dayExpandLi[4];
     result += closeTable;
 
-    result += "<div class='bmlt_tabbed_map_table_container' id='fridayTabTableContents'><table id='fridayTabTable' >";
+    result += "<div class='bmlt_tabbed_map_table_container' id='fridayTabTableContents'><table id='fridayTabTable' class='display compact' >";
     result += openTable;
     result += dayExpandLi[5];
     result += closeTable;
 
-    result += "<div class='bmlt_tabbed_map_table_container' id='saturdayTabTableContents'><table id='saturdayTabTable'>";
+    result += "<div class='bmlt_tabbed_map_table_container' id='saturdayTabTableContents'><table id='saturdayTabTable' class='display compact'>";
     result += openTable;
     result += dayExpandLi[6];
     result += closeTable;
