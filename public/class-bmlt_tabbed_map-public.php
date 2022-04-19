@@ -29,7 +29,7 @@ class Bmlt_tabbed_map_Public
 
         wp_enqueue_style('badge_css', plugin_dir_url(__FILE__) . 'css/jquery.badge.css', array(), $this->version, 'all');
         wp_enqueue_style('fa_solid', plugin_dir_url(__FILE__) . 'css/fontawesome-5.6.1.css', array(), $this->version, 'all');
-        wp_enqueue_style('dataTablesCss', plugin_dir_url(__FILE__) . 'css/datatables-1.10.18.min.css', array(), $this->version, 'all');
+        wp_enqueue_style('dataTablesCss', plugin_dir_url(__FILE__) . 'css/datatables-1.11.5.min.css', array(), $this->version, 'all');
         wp_enqueue_style($this->plugin_name, plugin_dir_url(__FILE__) . 'css/bmlt_tabbed_map-public.css', array(), $this->version, 'all');
     }
     // phpcs:disable PSR1.Methods.CamelCapsMethodName.NotCamelCaps
@@ -44,7 +44,7 @@ class Bmlt_tabbed_map_Public
 
         wp_enqueue_script('spinmin', plugin_dir_url(__FILE__) . 'js/spin.min.js', array(), $this->version, false);
         wp_enqueue_script('badge_js', plugin_dir_url(__FILE__) . 'js/jquery.badge.js', array( 'jquery' ), $this->version, false);
-        wp_enqueue_script('dataTableJS', plugin_dir_url(__FILE__) . 'js/datatables-1.10.18.min.js', array( 'jquery' ), $this->version, false);
+        wp_enqueue_script('dataTableJS', plugin_dir_url(__FILE__) . 'js/datatables-1.11.5.min.js', array( 'jquery' ), $this->version, false);
         wp_enqueue_script($this->plugin_name, plugin_dir_url(__FILE__) . 'js/bmlt_tabbed_map-public.js', array( 'jquery' ), $this->version, false);
 
         $script_data = array( 'zoom_js'   => get_option($this->option_name . '_zoom_position'),
