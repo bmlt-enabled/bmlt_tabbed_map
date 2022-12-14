@@ -6,7 +6,7 @@
  * Plugin Name:       BMLT Tabbed Map
  * Plugin URI:        https://bmlt.app
  * Description:       A plugin to display NA Meetings from the BMLT Tomato server on a map, tabbed by weekday.
- * Version:           1.1.0
+ * Version:           1.1.1
  * Author:            Paul N
  * License:           GPL-2.0+
  * License URI:       http://www.gnu.org/licenses/gpl-2.0.txt

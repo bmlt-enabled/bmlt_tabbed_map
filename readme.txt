@@ -4,8 +4,8 @@ Contributors: paulnagle, bmltenabled, pjaudiomv
 Tags: na, meeting list, meeting finder, maps, recovery, addiction, webservant, bmlt
 Requires at least: 4.0
 Required PHP: 5.6
-Tested up to: 5.9.3
-Stable tag: 1.1.0
+Tested up to: 6.1.1
+Stable tag: 1.1.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 bmlt_tabbed_map implements a Tabbed Map for BMLT.
@@ -30,6 +30,10 @@ This plugin provides a Tabbed Map interface for the Basic Meeting List Toolbox (
 <a href="https://www.na-ireland.org/na-meetings/meeting-search"> Go to this Web page to get an idea of how this works.</a>
 
 == Changelog ==
+
+= 1.1.1 =
+
+Changed tomato url
 
 = 1.1.0 =
 
