@@ -8,18 +8,14 @@ jobs:
   lint:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - name: Check out code 🛒
+        uses: actions/checkout@v3
         id: code-checkout
 
-      - name: Setup PHP
-        uses: shivammathur/setup-php@v2
-        with:
-          php-version: 7.4
-
-      - name: Validate composer.json and composer.lock
+      - name: Validate composer.json and composer.lock 🎼
         id: composer-validate
         run: composer validate
 
-      - name: PHPCS checker
+      - name: PHPCS checker 🧹
         id: php-codesniffer
         run: make lint
