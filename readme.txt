@@ -31,7 +31,7 @@ This plugin provides a Tabbed Map interface for the Basic Meeting List Toolbox (
 
 == Changelog ==
 
-= 1.1.4 =
+= 1.1.5 =
 
 * Fix tel links
 
