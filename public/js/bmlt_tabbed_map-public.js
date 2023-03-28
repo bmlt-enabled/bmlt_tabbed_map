@@ -257,7 +257,7 @@ const bmltTabbedMapJS = function ($) {
           listContent += '"  target="_blank">Click to join <i class="fas fa-users"></i></a></b><br>';
         }
         if (val.phone_meeting_number) {
-          listContent += '<br><b><a href="';
+          listContent += '<br><b><a href="tel:';
           listContent += val.phone_meeting_number;
           listContent += '"  target="_blank">Click to call <i class="fas fa-phone"></i></a></b><br>';
         }
