@@ -186,7 +186,7 @@ const bmltTabbedMapJS = function ($) {
   }
 
   var buildSearchURL = function () {
-    var search_url = "https://tomato.bmltenabled.org/main_server/client_interface/json/";
+    var search_url = "https://aggregator.bmltenabled.org/main_server/client_interface/json/";
     search_url += "?switcher=GetSearchResults";
     search_url += "&geo_width_km=" + getMapCornerDistance();
     search_url += "&long_val=" + map.getCenter().lng;
