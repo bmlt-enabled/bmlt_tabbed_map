@@ -18,6 +18,7 @@ services:
     volumes:
       - wordpress_data:/var/www/html
       - ../bmlt_tabbed_map/:/var/www/html/wp-content/plugins/bmlt_tabbed_map:ro
+      - ./logs/:/var/log/apache2
     ports:
       - "8000:80"
     restart: always
