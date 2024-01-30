@@ -8,6 +8,10 @@ class Bmlt_tabbed_map_Loader
     protected $actions;
 
     protected $filters;
+    /**
+     * @var array
+     */
+    private $shortcodes;
 
     public function __construct()
     {

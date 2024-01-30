@@ -4,7 +4,7 @@ Contributors: paulnagle, bmltenabled, pjaudiomv
 Tags: na, meeting list, meeting finder, maps, recovery, addiction, webservant, bmlt
 Requires at least: 4.0
 Required PHP: 5.6
-Tested up to: 6.3.0
+Tested up to: 6.4.2
 Stable tag: 1.1.8
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -33,7 +33,8 @@ This plugin provides a Tabbed Map interface for the Basic Meeting List Toolbox (
 
 = 1.1.8 =
 
-Changed aggregator url
+* Added virtual_meeting_additional_info field.
+* Changed aggregator url
 
 = 1.1.7 =
 
