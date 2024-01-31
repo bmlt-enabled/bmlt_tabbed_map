@@ -251,6 +251,9 @@ const bmltTabbedMapJS = function ($) {
         listContent += "<br><i>Formats: </i>" + val.formats + "<br>";
       }
       if ((val.virtual_meeting_link) || (val.phone_meeting_number)) {
+        if (val.virtual_meeting_additional_info) {
+          listContent += '<br>' + val.virtual_meeting_additional_info;
+        }
         if (val.virtual_meeting_link) {
           listContent += '<br><b><a href="';
           listContent += val.virtual_meeting_link;

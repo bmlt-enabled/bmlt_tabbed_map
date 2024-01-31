@@ -14,6 +14,7 @@ class Bmlt_tabbed_map_Admin
     private $tmpZoomPosition;
     private $tmpLngPosition;
     private $tmpLatPosition;
+    private $plugin_screen_hook_suffix;
 
     public function __construct($plugin_name, $version)
     {
