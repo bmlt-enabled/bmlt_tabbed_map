@@ -53,13 +53,13 @@ class Bmlt_tabbed_map
         $this->loader->add_action('admin_init', $plugin_admin, 'register_setting');
 
         $this->loader->add_action('admin_enqueue_scripts', $plugin_admin, 'enqueue_styles');
-        $this->loader->add_action('admin_enqueue_scripts', $plugin_admin, 'enqueue_scripts');
+        $this->loader->add_action('admin_enqueue_scripts', $plugin_admin, 'enqueueScripts');
 
         $this->loader->add_action('wp_ajax_receive_new_settings', $plugin_admin, 'receive_new_settings');
         $this->loader->add_action('wp_ajax_nopriv_receive_new_settings', $plugin_admin, 'receive_new_settings');
 
         $plugin_basename = plugin_basename(plugin_dir_path(__DIR__) . $this->plugin_name . '.php');
-        $this->loader->add_filter('plugin_action_links_' . $plugin_basename, $plugin_admin, 'add_action_links');
+        $this->loader->add_filter('plugin_action_links_' . $plugin_basename, $plugin_admin, 'addActionLinks');
     }
     // phpcs:disable PSR1.Methods.CamelCapsMethodName.NotCamelCaps
     private function define_public_hooks()
@@ -68,8 +68,8 @@ class Bmlt_tabbed_map
         $plugin_public = new Bmlt_tabbed_map_Public($this->get_plugin_name(), $this->get_version());
 
         $this->loader->add_action('wp_enqueue_scripts', $plugin_public, 'enqueue_styles', 100000);
-        $this->loader->add_action('wp_enqueue_scripts', $plugin_public, 'enqueue_scripts');
-        $this->loader->add_shortcode("bmlt_tabbed_map", $plugin_public, "bmlt_tabbed_map_shortcode", 10, 2);
+        $this->loader->add_action('wp_enqueue_scripts', $plugin_public, 'enqueueScripts');
+        $this->loader->add_shortcode("bmlt_tabbed_map", $plugin_public, "bmltTabbedMapShortcode", 10, 2);
     }
 
     public function run()
