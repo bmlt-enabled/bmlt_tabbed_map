@@ -8,8 +8,8 @@
  * @link       https://www.na-ireland.org
  * @since      1.0.0
  *
- * @package    Bmlt_tabbed_map
- * @subpackage Bmlt_tabbed_map/public/partials
+ * @package    Bmlt_Tabbed_Map
+ * @subpackage Bmlt_Tabbed_Map/public/partials
  */
 ?>
 

@@ -22,10 +22,10 @@
  * @link       https://www.na-ireland.org
  * @since      1.0.0
  *
- * @package    Bmlt_tabbed_map
+ * @package    Bmlt_Tabbed_Map
  */
 
 // If uninstall not called from WordPress, then exit.
-if (! defined('WP_UNINSTALL_PLUGIN')) {
-    exit;
+if ( ! defined( 'WP_UNINSTALL_PLUGIN' ) ) {
+	exit;
 }
