@@ -19,7 +19,7 @@ if ( ! defined( 'WPINC' ) ) {
 	die;
 }
 
-define( 'BMLT_TABBED_MAP_PLUGIN_VERSION', '1.1.8' );
+define( 'BMLT_TABBED_MAP_PLUGIN_VERSION', '1.2.1' );
 
 function activate_bmlt_tabbed_map() {
 	require_once plugin_dir_path( __FILE__ ) . 'includes/class-bmlt-tabbed-map-activator.php';
